@@ -1,20 +1,22 @@
-declare namespace Home { 
+declare namespace Home {
   type imageProp = {
-    id:string,
-    imageUrl:string,
+    id: string,
+    imageUrl: string,
   }
   type homeItemProp = {
     id: string,
-    title:string
+    title: string,
+    subTitle: string,
+    imageUrl: string
   }
   type stateProp = {
     imageData: Array<imageProp>,
-    homeItem:Array<homeItemProp>
+    homeItem: Array<homeItemProp>
   }
   type homeType = {
     home: stateProp
   }
-  interface flatListProp { 
-    homeItem:Array<homeItemProp>
+  interface flatListProp {
+    homeItem: Array<homeItemProp>
   }
 }
