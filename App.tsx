@@ -12,23 +12,33 @@ import React, { type PropsWithChildren } from 'react';
 import { Provider } from 'react-redux';
 import store from './src/store/index';
 import {
-  SafeAreaView,
-  ScrollView,
   StatusBar,
   StyleSheet,
-  Text,
-  useColorScheme,
-  View,
 } from 'react-native';
 
 
 import Navigator from './src/routes/index'
+import { ThemeProvider } from '@react-navigation/native';
 
 const App = () => {
 
   return (
     <Provider store={store}>
-      <Navigator />
+      <ThemeProvider
+          value={{
+          dark: false,
+          colors: {
+            primary: '',
+            background: '',
+            card: '',
+            text: '',
+            border: '',
+            notification: ''
+          }
+        }} >
+            <Navigator />
+            <StatusBar />
+        </ThemeProvider>
     </Provider>
   );
 };

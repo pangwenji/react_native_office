@@ -1,48 +1,61 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import Carousel, { CarouselProps } from 'react-native-snap-carousel'
-// import { ViewWidth } from '../../utils/index';
-import ImageCarousel from 'react-native-image-carousel';
-let carouselList: Array<any> = [
-    {
-        id: '1',
-        imageUrl:
-            'https://newbee-mall.oss-cn-beijing.aliyuncs.com/images/banner-p50-pocket.png',
-    },
-    {
-        id: '2',
-        imageUrl:
-            'https://newbee-mall.oss-cn-beijing.aliyuncs.com/images/banner-iphone13.png',
-    },
-    {
-        id: '3',
-        imageUrl:
-            'https://newbee-mall.oss-cn-beijing.aliyuncs.com/images/banner-mate40.png',
-    },
-];
+import React, { useEffect }  from 'react';
+import { View, Text, StyleSheet,Image } from 'react-native';
+import { ViewWidth } from '../../utils/index';
+import { useSelector} from 'react-redux';
+import Swiper from 'react-native-swiper'
 
-const _renderItem = (item: any) => {
-    return (
-        <></>
-        // <TouchableOpacity onPress={_onPress}>
-        //     {/* <Image
-        //     source={{ uri: '' }}
-        // /> */}
-        // </TouchableOpacity>
-    )
-}
+
 const CarouselPage = () => {
-    // let carouselRef = React.createRef<any>();
+    const  data:any= useSelector<Home.homeType>(state => state.home)
     return (
-        <ImageCarousel 
-        
-        />
-      
+        <View style={styles.contanier}>
+            <Swiper
+                showsPagination={ true}
+                showsButtons={false}
+                autoplay
+                autoplayTimeout={2}
+                activeDot={<View style={styles.activeDotSty} />}
+                dot={<View style={styles.docSty} />}
+            >
+                {
+                    data.imageData.map((res: any ,idx:number)=> (
+                    <View key={idx}>
+                        <Image
+                            source={res.imageUrl}
+                            resizeMode='stretch'
+                            style={styles.image}
+                        />
+                    </View>))
+                }
+            </Swiper>
+       </View>
     )
 }
 
-// const styles = StyleSheet.create<any>({
-//     sliderWidht: ViewWidth,
-//     itemWidth: ViewWidth
-// })
+const styles = StyleSheet.create({
+    contanier: {
+        width: ViewWidth,
+        height: 240 
+    },
+    image: {
+        width: ViewWidth,
+        height: 240,
+    },
+    activeDotSty: {
+        backgroundColor: 'red',
+        width: 8,
+        height: 8,
+        borderRadius: 4,
+        marginLeft: 3,
+        marginRight: 3,
+    },
+    docSty: {
+        backgroundColor: 'white',
+        height: 8,
+        width: 8,
+        borderRadius: 4,
+        marginLeft: 3,
+        marginRight: 3,
+    }
+})
 export default CarouselPage;
