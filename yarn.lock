@@ -6064,6 +6064,11 @@ react-native-gesture-handler@^2.5.0:
     lodash "^4.17.21"
     prop-types "^15.7.2"
 
+react-native-gifted-spinner@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.npmmirror.com/react-native-gifted-spinner/-/react-native-gifted-spinner-0.1.0.tgz#2c76094fa0469c59e96dead270cd5bca5a55962a"
+  integrity sha512-znPNOFhNARIB/GArHjuEdh/OxXQ1P2CedqzYejDDpJRwMdG2WE2MaVg4y+hW8HFVNDItcgYFkQxrKokgRuvwZQ==
+
 react-native-gradle-plugin@^0.0.7:
   version "0.0.7"
   resolved "https://registry.npmmirror.com/react-native-gradle-plugin/-/react-native-gradle-plugin-0.0.7.tgz"
