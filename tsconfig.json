@@ -6,10 +6,15 @@
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
 
     /* Completeness */
-    "baseUrl":".",    /* Recommended React Native TSConfig base */
+    "baseUrl":"./src",    /* Recommended React Native TSConfig base */
     "strict":true,
     "paths":{
-       "~/":["src/*"]
+      "@/assets/*": ["assets/*"],
+      "@/components/*": ["components/*"],
+      "@/pages/*": ["pages/*"],
+      "@/utils/*": ["utils/*"],
+      "@/store/*": ["store/*"],
+      "@/routes/*": ["routes/*"],
     },
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   }

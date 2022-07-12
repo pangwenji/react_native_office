@@ -7,7 +7,8 @@ declare namespace Home {
     id: string,
     title: string,
     subTitle: string,
-    imageUrl: string
+    imageUrl: string,
+    name:string
   }
   type stateProp = {
     imageData: Array<imageProp>,
@@ -18,5 +19,14 @@ declare namespace Home {
   }
   interface flatListProp {
     homeItem: Array<homeItemProp>
+  }
+  type renderlistProp = {
+    index: string,
+    item: homeItemProp,
+    separators: {
+      highlight: () => void,
+      unhighlight:()=> void,
+      updateProps:()=> void,
+    }
   }
 }

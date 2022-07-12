@@ -1,3 +1,7 @@
+import ContactsScreen from "@/pages/contacts";
+import MessageScreen from "@/pages/message";
+import NoticeScreen from "@/pages/notice";
+import TodoScreen from "@/pages/todo";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import React from "react"
@@ -8,13 +12,27 @@ const IndexStack = createStackNavigator<any>()
 const IndexStackSreen: React.FC<any> = (props: any) => {
     return (
         <IndexStack.Navigator
-
             screenOptions={() => ({ headerShown: false })}
         >
             <IndexStack.Screen
                 name='root'
                 component={BottomTabs}
-
+            />
+            <IndexStack.Screen
+                name='notice'
+                component={NoticeScreen}
+            />
+            <IndexStack.Screen
+                name='todo'
+                component={TodoScreen}
+            />
+            <IndexStack.Screen
+                name='contacts'
+                component={ContactsScreen}
+            />
+            <IndexStack.Screen
+                name='message'
+                component={MessageScreen}
             />
         </IndexStack.Navigator>
     )

@@ -1,29 +1,30 @@
 import React from 'react';
 import { View, Text, SafeAreaView, FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { useSelector } from 'react-redux';
-import { ViewHeight } from '../../utils/index';
-import CarouselPage from '../../components/carousel/index';
+import { ViewHeight } from '@/utils/index';
+import CarouselPage from '@/components/carousel/index';
 import { Badge } from 'react-native-elements';
 
-const _onPress = () => {
-    console.log(1)
+const _onPress = ({ navigation }: any, args: Home.renderlistProp) => {
+    let {item } = args;
+    navigation.navigate(item.name)
 }
 
-const _renderItem = ({ item }) => {
+const _renderItem = (args :Home.renderlistProp | any, props :any) => {
     return (
-        <TouchableOpacity onPress={_onPress}>
+        <TouchableOpacity onPress={()=>_onPress(props,args)}>
             <View style={styles.contanier}>
                 {/* 左边 */}
                 <View style={styles.left}>
                     <Image
                         style={styles.image}
-                        source={item.imageUrl}
+                        source={args.item.imageUrl}
                     />
                 </View>
                 {/* 中间 */}
                 <View style={styles.center}>
-                    <Text style={styles.topText}>{item.title}</Text>
-                    <Text style={styles.bottomText}>{item.subTitle}</Text>
+                    <Text style={styles.topText}>{args.item.title}</Text>
+                    <Text style={styles.bottomText}>{args.item.subTitle}</Text>
                 </View>
                 {/* 右边 */}
                 <View style={styles.rigth}>
@@ -34,7 +35,7 @@ const _renderItem = ({ item }) => {
     )
 }
 
-const HomeScreen: React.FC = () => {
+const HomeScreen: React.FC = (props) => {
     let res: Home.flatListProp | any = useSelector<Home.homeType>(state => state.home)
     return (
         <SafeAreaView >
@@ -44,7 +45,7 @@ const HomeScreen: React.FC = () => {
             </View>
             <FlatList
                 data={res.homeItem}
-                renderItem={_renderItem}
+                renderItem={(item)=>(_renderItem(item,props))}
             />
         </SafeAreaView>
     )
@@ -69,7 +70,6 @@ const styles = StyleSheet.create<any>({
         backgorundColor: 'red',
         justifyContent: 'center',
         width: 200
-        // alignItems: 'center'
     },
     center: {
         flex: 4,
