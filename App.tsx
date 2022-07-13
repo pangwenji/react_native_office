@@ -18,24 +18,13 @@ import {
 
 
 import Navigator from './src/routes/index'
-import { ThemeProvider } from '@react-navigation/native';
+import { ThemeProvider } from 'react-native-elements'
 
 const App = () => {
 
   return (
     <Provider store={store}>
-      <ThemeProvider
-          value={{
-          dark: false,
-          colors: {
-            primary: '',
-            background: '',
-            card: '',
-            text: '',
-            border: '',
-            notification: ''
-          }
-        }} >
+      <ThemeProvider >
             <Navigator />
             <StatusBar />
         </ThemeProvider>

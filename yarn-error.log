@@ -1,28 +1,28 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\Administrator\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add @types/react-native-image-carousel --save-dev
+  C:\Program Files\nodejs\node.exe C:\Users\LENOVO\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add @types/react-native-gifted-spinner -D
 
 PATH: 
-  C:\Users\Administrator\AppData\Local\Android\Sdk\platform-tools;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;D:\Java\jdk-11\bin;%ANDROID_SDK_ROOT%\emulator;%ANDROID_SDK_ROOT%\tools;%ANDROID_SDK_ROOT%\tools\bin;C:\Users\Administrator\AppData\Local\Android\Sdk\platform-tools;D:\flutter\bin;D:\MongoDB\Server\5.0\bin;;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;%ANDROID_SDK_ROOT%\tools;%ANDROID_SDK_ROOT%\emulator;%ANDROID_SDK_ROOT%\tools\bin;%ANDROID_SDK_ROOT%\platform-tools;C:\Users\Administrator\AppData\Local\Microsoft\WindowsApps;D:\Microsoft VS Code\bin;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\Android\Sdk\platform-tools;C:\Users\Administrator\AppData\Local\Android\Sdk\emulator;C:\Users\Administrator\AppData\Local\Android\Sdk\tools;C:\Users\Administrator\AppData\Local\Android\Sdk\tools\bin;
+  C:\Users\LENOVO\AppData\Local\cloud-code\installer\google-cloud-sdk\bin;C:\Program Files\Common Files\jdk-11\bin;C:\Users\LENOVO\AppData\Local\Android\Sdk\tools;C:\Program Files\Common Files\jdk-11\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;%ANDROID_HOME\platform-tools;%ANDROID_HOME\emulator;%ANDROID_HOME\tools;%ANDROID_HOME\tools\bin;C:\Users\LENOVO\AppData\Local\Android\Sdk\platform-tools;C:\Program Files\Git\cmd;C:\Program Files\Git\bin; C:\apache-maven-3.8.4\bin;C:\Program Files (x86)\Google\Cloud SDK\google-cloud-sdk\bin;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\nodejs\;C:\Program Files\MongoDB\Server\5.0\bin;C:\Users\LENOVO\AppData\Local\Microsoft\WindowsApps;C:\Users\LENOVO\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\JetBrains\PyCharm 2021.3.2\bin;;C:\Users\LENOVO\AppData\Local\Android\Sdk\platform-tools;C:\Program Files\Git\bin;C:\apache-maven-3.8.4\bin;C:\Users\LENOVO\AppData\Roaming\npm;C:\Users\LENOVO\AppData\Local\Programs\Fiddler
 
 Yarn version: 
-  1.22.18
+  1.22.17
 
 Node version: 
-  16.15.0
+  16.14.1
 
 Platform: 
   win32 x64
 
 Trace: 
-  Error: https://registry.npmmirror.com/@types%2freact-native-image-carousel: [NOT_FOUND] @types/react-native-image-carousel not found
-      at Request.params.callback [as _callback] (C:\Users\Administrator\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:66138:18)
-      at Request.self.callback (C:\Users\Administrator\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:140883:22)
-      at Request.emit (node:events:527:28)
-      at Request.<anonymous> (C:\Users\Administrator\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141855:10)
-      at Request.emit (node:events:527:28)
-      at Gunzip.<anonymous> (C:\Users\Administrator\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141777:12)
-      at Object.onceWrapper (node:events:641:28)
-      at Gunzip.emit (node:events:527:28)
+  Error: http://registry.npm.taobao.org/@types%2freact-native-gifted-spinner: [NOT_FOUND] @types/react-native-gifted-spinner not found
+      at Request.params.callback [as _callback] (C:\Users\LENOVO\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:67029:18)
+      at Request.self.callback (C:\Users\LENOVO\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:140883:22)
+      at Request.emit (node:events:526:28)
+      at Request.<anonymous> (C:\Users\LENOVO\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141855:10)
+      at Request.emit (node:events:526:28)
+      at Gunzip.<anonymous> (C:\Users\LENOVO\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141777:12)
+      at Object.onceWrapper (node:events:645:28)
+      at Gunzip.emit (node:events:526:28)
       at endReadableNT (node:internal/streams/readable:1345:12)
       at processTicksAndRejections (node:internal/process/task_queues:83:21)
 
@@ -47,12 +47,13 @@ npm manifest:
       "react-native": "0.69.1",
       "react-native-elements": "^3.4.2",
       "react-native-gesture-handler": "^2.5.0",
-      "react-native-image-carousel": "^0.4.6",
+      "react-native-gifted-spinner": "^0.1.0",
       "react-native-linear-gradient": "^2.6.2",
       "react-native-safe-area-context": "^4.3.1",
       "react-native-screens": "^3.15.0",
       "react-native-snap-carousel": "^3.9.1",
       "react-native-svg": "^12.3.0",
+      "react-native-swiper": "^1.6.0",
       "react-native-vector-icons": "^9.2.0",
       "react-redux": "^8.0.2",
       "redux": "^4.2.0"
@@ -69,6 +70,8 @@ npm manifest:
       "@typescript-eslint/eslint-plugin": "^5.29.0",
       "@typescript-eslint/parser": "^5.29.0",
       "babel-jest": "^26.6.3",
+      "babel-plugin-module-resolver": "^4.1.0",
+      "babel-plugin-root-import": "^6.6.0",
       "eslint": "^7.32.0",
       "jest": "^26.6.3",
       "metro-react-native-babel-preset": "^0.70.3",
@@ -812,13 +815,6 @@ Lockfile:
       make-dir "^2.1.0"
       pirates "^4.0.5"
       source-map-support "^0.5.16"
-  
-  "@babel/runtime@7.0.0":
-    version "7.0.0"
-    resolved "https://registry.npmmirror.com/@babel/runtime/-/runtime-7.0.0.tgz#adeb78fedfc855aa05bc041640f3f6f98e85424c"
-    integrity sha512-7hGhzlcmg01CvH1EHdSPVXYX1aJ8KCEyz6I9xYIi/asDtzBPMyMhVibhM/K6g/5qnKBwjZtp10bNZIEFTRW1MA==
-    dependencies:
-      regenerator-runtime "^0.12.0"
   
   "@babel/runtime@^7.0.0", "@babel/runtime@^7.12.1", "@babel/runtime@^7.12.5", "@babel/runtime@^7.9.2":
     version "7.18.6"
@@ -2137,6 +2133,17 @@ Lockfile:
       "@types/babel__core" "^7.0.0"
       "@types/babel__traverse" "^7.0.6"
   
+  babel-plugin-module-resolver@^4.1.0:
+    version "4.1.0"
+    resolved "https://registry.npmmirror.com/babel-plugin-module-resolver/-/babel-plugin-module-resolver-4.1.0.tgz#22a4f32f7441727ec1fbf4967b863e1e3e9f33e2"
+    integrity sha512-MlX10UDheRr3lb3P0WcaIdtCSRlxdQsB1sBqL7W0raF070bGl1HQQq5K3T2vf2XAYie+ww+5AKC/WrkjRO2knA==
+    dependencies:
+      find-babel-config "^1.2.0"
+      glob "^7.1.6"
+      pkg-up "^3.1.0"
+      reselect "^4.0.0"
+      resolve "^1.13.1"
+  
   babel-plugin-polyfill-corejs2@^0.3.1:
     version "0.3.1"
     resolved "https://registry.npmmirror.com/babel-plugin-polyfill-corejs2/-/babel-plugin-polyfill-corejs2-0.3.1.tgz"
@@ -2160,6 +2167,13 @@ Lockfile:
     integrity sha512-Y2B06tvgHYt1x0yz17jGkGeeMr5FeKUu+ASJ+N6nB5lQ8Dapfg42i0OVrf8PNGJ3zKL4A23snMi1IRwrqqND7A==
     dependencies:
       "@babel/helper-define-polyfill-provider" "^0.3.1"
+  
+  babel-plugin-root-import@^6.6.0:
+    version "6.6.0"
+    resolved "https://registry.npmmirror.com/babel-plugin-root-import/-/babel-plugin-root-import-6.6.0.tgz#85940840f308a8c292f66ca0b5bdd314046273ed"
+    integrity sha512-SPzVOHd7nDh5loZwZBxtX/oOu1MXeKjTkz+1VnnzLWC0dk8sJIGC2IDQ2uWIBjE5mUtXlQ35MTHSqN0Xn7qHrg==
+    dependencies:
+      slash "^3.0.0"
   
   babel-plugin-syntax-trailing-function-commas@^7.0.0-beta.0:
     version "7.0.0-beta.0"
@@ -3491,6 +3505,14 @@ Lockfile:
       parseurl "~1.3.3"
       statuses "~1.5.0"
       unpipe "~1.0.0"
+  
+  find-babel-config@^1.2.0:
+    version "1.2.0"
+    resolved "https://registry.npmmirror.com/find-babel-config/-/find-babel-config-1.2.0.tgz#a9b7b317eb5b9860cda9d54740a8c8337a2283a2"
+    integrity sha512-jB2CHJeqy6a820ssiqwrKMeyC6nNdmrcgkKWJWmpoxpE8RKciYJXCcXRq1h2AzCo5I5BJeN2tkGEO3hLTuePRA==
+    dependencies:
+      json5 "^0.5.1"
+      path-exists "^3.0.0"
   
   find-cache-dir@^2.0.0:
     version "2.1.0"
@@ -4900,6 +4922,11 @@ Lockfile:
     resolved "https://registry.npmmirror.com/json-stable-stringify-without-jsonify/-/json-stable-stringify-without-jsonify-1.0.1.tgz"
     integrity sha512-Bdboy+l7tA3OGW6FjyFHWkP5LuByj1Tk33Ljyq0axyzdk9//JSi2u3fP1QSmd1KNwq6VOKYGlAu87CisVir6Pw==
   
+  json5@^0.5.1:
+    version "0.5.1"
+    resolved "https://registry.npmmirror.com/json5/-/json5-0.5.1.tgz#1eade7acc012034ad84e2396767ead9fa5495821"
+    integrity sha512-4xrs1aW+6N5DalkqSVA8fxh458CXvR99WU8WLKmq4v8eWAL86Xo3BVqyd3SkA9wEVjCMqyvvRRkshAdOnBp5rw==
+  
   json5@^2.2.1:
     version "2.2.1"
     resolved "https://registry.npmmirror.com/json5/-/json5-2.2.1.tgz"
@@ -5936,6 +5963,13 @@ Lockfile:
     dependencies:
       find-up "^4.0.0"
   
+  pkg-up@^3.1.0:
+    version "3.1.0"
+    resolved "https://registry.npmmirror.com/pkg-up/-/pkg-up-3.1.0.tgz#100ec235cc150e4fd42519412596a28512a0def5"
+    integrity sha512-nDywThFk1i4BQK4twPQ6TA4RT8bDY96yeuCVBWL3ePARCiEKDRSrNGbFIgUJpLp+XeIR65v8ra7WuJOFUBtkMA==
+    dependencies:
+      find-up "^3.0.0"
+  
   plist@^3.0.2:
     version "3.0.5"
     resolved "https://registry.npmmirror.com/plist/-/plist-3.0.5.tgz"
@@ -6013,7 +6047,7 @@ Lockfile:
       kleur "^3.0.3"
       sisteransi "^1.0.5"
   
-  prop-types@^15.6.1, prop-types@^15.7.2, prop-types@^15.8.1:
+  prop-types@^15.5.10, prop-types@^15.6.1, prop-types@^15.7.2, prop-types@^15.8.1:
     version "15.8.1"
     resolved "https://registry.npmmirror.com/prop-types/-/prop-types-15.8.1.tgz"
     integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -6108,7 +6142,7 @@ Lockfile:
   
   react-native-elements@^3.4.2:
     version "3.4.2"
-    resolved "https://registry.npmmirror.com/react-native-elements/-/react-native-elements-3.4.2.tgz"
+    resolved "https://registry.npmmirror.com/react-native-elements/-/react-native-elements-3.4.2.tgz#66602be9c5e0e0a2a831913adec80ff6518d1ee2"
     integrity sha512-m0eAWOn7JuR1wNTNY0WHuaqst4LI/gFE4N5Bbyfsc4DiryWsMST7aAg5w/Gos4IexWIzhLKCIkPxthND1m/8Xg==
     dependencies:
       "@types/react-native-vector-icons" "^6.4.6"
@@ -6131,6 +6165,11 @@ Lockfile:
       lodash "^4.17.21"
       prop-types "^15.7.2"
   
+  react-native-gifted-spinner@^0.1.0:
+    version "0.1.0"
+    resolved "https://registry.npmmirror.com/react-native-gifted-spinner/-/react-native-gifted-spinner-0.1.0.tgz#2c76094fa0469c59e96dead270cd5bca5a55962a"
+    integrity sha512-znPNOFhNARIB/GArHjuEdh/OxXQ1P2CedqzYejDDpJRwMdG2WE2MaVg4y+hW8HFVNDItcgYFkQxrKokgRuvwZQ==
+  
   react-native-gradle-plugin@^0.0.7:
     version "0.0.7"
     resolved "https://registry.npmmirror.com/react-native-gradle-plugin/-/react-native-gradle-plugin-0.0.7.tgz"
@@ -6148,13 +6187,6 @@ Lockfile:
       minimist "^1.2.5"
       mkdirp "^0.5.1"
       tslib "^1.10.0"
-  
-  react-native-image-carousel@^0.4.6:
-    version "0.4.6"
-    resolved "https://registry.npmmirror.com/react-native-image-carousel/-/react-native-image-carousel-0.4.6.tgz#670c87fbeb8bc7344464c69e3ffe9b063563b412"
-    integrity sha512-hjtfqpam1ES8uX+au5KCXQQCtyt+w0FJwZeK9PErG/fJtrBabnKzExBGoIhsJCVFCczlkxTNBzMlNn6dNWP8Ew==
-    dependencies:
-      react-swipeable-views-native "^0.13.2"
   
   react-native-linear-gradient@^2.6.2:
     version "2.6.2"
@@ -6201,6 +6233,13 @@ Lockfile:
     dependencies:
       css-select "^4.2.1"
       css-tree "^1.0.0-alpha.39"
+  
+  react-native-swiper@^1.6.0:
+    version "1.6.0"
+    resolved "https://registry.npmmirror.com/react-native-swiper/-/react-native-swiper-1.6.0.tgz#59fdbdf95addee49630312f27077622c27776819"
+    integrity sha512-OnkTTZi+9uZUgy0uz1I9oYDhCU3z36lZn+LFsk9FXPRelxb/KeABzvPs3r3SrHWy1aA67KGtSFj0xNK2QD0NJQ==
+    dependencies:
+      prop-types "^15.5.10"
   
   react-native-vector-icons@^9.2.0:
     version "9.2.0"
@@ -6281,21 +6320,6 @@ Lockfile:
     dependencies:
       object-assign "^4.1.1"
       react-is "^16.12.0 || ^17.0.0 || ^18.0.0"
-  
-  react-swipeable-views-core@^0.13.0:
-    version "0.13.7"
-    resolved "https://registry.npmmirror.com/react-swipeable-views-core/-/react-swipeable-views-core-0.13.7.tgz#c082b553f26e83fd20fc17f934200eb717023c8a"
-    integrity sha512-ekn9oDYfBt0oqJSGGwLEhKvn+QaqMGTy//9dURTLf+vp7W5j6GvmKryYdnwJCDITaPFI2hujXV4CH9krhvaE5w==
-    dependencies:
-      "@babel/runtime" "7.0.0"
-      warning "^4.0.1"
-  
-  react-swipeable-views-native@^0.13.2:
-    version "0.13.2"
-    resolved "https://registry.npmmirror.com/react-swipeable-views-native/-/react-swipeable-views-native-0.13.2.tgz#4190f4d5e338c6815a282d63b44682a8f38ff952"
-    integrity sha512-Q8nV1pKfjFRDyjzk7UYvPfriLKizd54SA59hdc97Pi7pcrsxk3uSZ8EZlrGXILdUw9Iswqj8c62ZKvFH0LF6ew==
-    dependencies:
-      react-swipeable-views-core "^0.13.0"
   
   react-test-renderer@18.0.0:
     version "18.0.0"
@@ -6393,11 +6417,6 @@ Lockfile:
     resolved "https://registry.npmmirror.com/regenerate/-/regenerate-1.4.2.tgz"
     integrity sha512-zrceR/XhGYU/d/opr2EKO7aRHUeiBI8qjtfHqADTwZd6Szfy16la6kqD0MIUs5z5hx6AaKa+PixpPrR289+I0A==
   
-  regenerator-runtime@^0.12.0:
-    version "0.12.1"
-    resolved "https://registry.npmmirror.com/regenerator-runtime/-/regenerator-runtime-0.12.1.tgz#fa1a71544764c036f8c49b13a08b2594c9f8a0de"
-    integrity sha512-odxIc1/vDlo4iZcfXqRYFj0vpXFNoGdKMAUieAlFYO6m/nl5e9KR/beGf41z4a1FI+aQgtjhuaSlDxQ0hmkrHg==
-  
   regenerator-runtime@^0.13.2, regenerator-runtime@^0.13.4:
     version "0.13.9"
     resolved "https://registry.npmmirror.com/regenerator-runtime/-/regenerator-runtime-0.13.9.tgz"
@@ -6479,7 +6498,7 @@ Lockfile:
     resolved "https://registry.npmmirror.com/require-main-filename/-/require-main-filename-2.0.0.tgz"
     integrity sha512-NKN5kMDylKuldxYLSUfrbo5Tuzh4hd+2E8NPPX02mZtn1VuREQToYe/ZdlJy+J3uCpfaiGF05e7B8W0iXbQHmg==
   
-  reselect@^4.1.5:
+  reselect@^4.0.0, reselect@^4.1.5:
     version "4.1.6"
     resolved "https://registry.npmmirror.com/reselect/-/reselect-4.1.6.tgz"
     integrity sha512-ZovIuXqto7elwnxyXbBtCPo9YFEr3uJqj2rRbcOOog1bmu2Ag85M4hixSwFWyaBMKXNgvPaJ9OSu9SkBPIeJHQ==
@@ -6511,7 +6530,7 @@ Lockfile:
     resolved "https://registry.npmmirror.com/resolve-url/-/resolve-url-0.2.1.tgz"
     integrity sha512-ZuF55hVUQaaczgOIwqWzkEcEidmlD/xl44x1UZnhOXcYuFN2S6+rcxpG+C1N3So0wvNI3DmJICUFfu2SxhBmvg==
   
-  resolve@^1.10.0, resolve@^1.12.0, resolve@^1.14.2, resolve@^1.18.1:
+  resolve@^1.10.0, resolve@^1.12.0, resolve@^1.13.1, resolve@^1.14.2, resolve@^1.18.1:
     version "1.22.1"
     resolved "https://registry.npmmirror.com/resolve/-/resolve-1.22.1.tgz"
     integrity sha512-nBpuuYuY5jFsli/JIs1oldw6fOQCBioohqWZg/2hiaOybXOft4lonv85uDOKXdf8rhyK159cxU5cDcK/NKk8zw==
@@ -7485,13 +7504,6 @@ Lockfile:
     version "0.1.0"
     resolved "https://registry.npmmirror.com/warn-once/-/warn-once-0.1.0.tgz"
     integrity sha512-recZTSvuaH/On5ZU5ywq66y99lImWqzP93+AiUo9LUwG8gXHW+LJjhOd6REJHm7qb0niYqrEQJvbHSQfuJtTqA==
-  
-  warning@^4.0.1:
-    version "4.0.3"
-    resolved "https://registry.npmmirror.com/warning/-/warning-4.0.3.tgz#16e9e077eb8a86d6af7d64aa1e05fd85b4678ca3"
-    integrity sha512-rpJyN222KWIvHJ/F53XSZv0Zl/accqHR8et1kpaMTD/fLCRxtV8iX8czMzY7sVZupTI3zcUTg8eycS2kNF9l6w==
-    dependencies:
-      loose-envify "^1.0.0"
   
   wcwidth@^1.0.1:
     version "1.0.1"
