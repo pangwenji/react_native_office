@@ -1,4 +1,5 @@
 import Line from '@/components/line';
+import { Colors } from '@/utils/colors';
 import React from 'react';
 import {
 	View,
@@ -26,14 +27,16 @@ const onHelp = () => { }
 
 const onLogout = () => { }
 
-const callPhone=()=>{}
+const callPhone = () => { }
 
-const SettingsScreen: React.FC = () => {
-	const { login, userInfo } = this.props;
+const onUserInfo=()=>{}
+
+const SettingsScreen: React.FC = (props) => {
+	const { login, userInfo,top} = props;
 	return (
 		<View style={styles.background}>
 			<View style={styles.containers}>
-				<TouchableOpacity style={{ marginTop: top, }} onPress={this.onUserInfo}>
+				<TouchableOpacity style={{ marginTop: top, }} onPress={onUserInfo}>
 					<View style={styles.bgAvatar}>
 						<Image style={styles.avatar} source={userInfo.avatarData ? userInfo.avatarData : require('../img/icon/icon-avatar.png')} />
 						<Text style={styles.userInfo}>{login.rawData.nickName}</Text>
@@ -71,7 +74,7 @@ const SettingsScreen: React.FC = () => {
 const styles = StyleSheet.create({
 	background: {
 		flex: 1,
-		backgroundColor: Colors.mainBackground,
+		backgroundColor: Colors.GRAY_GAY,
 	},
 	containers: {
 		flex: 3,

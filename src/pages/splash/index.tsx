@@ -1,25 +1,25 @@
 import { ViewWidth } from '@/utils/index';
 import React, { useEffect, useRef } from 'react';
-import { Animated, StyleSheet, Text, View } from 'react-native';
-
+import { Animated, InteractionManager, StyleSheet, Text, View } from 'react-native';
+import Store from '@/utils/storage';
+import Login from '../login';
 const Splash: React.FC = () => {
     let bounceValue = useRef(new Animated.Value(1)).current;
     useEffect(() => {
         const { navigator, dispatch } = this.props;
+        let key: string = 'userName';
         setTimeout(() => {
-            global.storage.load({
-                key: 'userName',
-            }).then((ret) => {
+            Store.getValue(key).then((ret:any) => {
                 if (ret.userName && ret.password && ret.rawData) {
                     dispatch(changeLoginAuth({ username: ret.userName, password: ret.password, rawData: ret.rawData }))
                     navigator.push({
-                        name: "Main",
-                        component: MainContainer,
+                           name: "Main",
+                           component: MainContainer,
                     });
                 } else {
                     InteractionManager.runAfterInteractions(() => {
                         navigator.resetTo({
-                            component: LoginContainer,
+                            component: Login,
                             name: 'Login'
                         });
                     });
