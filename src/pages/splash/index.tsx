@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import { Animated, InteractionManager, StyleSheet, Text, View } from 'react-native';
 import Store from '@/utils/storage';
 import Login from '../login';
+import main from '../main';
 const Splash: React.FC = () => {
     let bounceValue = useRef(new Animated.Value(1)).current;
     useEffect(() => {
@@ -14,7 +15,7 @@ const Splash: React.FC = () => {
                     dispatch(changeLoginAuth({ username: ret.userName, password: ret.password, rawData: ret.rawData }))
                     navigator.push({
                            name: "Main",
-                           component: MainContainer,
+                           component: main,
                     });
                 } else {
                     InteractionManager.runAfterInteractions(() => {
@@ -28,7 +29,7 @@ const Splash: React.FC = () => {
                 console.log('setAotoLogin error ==> ', err);
                 InteractionManager.runAfterInteractions(() => {
                     navigator.resetTo({
-                        component: LoginContainer,
+                        component: Login,
                         name: 'Login'
                     });
                 });

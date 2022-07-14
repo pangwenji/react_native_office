@@ -1,12 +1,15 @@
 import Line from '@/components/line';
+import WebViews from '@/components/webview';
 import { Colors } from '@/utils/colors';
+import { NetWork } from '@/utils/network';
 import React from 'react';
 import {
 	View,
 	Text,
-	TouchableOpacity, Image, StyleSheet
+	TouchableOpacity, Image, StyleSheet, InteractionManager
 } from 'react-native';
-
+import Login from '../login';
+import store from '@/utils/storage'
 const commonRenderLine = (type: string, text: string, top?: string, onClick?: Function, icon?: string, fontColor?: string, fontSize?: string) => {
 	return (
 		<Line
@@ -21,17 +24,58 @@ const commonRenderLine = (type: string, text: string, top?: string, onClick?: Fu
 	)
 }
 
-const onChangePassword = () => { }
+const onChangePassword = () => { 
+  // const {navigator} = this.props;
+  // navigator.push({
+  //   name: "ChangePassword",
+  //   component: ChangePasswordContainer,
+  // });
+}
 
-const onHelp = () => { }
+const changeWebviewUrl = (help:string) => { }
 
-const onLogout = () => { }
+const onHelp = (props:any) => { 
+  const {navigator, dispatch} = props;
+  dispatch(changeWebviewUrl(NetWork.ME_HELP));
+  navigator.push({
+    name: "WebViews",
+    component: WebViews,
+  });
+}
+
+const goVersion = () => { 
+  // const {navigator, dispatch} = this.props;
+  // dispatch(changeWebviewUrl(ME_VERSION));
+  // navigator.push({
+  //   name: "WebviewContainer",
+  //   component: WebviewContainer,
+  // });
+}
+const onLogout = (props:any) => {
+  const {navigator, dispatch} = props;
+  JPush.clearAllNotifications();
+	InteractionManager.runAfterInteractions(() => {
+		store.setValue('userName', { rowData: {} });
+		store.setValue('gesture',{ rowData: {gesture:''} })
+    dispatch(changeLoginAuth({username: '', password: '', rawData: undefined}));
+    navigator.resetTo({
+      component: Login,
+      name: 'Login'
+    });
+  });
+ }
 
 const callPhone = () => { }
 
 const onUserInfo=()=>{}
 
-const SettingsScreen: React.FC = (props) => {
+interface IProps {
+  login: any,
+  userInfo: any,
+  top:any
+ }
+
+const SettingsScreen: React.FC<IProps> = (props) => {
 	const { login, userInfo,top} = props;
 	return (
 		<View style={styles.background}>
@@ -50,7 +94,7 @@ const SettingsScreen: React.FC = (props) => {
 					commonRenderLine('nextIcon', '帮助', '', onHelp, require('../img/icon/icon-locks.png'))
 				}
 				{
-					commonRenderLine('nextIcon', '版本信息', '', onHelp, require('../img/icon/icon-version.png'))
+					commonRenderLine('nextIcon', '版本信息', '', goVersion, require('../img/icon/icon-version.png'))
 				}
 				{
 					commonRenderLine('text', '注销', '40', onLogout, require('../img/icon/icon-version.png'), '#ED4D4D', '16')

@@ -34,7 +34,7 @@ const ImageInfo = (name:string,url:string,paddingTop?:number) => {
 	)
 }
 
-const commonPage = () => { 
+const commonPage = (props:any) => { 
 	switch (type) { 
 		case 'infomation':
 			return <HomeScreen {...this.props}/>
@@ -51,7 +51,7 @@ const main: React.FC = (props) => {
   return (
     <View style={styles.container}>
       <View style={styles.mainPage}>
-        {commonPage()}
+        {commonPage(props)}
       </View>
     <TabBar selected={this.state.page} style={{backgroundColor:'#322a33', bottom:0,}}
       onSelect={el=>this.setState({page:el.props.name})}>
