@@ -1,4 +1,4 @@
-import ContactsScreen from "@/pages/contacts";
+import ContactsScreen from "@/pages/address";
 import MessageScreen from "@/pages/message";
 import NoticeScreen from "@/pages/notice";
 import TodoScreen from "@/pages/todo";

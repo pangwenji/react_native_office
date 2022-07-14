@@ -1,11 +1,30 @@
 import React from 'react';
-import {View ,Text} from 'react-native';
-const ContactsScreen:React.FC =()=>{
-    return (
-        <View>
-            <Text>联系人</Text>
-        </View>
-    )
+import { View } from 'react-native';
+
+const Contracts: React.FC = (props: any) => {
+
+    switch (this.props.route.type) {
+        case types.CONTACT_LIST_BASE:
+            return (
+                <ContactListBase {...this.props} />
+            );
+        case types.CONTACT_LIST_BUILDER:
+            return (
+                <ContactListBuilder {...this.props} />
+            );
+        case types.CONTACT_LIST_DETAIL:
+            return (
+                <ContactListDetail {...this.props} />
+            );
+        case types.CONTACT_LIST_APPROVE:
+            return (
+                <ContactListApprove {...this.props} />
+            );
+        default:
+            return (
+                <View/>
+            );
+    }
 }
 
-export default ContactsScreen;
+export default Contracts;

@@ -1,0 +1,14 @@
+export enum ContactType {
+    CONTACT_LIST_TYPE_PROGRESS = 'taskStatus1',
+    CONTACT_LIST_TYPE_COMPLETE = 'taskStatus2',
+    CONTACT_LIST_TYPE_INCOMPLETE = 'taskStatus3',
+    CONTACT_LIST_TYPE_OVERDUE = 'taskStatus4',
+
+    CONTACT_PERSON_TYPE_CREATE = '创建人',
+    CONTACT_PERSON_TYPE_CHARGE = '负责人',
+    CONTACT_PERSON_TYPE_FOLLOW = '跟进人',
+
+    CONTACT_INUPT_TYPE_CREATE = '创建输入',
+    CONTACT_INUPT_TYPE_REPORT = '汇报输入',
+    CONTACT_INUPT_TYPE_FOLLOW = '跟进输入',
+}
