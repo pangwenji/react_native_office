@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
 	searchInputContainer: {
 		flexDirection: 'row',
 		flex: 1,
-		backgroundColor: Colors.lightgrey,
+		backgroundColor: Colors.LIGHT_GREY,
 	},
 	textInputContainer: {
 		flex: 4,
