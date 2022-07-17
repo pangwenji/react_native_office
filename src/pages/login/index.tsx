@@ -3,10 +3,16 @@ import { Colors } from '@/utils/colors';
 import React from 'react';
 import { Image, StyleSheet, Text, TextInput, TouchableHighlight, TouchableWithoutFeedback, View } from 'react-native';
 
-const changeLoginAuth=({username,password}:{username?:string,password?:string})=>{}
+const changeLoginAuth = ({ username, password }: { username?: string, password?: string }) => { }
+
+const login = () => {
+	// const {dispatch, login} = this.props;
+	// dispatch(fetchLogin(login.username, login.password));
+	// dispatch(startHandleTimeConsuming());
+}
 
 const Login: React.FC = (props: any) => {
-	const { dispatch, login } = this.props;
+	const { dispatch, logins } = props;
 	const dismissKeyboard = require('dismissKeyboard');
 	return (
 		<View style={styles.container}>
@@ -20,7 +26,7 @@ const Login: React.FC = (props: any) => {
 						<Image style={{ width: 32, height: 32, margin: 8 }} source={require('../img/icon/icon-user.png')} />
 						<TextInput style={{ height: 48, flex: 1 }}
 							placeholder={'请输入用户名'}
-							value={login.username}
+							value={logins.username}
 							underlineColorAndroid={'transparent'}
 							autoCapitalize={'none'}
 							autoCorrect={false}
@@ -34,7 +40,7 @@ const Login: React.FC = (props: any) => {
 						<Image style={{ width: 32, height: 32, margin: 8 }} source={require('../img/icon/icon-lock.png')} />
 						<TextInput style={{ height: 48, flex: 1 }}
 							placeholder={'请输入密码'}
-							value={login.password}
+							value={logins.password}
 							underlineColorAndroid={'transparent'}
 							secureTextEntry={true}
 							onChangeText={(password) => dispatch(changeLoginAuth({ password: password }))} />
@@ -43,9 +49,9 @@ const Login: React.FC = (props: any) => {
 
 			</View>
 
-			<View style={{ marginTop: 32, marginLeft: 16, marginRight: 16, elevation: 4, backgroundColor: Colors.mainColor }}>
+			<View style={{ marginTop: 32, marginLeft: 16, marginRight: 16, elevation: 4, backgroundColor: Colors.ORANGE }}>
 				<TouchableHighlight
-					onPress={this.onLogin}
+					onPress={login}
 					underlayColor={'#999'}
 					style={{ height: 48, alignItems: 'center', justifyContent: 'center' }}>
 					<Text style={{ fontSize: 16, color: 'white', fontWeight: '300', }}>登        录</Text>
@@ -53,7 +59,7 @@ const Login: React.FC = (props: any) => {
 			</View>
 
 			<View>
-				<Spinner visible={login.logining} text={'登录中,请稍后...'} />
+				<Spinner visible={logins.logining} text={'登录中,请稍后...'} />
 			</View>
 		</View>
 	);

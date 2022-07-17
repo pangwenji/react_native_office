@@ -1,42 +1,42 @@
 import React from 'react';
-import { Text, TouchableOpacity, View,Image, StyleSheet, Alert } from 'react-native';
+import { Text, TouchableOpacity, View, Image, StyleSheet, Alert } from 'react-native';
 import commonStyles from './commonstyle';
 
-const onPress = (props: any) => { 
-	let { row,navigator} = props;
-	if(row.readOnly){
-		if(row.content && row.content != ''){
+const onPress = (props: any) => {
+	let { row, navigator } = props;
+	if (row.readOnly) {
+		if (row.content && row.content != '') {
 			navigator.push({
-			  name: 'taskDetail',
-			  component: TaskDetail,
-			  type: 'link',
-			  linkedProcessNo: row.content,
+				name: 'taskDetail',
+				component: TaskDetail,
+				type: 'link',
+				linkedProcessNo: row.content,
 			});
 		}
 	} else {
-		Alert.alert('','抱歉!现在移动端的关联单不提供输入.',[{text: '确定',onPress: ()=>{}}])
+		Alert.alert('', '抱歉!现在移动端的关联单不提供输入.', [{ text: '确定', onPress: () => { } }])
 	}
 }
 
-const Link: React.FC = (props: any) => { 
-	let { row} = props;
-  return(
-    <View style={styles.contentContainer}>
-        <View style={commonStyles.titleContainer}>
-            <Text style={commonStyles.title}>
-                {row.title}
-            </Text>
-        </View>
-        <View style={styles.contentContainer}>
-            <TouchableOpacity style={{flex: 1, flexDirection: 'row',alignItems: 'center'}} onPress={onPress}>
-                <Text numberOfLines={1} allowFontScaling={true} style={styles.content}>
-                    {row.content}
-                </Text>
-                <Image source={require('../../img/icon/link.png')} style={styles.pic} />
-            </TouchableOpacity>
-        </View>
-    </View>
-);
+const Link: React.FC = (props: any) => {
+	let { row } = props;
+	return (
+		<View style={styles.contentContainer}>
+			<View style={commonStyles.titleContainer}>
+				<Text style={commonStyles.title}>
+					{row.title}
+				</Text>
+			</View>
+			<View style={styles.contentContainer}>
+				<TouchableOpacity style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }} onPress={onPress}>
+					<Text numberOfLines={1} allowFontScaling={true} style={styles.content}>
+						{row.content}
+					</Text>
+					<Image source={require('../../img/icon/link.png')} style={styles.pic} />
+				</TouchableOpacity>
+			</View>
+		</View>
+	);
 }
 
 const styles = StyleSheet.create({

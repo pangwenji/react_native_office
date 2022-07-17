@@ -1,6 +1,7 @@
 import Spinner from "@/components/spinner";
 import TabBar from "@/components/tarbar";
-import React from "react";
+import { ViewHeight } from "@/utils/";
+import React, { useState } from "react";
 import { Image, Platform, StyleSheet, View } from "react-native";
 import HomeScreen from "../home";
 import Office from "../office";
@@ -8,7 +9,7 @@ import SettingsScreen from "../settings";
 
 
 
-const ImageInfo = (name:string,url:string,paddingTop?:number) => { 
+const ImageInfo = (name: string, url: string, paddingTop?: number) => {
 	return (
 		<Image
 			name={name}
@@ -20,13 +21,13 @@ const ImageInfo = (name:string,url:string,paddingTop?:number) => {
 					{
 						width: 22,
 						height: 34,
-						paddingTop:paddingTop ? paddingTop  : 0
+						paddingTop: paddingTop ? paddingTop : 0
 					}
-			    ]
+				]
 			}
 			selectedIconStyle={
 				{
-					borderTopWidth: 2, 
+					borderTopWidth: 2,
 					borderTopColor: '#ef6c00'
 				}}
 			source={require(url)}
@@ -34,50 +35,51 @@ const ImageInfo = (name:string,url:string,paddingTop?:number) => {
 	)
 }
 
-const commonPage = (props:any) => { 
-	switch (type) { 
+const commonPage = (props: any,type:string) => {
+	switch (type) {
 		case 'infomation':
-			return <HomeScreen {...this.props}/>
+			return <HomeScreen {...props} />
 		case 'office':
-			return <Office {...this.props}/>
+			return <Office {...props} />
 		case 'setting':
-			return <SettingsScreen {...this.props}/>
+			return <SettingsScreen {...props} />
 		default:
 			break;
 	}
 }
 
-const main: React.FC = (props) => { 
-  return (
-    <View style={styles.container}>
-      <View style={styles.mainPage}>
-        {commonPage(props)}
-      </View>
-    <TabBar selected={this.state.page} style={{backgroundColor:'#322a33', bottom:0,}}
-      onSelect={el=>this.setState({page:el.props.name})}>
-			  {
-			     ImageInfo('message','../img/icon/icon-home-active.png')
-			  }
-			  {
-			    ImageInfo('office','../img/icon/icon-office-active.png')
-			  }
-			   {
-			    ImageInfo('setting','../img/icon/icon-setting-active.png',2)
-			  }
-    </TabBar >
-    <View>
-      <Spinner visible={this.state.loading} text={'更新中,请稍后...'}/>
-    </View>
-    </View>
-  );
+const main: React.FC = (props) => {
+	let [page,setPage] = useState(true)
+	return (
+		<View style={styles.container}>
+			<View style={styles.mainPage}>
+				{commonPage(props)}
+			</View>
+			<TabBar selected={page} style={{ backgroundColor: '#322a33', bottom: 0, }}
+				onSelect={el => setPage( el.props.name )}>
+				{
+					ImageInfo('message', '../img/icon/icon-home-active.png')
+				}
+				{
+					ImageInfo('office', '../img/icon/icon-office-active.png')
+				}
+				{
+					ImageInfo('setting', '../img/icon/icon-setting-active.png', 2)
+				}
+			</TabBar >
+			<View>
+				<Spinner visible={this.state.loading} text={'更新中,请稍后...'} />
+			</View>
+		</View>
+	);
 }
 
 const styles = StyleSheet.create({
 	container: {
-	  flex: 1,
+		flex: 1,
 	},
 	mainPage: {
-	  height: Platform.OS === 'ios'? HEIGHT-50 : HEIGHT-75,
+		height: Platform.OS === 'ios' ? ViewHeight - 50 : ViewHeight - 75,
 	}
-  });
+});
 export default main;

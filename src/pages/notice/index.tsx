@@ -7,12 +7,12 @@ import { View, Text, TouchableHighlight, Image, StyleSheet } from 'react-native'
 import { FlatList } from 'react-native-gesture-handler';
 
 
-const goBack = () => {
+const goBack = (props: any) => {
 
 }
 
-const goToNext = (id: string) => {
-    const { navigator, dispatch, login } = this.props;
+const goToNext = (id: string, props: any) => {
+    const { navigator, dispatch, login } = props;
     // dispatch(changeWebviewUrl(NOTICE_DETIAL_URL + noticeItemNum + '&accountId=' + login.rawData.userId));
     navigator.push({
         name: "WebViews",
@@ -24,7 +24,7 @@ const _renderItem = (props: any) => {
     let { iconTZ, news, iconNext } = props;
     return (
         <View style={{ backgroundColor: 'white' }}>
-            <TouchableHighlight onPress={() => goToNext(news.cmsId)} underlayColor='transparent'>
+            <TouchableHighlight onPress={() => goToNext(news.cmsId, props)} underlayColor='transparent'>
                 <View style={styles.cellBG}>
                     <Image source={iconTZ} style={styles.pic} />
                     <View style={styles.cellStyle}>
@@ -46,12 +46,9 @@ const NoticeScreen: React.FC = (props: any) => {
         <View style={styles.container}>
             <NavigationBar
                 title={'通知'} titleColor={Colors.WHITE}
-                backgroundColor={Colors.ORANGE} onLeftButtonPress={goBack}
-                leftButtonIcon={require('../img/office/icon-backs.png')} />
-            {/* <ListView
-                dataSource={noticeList.noticeListData}
-                renderRow={this.renderNews}
-                style={styles.listView} /> */}
+                backgroundColor={Colors.ORANGE} onLeftButtonPress={goBack(props)}
+                leftButtonIcon={require('../img/office/icon-backs.png')}
+            />
             <FlatList
                 data={noticeList.noticeListData}
                 renderItem={_renderItem}

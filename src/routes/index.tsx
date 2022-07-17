@@ -1,3 +1,4 @@
+import WebViews from "@/components/webview";
 import ContactsScreen from "@/pages/address";
 import MessageScreen from "@/pages/message";
 import NoticeScreen from "@/pages/notice";
@@ -6,6 +7,22 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import React from "react"
 import BottomTabs from "../pages/tabs";
+
+interface stackType {
+    name: string,
+    component: React.FunctionComponent<any>
+}
+
+const stack_sreen: Array<stackType> = [
+    { name: 'root', component: BottomTabs },
+    { name: 'notice', component: NoticeScreen },
+    { name: 'todo', component: TodoScreen },
+    { name: 'contacts', component: ContactsScreen },
+    { name: 'message', component: MessageScreen },
+    { name: 'WebViews', component: WebViews },
+
+]
+
 //定义路由栈
 const IndexStack = createStackNavigator<any>()
 //定义路由
@@ -14,26 +31,17 @@ const IndexStackSreen: React.FC<any> = (props: any) => {
         <IndexStack.Navigator
             screenOptions={() => ({ headerShown: false })}
         >
-            <IndexStack.Screen
-                name='root'
-                component={BottomTabs}
-            />
-            <IndexStack.Screen
-                name='notice'
-                component={NoticeScreen}
-            />
-            <IndexStack.Screen
-                name='todo'
-                component={TodoScreen}
-            />
-            <IndexStack.Screen
-                name='contacts'
-                component={ContactsScreen}
-            />
-            <IndexStack.Screen
-                name='message'
-                component={MessageScreen}
-            />
+            {
+                stack_sreen.map((res: stackType, index: number) => {
+                    return (
+                        <IndexStack.Screen
+                            key={index}
+                            name={res.name}
+                            component={res.component}
+                        />
+                    )
+                })
+            }
         </IndexStack.Navigator>
     )
 }

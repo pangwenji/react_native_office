@@ -2,14 +2,16 @@ import Line from '@/components/line';
 import WebViews from '@/components/webview';
 import { Colors } from '@/utils/colors';
 import { NetWork } from '@/utils/network';
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
 	View,
 	Text,
-	TouchableOpacity, Image, StyleSheet, InteractionManager
+	TouchableOpacity, Image, StyleSheet, InteractionManager, Alert, Linking, Platform
 } from 'react-native';
 import Login from '../login';
-import store from '@/utils/storage'
+import store from '@/utils/storage';
+import JPush from 'jpush-react-native';
+
 const commonRenderLine = (type: string, text: string, top?: string, onClick?: Function, icon?: string, fontColor?: string, fontSize?: string) => {
 	return (
 		<Line
@@ -24,59 +26,72 @@ const commonRenderLine = (type: string, text: string, top?: string, onClick?: Fu
 	)
 }
 
-const onChangePassword = () => { 
-  // const {navigator} = this.props;
-  // navigator.push({
-  //   name: "ChangePassword",
-  //   component: ChangePasswordContainer,
-  // });
+const onChangePassword = () => {
+	// const {navigator} = this.props;
+	// navigator.push({
+	//   name: "ChangePassword",
+	//   component: ChangePasswordContainer,
+	// });
 }
 
-const changeWebviewUrl = (help:string) => { }
+const changeWebviewUrl = (help: string) => { }
 
-const onHelp = (props:any) => { 
-  const {navigator, dispatch} = props;
-  dispatch(changeWebviewUrl(NetWork.ME_HELP));
-  navigator.push({
-    name: "WebViews",
-    component: WebViews,
-  });
+const onHelp = (props: any) => {
+	const { navigator, dispatch } = props;
+	dispatch(changeWebviewUrl(NetWork.ME_HELP));
+	navigator.push({
+		name: "WebViews",
+		component: WebViews,
+	});
 }
 
-const goVersion = () => { 
-  // const {navigator, dispatch} = this.props;
-  // dispatch(changeWebviewUrl(ME_VERSION));
-  // navigator.push({
-  //   name: "WebviewContainer",
-  //   component: WebviewContainer,
-  // });
+const goVersion = (props: any) => {
+	const { navigator, dispatch } = props;
+	// dispatch(changeWebviewUrl(ME_VERSION));
+	navigator.push({
+		name: "WebView",
+		component: WebViews,
+	});
 }
-const onLogout = (props:any) => {
-  const {navigator, dispatch} = props;
-  JPush.clearAllNotifications();
+const onLogout = (props: any) => {
+	const { navigator, dispatch } = props;
+	JPush.clearAllNotifications();
 	InteractionManager.runAfterInteractions(() => {
 		store.setValue('userName', { rowData: {} });
-		store.setValue('gesture',{ rowData: {gesture:''} })
-    dispatch(changeLoginAuth({username: '', password: '', rawData: undefined}));
-    navigator.resetTo({
-      component: Login,
-      name: 'Login'
+		store.setValue('gesture', { rowData: { gesture: '' } })
+		// dispatch(changeLoginAuth({ username: '', password: '', rawData: undefined }));
+		navigator.resetTo({
+			component: Login,
+			name: 'Login'
+		});
+	});
+}
+
+const callPhone = () => {
+	Linking.openURL(Platform.OS !== 'android' ? 'telprompt:' : 'tel:' + '18521059559');
+}
+
+const onUserInfo = () => { 
+	const {navigator} = this.props;
+    navigator.push({
+      name: "UserInfo",
+      component: UserInfoContainer,
     });
-  });
- }
-
-const callPhone = () => { }
-
-const onUserInfo=()=>{}
+}
 
 interface IProps {
-  login: any,
-  userInfo: any,
-  top:any
- }
+	login: any,
+	userInfo: any,
+	top: any
+}
 
 const SettingsScreen: React.FC<IProps> = (props) => {
-	const { login, userInfo,top} = props;
+	const { login, userInfo, top } = props;
+	useEffect(() => {
+		if (userInfo.avatarGot && !userInfo.avatarData) {
+			Alert.alert('', '个人信息获取失败!', [{ text: '好', onPress: () => { } },])
+		}
+	}, [])
 	return (
 		<View style={styles.background}>
 			<View style={styles.containers}>

@@ -35,7 +35,7 @@ const WebViews: React.FC = (props:any) => {
         <WebView
           scalesPageToFit={true}
           source={{uri: webview.webviewUrl}}
-		  renderError={error}
+		  // renderError={error}
           onLoadStart={load}
          />
       </View>

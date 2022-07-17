@@ -16,25 +16,25 @@ import {
 import { ViewWidth } from '@/utils/index';
 
 const onCreated = (props: any) => {
-	goToTask(NetWork.OFFICE_CREATED, '我的申请');
+	goToTask(NetWork.OFFICE_CREATED, '我的申请', props);
 }
 
-const onApproval = () => {
-	goToTask(NetWork.OFFICE_IAPPROVALLIST, '已办任务');
+const onApproval = (props: any) => {
+	goToTask(NetWork.OFFICE_IAPPROVALLIST, '已办任务', props);
 }
 
-const onProxy = () => {
-	goToTask(NetWork.SEARCH_AGENT_URL, '代理任务');
+const onProxy = (props: any) => {
+	goToTask(NetWork.SEARCH_AGENT_URL, '代理任务', props);
 }
 
-const goToTask = (url: string, title: string) => {
-	// const {navigator} = this.props;
-	// navigator.push({
-	//   name: "TaskListContainer",
-	//   component: Task,
-	//   url: url,
-	//   navBarTitle: title,
-	// });
+const goToTask = (url: string, title: string, props: any) => {
+	const { navigator } = props;
+	navigator.push({
+		name: "Task",
+		component: Task,
+		url: url,
+		navBarTitle: title,
+	});
 }
 
 const onClick = (templateOption: any) => {
@@ -42,13 +42,25 @@ const onClick = (templateOption: any) => {
 		Alert.alert('', '功能研发中，敬请期待！', [{ text: '确定', onPress: () => { } }]);
 		return;
 	}
-	//   const {navigator} = props;
-	//   navigator.push({
-	//     name: 'officeTemplateList',
-	//     templateOption: templateOption,
-	//     component: OfficeList,
-	//   });
+	const { navigator } = props;
+	navigator.push({
+		name: 'officeTemplateList',
+		templateOption: templateOption,
+		component: OfficeList,
+	});
 }
+
+const commonRender = (title: string, imageUrl: string, fn: Function) => {
+	return (
+		<TouchableOpacity onPress={() => fn}>
+			<View style={styles.topItem}>
+				<Image style={styles.itemIcon} source={require(imageUrl)} />
+				<Text style={[styles.itemText, { color: '#FFFFFF' }, { backgroundColor: 'transparent' },]}>{title}</Text>
+			</View>
+		</TouchableOpacity>
+	)
+}
+
 interface IProp {
 	tabOffice: any,
 	top: any,
@@ -62,26 +74,11 @@ const OfficeScreen: React.FC<IProp> = (props: IProp) => {
 				<ImageBackground style={styles.mainBack} source={require('../img/office/office_bg.jpg')} >
 					<View style={styles.topBg}>
 						{/* 待办 */}
-						<TouchableOpacity onPress={onCreated}>
-							<View style={styles.topItem}>
-								<Image style={styles.itemIcon} source={require('../img/office/office_sq.png')} />
-								<Text style={[styles.itemText, { color: '#FFFFFF' }, { backgroundColor: 'transparent' },]}>我的申请</Text>
-							</View>
-						</TouchableOpacity>
+						{commonRender('我的申请', '../img/office/office_sq.png', onCreated)}
 						{/* 同意 */}
-						<TouchableOpacity onPress={onApproval}>
-							<View style={styles.topItem} >
-								<Image style={styles.itemIcon} source={require('../img/office/office_sp.png')} />
-								<Text style={[styles.itemText, { color: '#FFFFFF' }, { backgroundColor: 'transparent' },]}>已办任务</Text>
-							</View>
-						</TouchableOpacity >
+						{commonRender('已办任务', '../img/office/office_sp.png', onApproval)}
 						{/* 代理 */}
-						<TouchableOpacity onPress={onProxy}>
-							<View style={styles.topItem} >
-								<Image style={styles.itemIcon} source={require('../img/office/office_proxy.png')} />
-								<Text style={[styles.itemText, { color: '#FFFFFF' }, { backgroundColor: 'transparent' },]}>代理任务</Text>
-							</View>
-						</TouchableOpacity >
+						{commonRender('代理任务', '../img/office/office_proxy.png', onProxy)}
 
 					</View>
 				</ImageBackground >
