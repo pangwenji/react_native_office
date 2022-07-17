@@ -3,7 +3,7 @@ import Spinner from "@/components/spinner";
 import { ViewHeight } from "@/utils/";
 import { Colors } from "@/utils/colors";
 import React, { useEffect } from "react";
-import { Alert, Image, StyleSheet, Text, TextInput, TouchableHighlight, TouchableWithoutFeedback, View } from "react-native";
+import { Alert, Image, Platform, StyleSheet, Text, TextInput, TouchableHighlight, TouchableWithoutFeedback, View } from "react-native";
 
 
 
@@ -12,6 +12,10 @@ import { Alert, Image, StyleSheet, Text, TextInput, TouchableHighlight, Touchabl
 //     (prevProps, nextProps) => nextProps.count !== prevProps.count
 // )
 const commit = () => { }
+
+const load=()=>{
+    return  Platform.OS == 'ios' ? null :  <Spinner visible={userInfo.avatarUploading} text={'头像上传中,请稍后...'} />
+}
 
 const UserInfo: React.FC = (props) => {
     const { userInfo, login } = props;
@@ -58,7 +62,7 @@ const UserInfo: React.FC = (props) => {
         <View style={styles.background}>
             <NavigationBar
                 title={'个人信息'} titleColor={Colors.WHITE}
-                backgroundColor={Colors.ORANGE} onLeftButtonPress={this.onLeftBack}
+                backgroundColor={Colors.ORANGE} onLeftButtonPress={goBack}
                 leftButtonIcon={require('../img/office/icon-backs.png')}
                 rightButtonIcon={{}}
                 rightButtonTitle={'提交'}
@@ -110,7 +114,7 @@ const UserInfo: React.FC = (props) => {
 
             <View>
                 <Spinner visible={userInfo.userInfoGetting} text={'加载中,请稍后...'} />
-                {this.renderLoading()}
+                {load()}
                 <Spinner visible={userInfo.committing} text={'修改中,请稍后...'} />
             </View>
         </View>
