@@ -11,6 +11,8 @@ import {
 import Login from '../login';
 import store from '@/utils/storage';
 import JPush from 'jpush-react-native';
+import UserInfo from '../userinfo';
+import ChangePassword from '../changepassword';
 
 const commonRenderLine = (type: string, text: string, top?: string, onClick?: Function, icon?: string, fontColor?: string, fontSize?: string) => {
 	return (
@@ -26,12 +28,12 @@ const commonRenderLine = (type: string, text: string, top?: string, onClick?: Fu
 	)
 }
 
-const onChangePassword = () => {
-	// const {navigator} = this.props;
-	// navigator.push({
-	//   name: "ChangePassword",
-	//   component: ChangePasswordContainer,
-	// });
+const onChangePassword = (props:any) => {
+	const {navigator} = props;
+	navigator.push({
+	  name: "ChangePassword",
+	  component: ChangePassword,
+	});
 }
 
 const changeWebviewUrl = (help: string) => { }
@@ -71,11 +73,11 @@ const callPhone = () => {
 	Linking.openURL(Platform.OS !== 'android' ? 'telprompt:' : 'tel:' + '18521059559');
 }
 
-const onUserInfo = () => { 
-	const {navigator} = this.props;
+const onUserInfo = (props:any) => { 
+	const {navigator} = props;
     navigator.push({
       name: "UserInfo",
-      component: UserInfoContainer,
+      component: UserInfo,
     });
 }
 
