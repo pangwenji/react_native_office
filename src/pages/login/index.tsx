@@ -54,7 +54,7 @@ const Login: React.FC = (props: any) => {
 					onPress={login}
 					underlayColor={'#999'}
 					style={{ height: 48, alignItems: 'center', justifyContent: 'center' }}>
-					<Text style={{ fontSize: 16, color: 'white', fontWeight: '300', }}>登        录</Text>
+					<Text style={{ fontSize: 16, color: 'white', fontWeight: '300', }}>登 录</Text>
 				</TouchableHighlight>
 			</View>
 

@@ -54,6 +54,8 @@ const startHandleTimeConsuming = () => {
 //     }
 //   }
 
+
+
 const checkPassword = (props: any) => {
 
 	const { login, changePassword } = props;
@@ -73,6 +75,21 @@ const checkPassword = (props: any) => {
 	}
 }
 
+const onChange = (password: string) => {
+	// dispatch(changeUserPassword({newPassword: newPassword}))
+}
+
+const commonRenderTextInput = (placeholder: string) => {
+	return (
+		<TextInput
+			secureTextEntry={true}
+			clearButtonMode='while-editing'
+			style={[styles.item, { marginTop: 20, }]}
+			onChangeText={(password) => { onChange(password) }}
+			placeholder={placeholder} />
+	)
+}
+
 const ChangePassword: React.FC = (props: any) => {
 	const { dispatch, changePassword } = props;
 	const dismissKeyboard = require('dismissKeyboard');
@@ -81,33 +98,14 @@ const ChangePassword: React.FC = (props: any) => {
 			<View style={styles.background}>
 				<NavigationBar title={'修改密码'} titleColor={Colors.WHITE}
 					backgroundColor={Colors.ORANGE}
-					leftButtonIcon={require('@/assets/office/icon-backs.png')}
+					leftButtonIcon={require('../img/office/icon-backs.png')}
 					onLeftButtonPress={goBack}
 					rightButtonTitle={'确认'} rightButtonTitleColor={'#fff'}
 					onRightButtonPress={checkPassword} />
-
-				<TextInput
-					secureTextEntry={true}
-					clearButtonMode='while-editing'
-					style={[styles.item, { marginTop: 20, }]}
-					onChangeText={(oldPassword) => dispatch(changeUserPassword({ oldPassword: oldPassword }))}
-					placeholder={'旧密码'} />
-
-				<TextInput
-					secureTextEntry={true}
-					clearButtonMode='while-editing'
-					style={[styles.item, { marginTop: 20, }]}
-					onChangeText={(newPassword) => dispatch(changeUserPassword({ newPassword: newPassword }))}
-					placeholder={'新密码'} />
-
+				{commonRenderTextInput('旧密码')}
+				{commonRenderTextInput('新密码')}
 				<View style={styles.line} />
-
-				<TextInput
-					clearButtonMode='while-editing'
-					secureTextEntry={true}
-					style={styles.item}
-					onChangeText={(confirmPassword) => dispatch(changeUserPassword({ confirmPassword: confirmPassword }))}
-					placeholder={'确认密码'} />
+				{commonRenderTextInput('确认密码')}
 				<View>
 					<Spinner visible={changePassword.passwordChanging} text={'密码修改中,请稍后...'} />
 				</View>
