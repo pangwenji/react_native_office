@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Alert, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import commonStyles from "./commonstyle";
 
-const selectFile = () => {
+const selectFile = (fileIndex: string | number) => {
     let [arrUploadFiles, setUploadFile] = useState();
     let name = this.state.row.name + fileIndex;
     let extraData = {};
@@ -72,12 +72,12 @@ const DateTime: React.FC = () => {
                                     if (file.fileName && file.fileName != '') {
                                         Alert.alert('', '确定删除该附件?', [{
                                             text: '确定', onPress: () => {
-                                                selectFile('', '', file.fileIndex);
+                                                selectFile(file.fileIndex);
                                             }
                                         }, { text: '取消', onPress: () => { } }]);
                                     }
                                 }}>
-                                    <Image source={require('../../img/icon/sq_icon_del.png')} style={styles.pic} />
+                                    <Image source={require('@/assets/img/icon/sq_icon_del.png')} style={styles.pic} />
                                 </TouchableOpacity>
                             </View>
                         )
@@ -85,7 +85,7 @@ const DateTime: React.FC = () => {
                 }
             </View>
             <TouchableOpacity onPress={select}>
-                <Image source={require('../../img/icon/sq_icon_upload.png')} style={styles.pic} />
+                <Image source={require('@/assets/img/icon/sq_icon_upload.png')} style={styles.pic} />
             </TouchableOpacity>
         </View>
     );

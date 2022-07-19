@@ -15,7 +15,7 @@ const renderTelephoneIcon = (data: any) => {
     let { phoneNum } = data;
     return (
         <TouchableOpacity onPress={() => onCall(phoneNum)}>
-            <Image style={{ height: 24, width: 24, }} source={require('../img/icon/telephone.png')} />
+            <Image style={{ height: 24, width: 24, }} source={require('@/assets/img/icon/telephone.png')} />
         </TouchableOpacity>
     )
 }
@@ -25,7 +25,7 @@ const _renderItem = (props: any) => {
     return (
         <View style={styles.card}>
             <View style={styles.userInfo}>
-                <Image style={styles.avatar} source={require('../img/icon/icon-avatar.png')} />
+                <Image style={styles.avatar} source={require('@/assets/img/icon/icon-avatar.png')} />
                 <Text style={styles.detailText}>{rowData.displayName}</Text>
             </View>
             <View style={styles.detail}>
@@ -45,7 +45,7 @@ const renderListView = (props: any) => {
     if (address.searchUserData._cachedRowCount <= 0) {
         return (
             <View style={{ height: ViewHeight - 250, alignItems: 'center', justifyContent: 'center' }}>
-                <Image source={require('../img/icon/app_panel_expression_icon.png')} style={{ width: 120, height: 120, }} />
+                <Image source={require('@/assets/img/icon/app_panel_expression_icon.png')} style={{ width: 120, height: 120, }} />
                 <Text style={{ textAlign: 'center', fontSize: 15, color: Colors.GREY, }}>当前没有搜索结果～</Text>
             </View>
         )
@@ -80,7 +80,7 @@ const ContactsScreen: React.FC = (props: any) => {
     return (
         <View style={styles.container}>
             <NavigationBar title={'通讯录'} titleColor={Colors.WHITE}
-                leftButtonIcon={require('../img/office/icon-backs.png')}
+                leftButtonIcon={require('@/assets/img/office/icon-backs.png')}
                 backgroundColor={Colors.ORANGE} onLeftButtonPress={goBack} />
             <TouchableWithoutFeedback onPress={() => dismissKeyboard()}>
                 <View style={{ flexDirection: 'row', height: 56 }}>

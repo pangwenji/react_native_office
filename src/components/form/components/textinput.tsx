@@ -1,10 +1,25 @@
 import NavigationBar from "@/components/navigationbar";
 import Spinner from "@/components/spinner";
+import { ViewHeight } from "@/utils/index";
+import { Colors } from "@/utils/colors";
 import React from "react";
-import { TouchableWithoutFeedback, View } from "react-native";
+import { StyleSheet, TextInput, TouchableWithoutFeedback, View } from "react-native";
 
-const TextInputs: React.FC = () => {
-    const { dispatch, staffList, taskApproval } = this.props;
+const next = () => {
+    // const {dispatch, staffList, route} = this.props;
+    // Alert.alert('', `确认提交?`,[{text: '确定',onPress : ()=>{
+    //   dispatch(startHandleTimeConsuming());
+    //   dispatch(fetchOtherApproval(route.taskId, route.type, staffList.userId, staffList.remark));
+    // }}, {text: "取消"}],);
+}
+
+const goBack = () => {
+    // const {navigator} = this.props;
+    // navigator.pop();
+}
+
+const TextInputs: React.FC = (props: any) => {
+    const { dispatch, staffList, taskApproval } = props;
     let rightButtonTitle = '';
     let staffData = staffList.staffData;
     for (let i = 0; i < staffData.length; i++) {
@@ -16,15 +31,15 @@ const TextInputs: React.FC = () => {
     const dismissKeyboard = require('dismissKeyboard');
     return (
         <View style={styles.container}>
-            <NavigationBar title={'备注'} titleColor={Colors.white}
-                leftButtonIcon={require('../img/office/icon-backs.png')} rightButtonTitle='提交'
-                rightButtonTitleColor={'#fff'} backgroundColor={Colors.mainColor}
-                onLeftButtonPress={this.onLeftBack} onRightButtonPress={this.doNext} />
+            <NavigationBar title={'备注'} titleColor={Colors.WHITE}
+                leftButtonIcon={require('@/assets/office/icon-backs.png')} rightButtonTitle='提交'
+                rightButtonTitleColor={'#fff'} backgroundColor={Colors.ORANGE}
+                onLeftButtonPress={goBack} onRightButtonPress={next} />
 
             <TouchableWithoutFeedback onPress={() => dismissKeyboard()}>
                 <View style={styles.main}>
                     <TextInput
-                        style={{ textAlignVertical: 'top', fontSize: 14, height: deviceHeight / 5, }}
+                        style={{ textAlignVertical: 'top', fontSize: 14, height: ViewHeight / 5, }}
                         placeholder={'请输入备注信息'}
                         underlineColorAndroid={'transparent'}
                         multiline={true}
@@ -39,5 +54,19 @@ const TextInputs: React.FC = () => {
         </View>
     );
 }
-
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: Colors.ORANGE
+    },
+    main: {
+        marginTop: 16,
+        marginLeft: 16,
+        marginRight: 16,
+        height: ViewHeight / 5,
+        backgroundColor: Colors.WHITE,
+        borderColor: Colors.LIGHT_GREY,
+        borderWidth: 1,
+    },
+});
 export default TextInputs;

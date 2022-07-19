@@ -39,7 +39,7 @@ const Splash: React.FC = () => {
     return (
         <View style={styles.container}>
             <Animated.Image
-                source={require('../img/common/splash.jpg')}
+                source={require('@/assets/cons/splash.jpg')}
                 style={{
                     flex: 1,
                     width: ViewWidth,

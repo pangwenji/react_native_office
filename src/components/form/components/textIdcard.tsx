@@ -1,16 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Text, TextInput, View } from "react-native";
-
 import commonStyles from "./commonstyle";
 
-const onChange = () => {
-    // this.props.onUserInput(this.state.row.name, text);
-    // this.setState({
-    //     text: text,
-    // });
-}
-
 const TextCard: React.FC = () => {
+    let [text, setText] = useState('')
     return (
         <View style={commonStyles.container}>
             <View style={commonStyles.titleContainer}>
@@ -23,9 +16,9 @@ const TextCard: React.FC = () => {
                     style={{ height: 48, textAlign: 'right', fontSize: 14, }}
                     placeholder={'请输入' + this.state.row.title}
                     underlineColorAndroid={'transparent'}
-                    onChangeText={onChange}
+                    onChangeText={() => setText('')}
                     maxLength={500}
-                    value={this.state.text} />
+                    value={text} />
             </View>
         </View>
     );

@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { FlatButton } from 'react-native-material-kit'
 import commonStyles from './commonstyle';
 
-const handleChange=()=>{}
+const handleChange = () => { }
 
 const Datepicker: React.FC = () => {
     var contentView;
@@ -22,20 +22,20 @@ const Datepicker: React.FC = () => {
     //     _this.props.refs.modalcalendar.refs.modal.show(_this);
     // }).build();
 
-return (
-    <View style={commonStyles.container}>
-        <View style={commonStyles.titleContainer}>
-            <Text style={commonStyles.title}>
-                {this.state.row.title}
-            </Text>
-        </View>
-        <View style={styles.contentContainer}>
-            <View style={styles.buttonContainer}>
-                <FlatButton />
+    return (
+        <View style={commonStyles.container}>
+            <View style={commonStyles.titleContainer}>
+                <Text style={commonStyles.title}>
+                    {this.state.row.title}
+                </Text>
+            </View>
+            <View style={styles.contentContainer}>
+                <View style={styles.buttonContainer}>
+                    <FlatButton />
+                </View>
             </View>
         </View>
-    </View>
-);
+    );
 }
 
 const styles = StyleSheet.create({

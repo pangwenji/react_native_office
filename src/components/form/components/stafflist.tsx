@@ -1,15 +1,26 @@
 import NavigationBar from "@/components/navigationbar";
 import Spinner from "@/components/spinner";
-import { ViewHeight } from "@/utils/";
+import { ViewHeight } from "@/utils/index";
 import { Colors } from "@/utils/colors";
+import { NaigatorTypes } from "@/utils/naigator_types";
 import React from "react";
-import { Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, View } from "react-native";
+import {
+    Alert,
+    Image,
+    StyleSheet,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    TouchableWithoutFeedback,
+    View
+} from "react-native";
 import { FlatList } from "react-native-gesture-handler";
+import TextInputs from "./textinput";
 
 const arrow = () => {
     return (
         <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1, marginLeft: 30, }}>
-            <Image style={{ width: 20, height: 20 }} source={require('../img/icon/icon-agree.png')} />
+            <Image style={{ width: 20, height: 20 }} source={require('@/assets/img/icon/icon-agree.png')} />
         </View>
     )
 }
@@ -34,7 +45,7 @@ const _renderItem = () => {
             <View style={styles.card}>
                 <View style={{ flexDirection: 'row', flex: 9 }}>
                     <View style={styles.userInfo}>
-                        <Image style={styles.avatar} source={require('../img/icon/icon-avatar.png')} />
+                        <Image style={styles.avatar} source={require('@/assets/img/icon/icon-avatar.png')} />
                         <Text style={styles.detailText}>{rowData.nickName}</Text>
                     </View>
                     <View style={styles.detail}>
@@ -53,7 +64,7 @@ const renderListView = () => {
     if (staffList.staffListData._cachedRowCount <= 0) {
         return (
             <View style={{ height: ViewHeight - 250, alignItems: 'center', justifyContent: 'center' }}>
-                <Image source={require('../img/icon/app_panel_expression_icon.png')} style={{ width: 120, height: 120, }} />
+                <Image source={require('@/assets/img/icon/app_panel_expression_icon.png')} style={{ width: 120, height: 120, }} />
                 <Text style={{ textAlign: 'center', fontSize: 15, color: Colors.GREY, }}>当前没有搜索结果～</Text>
             </View>
         )
@@ -74,14 +85,14 @@ const goBack = () => {
 
 const next = () => {
     const { navigator, route, staffList } = this.props;
-    if (route.type === types.STAFF_LIST_NORMAL) {
+    if (route.type === NaigatorTypes.STAFF_LIST_NORMAL) {
         navigator.push({
             name: "TextInput",
-            component: TextInputContainer,
+            component: TextInputs,
             taskId: route.taskId,
             type: route.dealType,
         });
-    } else if (route.type === types.STAFF_LIST_CONTACT) {
+    } else if (route.type === NaigatorTypes.STAFF_LIST_CONTACT) {
         route.onStaffSelect(staffList.nickName, staffList.userId);
         navigator.pop();
     }
@@ -103,9 +114,9 @@ const StaffList: React.FC = () => {
     let staffData = staffList.staffData;
     for (let i = 0; i < staffData.length; i++) {
         if (staffData[i].select) {
-            if (route.type === types.STAFF_LIST_NORMAL) {
+            if (route.type === NaigatorTypes.STAFF_LIST_NORMAL) {
                 rightButtonTitle = '下一步';
-            } else if (route.type === types.STAFF_LIST_CONTACT) {
+            } else if (route.type === NaigatorTypes.STAFF_LIST_CONTACT) {
                 rightButtonTitle = '完成';
             }
             break;
@@ -114,8 +125,8 @@ const StaffList: React.FC = () => {
     const dismissKeyboard = require('dismissKeyboard');
     return (
         <View style={styles.container}>
-            <NavigationBar title={'人员列表'} titleColor={Colors.white}
-                leftButtonIcon={require('../img/office/icon-backs.png')} rightButtonTitle={rightButtonTitle}
+            <NavigationBar title={'人员列表'} titleColor={Colors.WHITE}
+                leftButtonIcon={require('@/assets/office/icon-backs.png')} rightButtonTitle={rightButtonTitle}
                 rightButtonTitleColor={'#fff'} backgroundColor={Colors.ORANGE}
                 onLeftButtonPress={goBack} onRightButtonPress={next} />
             <TouchableWithoutFeedback onPress={() => dismissKeyboard()}>

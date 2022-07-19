@@ -45,7 +45,7 @@ const rightOnPress = () => {
 
 const search = () => { }
 
-const goBack =()=>{}
+const goBack = () => { }
 
 const Base: React.FC = () => {
     let [page, setState] = useState()
@@ -54,7 +54,7 @@ const Base: React.FC = () => {
         <View style={styles.container}>
             <NavigationBar title='工作联系单' titleColor={Colors.WHITE}
                 backgroundColor={Colors.ORANGE} onLeftButtonPress={goBack}
-                leftButtonIcon={require('../../img/office/icon-backs.png')}
+                leftButtonIcon={require('@/assets/office/icon-backs.png')}
                 rightButtonTitle={'新建'} rightButtonTitleColor={'#fff'}
                 onRightButtonPress={rightOnPress} />
             <TabBar selected={page} style={{ backgroundColor: '#322a33', height: 50, top: 48 }}
@@ -91,7 +91,7 @@ const Base: React.FC = () => {
                 }
             </View>
             <TouchableOpacity style={styles.numberButton}>
-                <Image style={{ color: Colors.WHITE, fontSize: 20 }} source={require('../../img/icon/icon-fb-edit.png')}>0</Image>
+                <Image style={{ color: Colors.WHITE, fontSize: 20 }} source={require('@/assets/img/icon/icon-fb-edit.png')}>0</Image>
             </TouchableOpacity>
             <View>
                 <Spinner visible={contactListBase.contactListFetching} text={'加载中,请稍后...'} />

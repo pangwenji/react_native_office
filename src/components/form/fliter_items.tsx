@@ -18,24 +18,24 @@ import TextCard from './components/textIdcard';
 import TextInputs from './components/textinput';
 import TextInt from './components/textint';
 
-const FormItem: React.FC = () => {
+const FormItem: React.FC = (props: any) => {
 	return (
 		<View style={styles.container}>
 			{
-				renderItem()
+				renderItem(props)
 			}
 		</View>
 	);
 }
-const renderItem = () => {
-	let _props = this.props;
+const renderItem = (props: any) => {
+	let { onUserInput } = props;
 	let _row = this.state.row;
 	// //以下判断顺序不能动
 	if (_row.hide) { //隐藏控件
-		return (<Hide row={_row} onUserInput={(key, value) => _props.onUserInput(key, value)} />);
+		return (<Hide row={_row} onUserInput={(key, value) => onUserInput(key, value)} />);
 	}
 	if (this.state.row.type === 'macros') {
-		return (<Macros {..._props} row={this.state.row} detailType={this.state.row.detailType}
+		return (<Macros {...props} row={this.state.row} detailType={this.state.row.detailType}
 			onUserInput={(key, value) => this.props.onUserInput(key, value)} />);
 	}
 	if (this.state.row.type === 'text' && this.state.row.detailType === 'linked_process_no') { //附件

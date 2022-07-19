@@ -2,8 +2,8 @@ import { Colors } from '@/utils/colors';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import commonStyles from './commonstyle';
-import {Checkbox} from 'react-native-material-kit'
-const handleChange = () => { }
+import { Checkbox } from 'react-native-material-kit'
+const handleChange = (str: string) => { }
 
 const CheckBoxs: React.FC = () => {
     let CheckBoxSelectedData = this.state.CheckBoxSelectedData;
@@ -29,7 +29,7 @@ const CheckBoxs: React.FC = () => {
                             }
                             return (
                                 <View style={styles.col}>
-                                    <Checkbox checked={isChecked} borderOnColor={Colors.ORANGE} borderOffColor={Colors.secondaryColor} fillColor={Colors.mainColor} onCheckedChange={(e) => {
+                                    <Checkbox checked={isChecked} borderOnColor={Colors.ORANGE} borderOffColor={Colors.LIGHT_ORANGE} fillColor={Colors.mainColor} onCheckedChange={(e) => {
                                         if (e.checked == true) {
                                             if (CheckBoxSelectedData.length > 0)
                                                 CheckBoxSelectedData[CheckBoxSelectedData.length] = ',' + row;

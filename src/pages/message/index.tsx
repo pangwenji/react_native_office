@@ -2,7 +2,7 @@ import NavigationBar from '@/components/navigationbar';
 import Spinner from '@/components/spinner';
 import { Colors } from '@/utils/colors';
 import React from 'react';
-import { View, Text, ListView, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 
 
@@ -56,7 +56,7 @@ const MessageScreen: React.FC = (props: any) => {
             <NavigationBar
                 title={'消息'} titleColor={Colors.WHITE}
                 backgroundColor={Colors.ORANGE} onLeftButtonPress={goBack}
-                leftButtonIcon={require('../img/office/icon-backs.png')} />
+                leftButtonIcon={require('@/assets/office/icon-backs.png')} />
             <FlatList data={messageList.messageListData} renderItem={_renderItem} />
             <View>
                 <Spinner visible={messageList.messageListFetching} text={'加载中,请稍后...'} />
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
         marginTop: 20,
         marginBottom: 20,
         fontSize: 14,
-        color: Colors.black,
+        color: Colors.BLACK,
     },
     pic: {
         height: 30,

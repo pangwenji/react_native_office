@@ -1,6 +1,6 @@
 import Spinner from "@/components/spinner";
 import TabBar from "@/components/tarbar";
-import { ViewHeight } from "@/utils/";
+import { ViewHeight } from "@/utils/index";
 import React, { useState } from "react";
 import { Image, Platform, StyleSheet, View } from "react-native";
 import HomeScreen from "../home";
@@ -35,7 +35,7 @@ const ImageInfo = (name: string, url: string, paddingTop?: number) => {
 	)
 }
 
-const commonPage = (props: any,type:string) => {
+const commonPage = (type: string, props: any) => {
 	switch (type) {
 		case 'infomation':
 			return <HomeScreen {...props} />
@@ -44,27 +44,29 @@ const commonPage = (props: any,type:string) => {
 		case 'setting':
 			return <SettingsScreen {...props} />
 		default:
-			break;
+			return <View />
 	}
 }
 
 const main: React.FC = (props) => {
-	let [page,setPage] = useState(true)
+	let [page, setPage] = useState(true)
 	return (
 		<View style={styles.container}>
 			<View style={styles.mainPage}>
-				{commonPage(props)}
+				{commonPage('infomation', props)}
+				{commonPage('office', props)}
+				{commonPage('setting', props)}
 			</View>
 			<TabBar selected={page} style={{ backgroundColor: '#322a33', bottom: 0, }}
-				onSelect={el => setPage( el.props.name )}>
+				onSelect={el => setPage(el.props.name)}>
 				{
-					ImageInfo('message', '../img/icon/icon-home-active.png')
+					ImageInfo('message', '@/assets/img/icon/icon-home-active.png')
 				}
 				{
-					ImageInfo('office', '../img/icon/icon-office-active.png')
+					ImageInfo('office', '@/assets/img/icon/icon-office-active.png')
 				}
 				{
-					ImageInfo('setting', '../img/icon/icon-setting-active.png', 2)
+					ImageInfo('setting', '@/assets/img/icon/icon-setting-active.png', 2)
 				}
 			</TabBar >
 			<View>

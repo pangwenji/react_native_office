@@ -39,7 +39,7 @@ const Detail: React.FC = () => {
         <View style={styles.container}>
             <NavigationBar title='详情' titleColor={Colors.white}
                 backgroundColor={Colors.mainColor} onLeftButtonPress={goBack}
-                leftButtonIcon={require('../../img/office/icon-backs.png')}
+                leftButtonIcon={require('@/assets/office/icon-backs.png')}
                 rightButtonTitle={rightButtonTitle} rightButtonTitleColor={'#fff'}
                 onRightButtonPress={next} />
             <ScrollView style={styles.formViewContainer}
@@ -48,9 +48,9 @@ const Detail: React.FC = () => {
                 ref='keyboardView'
                 keyboardDismissMode='interactive'>
                 {
-                    CONTACT_LIST_DETAIL_ITEMS.map(function(row) {
-                        return <FormItem {...nextProps} row={row}/>
-                      })
+                    CONTACT_LIST_DETAIL_ITEMS.map(function (row) {
+                        return <FormItem {...nextProps} row={row} />
+                    })
                 }
             </ScrollView>
             <View>
@@ -63,14 +63,14 @@ const Detail: React.FC = () => {
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
-      flexDirection: 'column',
+        flex: 1,
+        flexDirection: 'column',
     },
     formViewContainer: {
-      flex: 1,
-      flexDirection: 'column'
+        flex: 1,
+        flexDirection: 'column'
     },
-  });
-  
+});
+
 
 export default Detail;

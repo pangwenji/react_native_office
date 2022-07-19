@@ -39,7 +39,7 @@ const Builder: React.FC = () => {
         <View style={styles.container}>
             <NavigationBar title='创建' titleColor={Colors.WHITE}
                 backgroundColor={Colors.ORANGE} onLeftButtonPress={goBack}
-                leftButtonIcon={require('../../img/office/icon-backs.png')}
+                leftButtonIcon={require('@/assets/office/icon-backs.png')}
                 rightButtonTitle={'提交'} rightButtonTitleColor={'#fff'}
                 onRightButtonPress={commit} />
             <ScrollView style={styles.formViewContainer}

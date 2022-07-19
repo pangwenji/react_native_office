@@ -11,6 +11,7 @@ import {
 import Login from '../login';
 import store from '@/utils/storage';
 import JPush from 'jpush-react-native';
+import UserInfo from '../userinfo';
 
 const commonRenderLine = (type: string, text: string, top?: string, onClick?: Function, icon?: string, fontColor?: string, fontSize?: string) => {
 	return (
@@ -71,12 +72,12 @@ const callPhone = () => {
 	Linking.openURL(Platform.OS !== 'android' ? 'telprompt:' : 'tel:' + '18521059559');
 }
 
-const onUserInfo = () => { 
-	const {navigator} = this.props;
-    navigator.push({
-      name: "UserInfo",
-      component: UserInfoContainer,
-    });
+const onUserInfo = () => {
+	const { navigator } = this.props;
+	navigator.push({
+		name: "UserInfo",
+		component: UserInfo,
+	});
 }
 
 interface IProps {

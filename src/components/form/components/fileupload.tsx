@@ -4,7 +4,7 @@ import { Alert, Image, StyleSheet, Text, TouchableOpacity, View } from "react-na
 
 import commonStyles from "./commonstyle";
 
-const select = () => {
+const select = (idx: string | any) => {
     // let name = this.state.row.name + fileIndex;
     // let extraData = {};
     // extraData.type = 'fj';
@@ -76,12 +76,12 @@ const FileUpLoad: React.FC = () => {
                                     if (file.fileName && file.fileName != '') {
                                         Alert.alert('', '确定删除该附件?', [{
                                             text: '确定', onPress: () => {
-                                                select('', '', file.fileIndex);
+                                                select(file.fileIndex);
                                             }
                                         }, { text: '取消', onPress: () => { } }]);
                                     }
                                 }}>
-                                    <Image source={require('../../img/icon/sq_icon_del.png')} style={styles.pic} />
+                                    <Image source={require('@/assets/img/icon/sq_icon_del.png')} style={styles.pic} />
                                 </TouchableOpacity>
                             </View>
                         )
@@ -89,7 +89,7 @@ const FileUpLoad: React.FC = () => {
                 }
             </View>
             <TouchableOpacity onPress={onPress}>
-                <Image source={require('../../img/icon/sq_icon_upload.png')} style={styles.pic} />
+                <Image source={require('@/assets/img/icon/sq_icon_upload.png')} style={styles.pic} />
             </TouchableOpacity>
         </View>
     );

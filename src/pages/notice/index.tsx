@@ -47,7 +47,7 @@ const NoticeScreen: React.FC = (props: any) => {
             <NavigationBar
                 title={'通知'} titleColor={Colors.WHITE}
                 backgroundColor={Colors.ORANGE} onLeftButtonPress={goBack(props)}
-                leftButtonIcon={require('../img/office/icon-backs.png')}
+                leftButtonIcon={require('@/assets/office/icon-backs.png')}
             />
             <FlatList
                 data={noticeList.noticeListData}

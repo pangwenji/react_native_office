@@ -18,7 +18,7 @@ const TextArea: React.FC = () => {
     return (
         <View style={{
             height: 116, flex: 1,
-            backgroundColor: Colors.white, borderBottomColor: Colors.lightgrey, borderBottomWidth: 1,
+            backgroundColor: Colors.WHITE, borderBottomColor: Colors.LIGHT_GREY, borderBottomWidth: 1,
         }}>
 
             <Text style={{ height: 32, marginLeft: 16, marginRight: 16, marginTop: 12, textAlign: 'left', alignItems: 'center', fontSize: 16, color: Colors.black }}>

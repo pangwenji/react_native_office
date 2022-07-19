@@ -226,7 +226,7 @@ const FileSelect: React.FC = () => {
             <NavigationBar title={'文件选择'} titleColor={Colors.WHITE}
                 backgroundColor={Colors.ORANGE} rightButtonTitle={rightButtonTitle}
                 rightButtonTitleColor={'#fff'} onRightButtonPress={upload}
-                leftButtonIcon={require('../../img/office/icon-backs.png')}
+                leftButtonIcon={require('@/assets/office/icon-backs.png')}
                 onLeftButtonPress={goBack} />
             <ScrollView style={{ position: 'absolute', flex: 1, height: ViewHeight - 60, width: ViewWidth }}>
                 {renderItem()}

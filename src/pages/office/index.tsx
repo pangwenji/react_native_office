@@ -71,14 +71,14 @@ const OfficeScreen: React.FC<IProp> = (props: IProp) => {
 	return (
 		<View style={styles.background}>
 			<View style={[styles.mainBack, { marginTop: top }]}>
-				<ImageBackground style={styles.mainBack} source={require('../img/office/office_bg.jpg')} >
+				<ImageBackground style={styles.mainBack} source={require('@/assets/office/office_bg.jpg')} >
 					<View style={styles.topBg}>
 						{/* 待办 */}
-						{commonRender('我的申请', '../img/office/office_sq.png', onCreated)}
+						{commonRender('我的申请', '@/assets/office/office_sq.png', onCreated)}
 						{/* 同意 */}
-						{commonRender('已办任务', '../img/office/office_sp.png', onApproval)}
+						{commonRender('已办任务', '@/assets/office/office_sp.png', onApproval)}
 						{/* 代理 */}
-						{commonRender('代理任务', '../img/office/office_proxy.png', onProxy)}
+						{commonRender('代理任务', '@/assets/office/office_proxy.png', onProxy)}
 
 					</View>
 				</ImageBackground >

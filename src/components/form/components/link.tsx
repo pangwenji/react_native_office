@@ -1,3 +1,4 @@
+import TaskDetail from '@/components/task/components/taskdetail';
 import React from 'react';
 import { Text, TouchableOpacity, View, Image, StyleSheet, Alert } from 'react-native';
 import commonStyles from './commonstyle';
@@ -32,7 +33,7 @@ const Link: React.FC = (props: any) => {
 					<Text numberOfLines={1} allowFontScaling={true} style={styles.content}>
 						{row.content}
 					</Text>
-					<Image source={require('../../img/icon/link.png')} style={styles.pic} />
+					<Image source={require('@/assets/img/icon/link.png')} style={styles.pic} />
 				</TouchableOpacity>
 			</View>
 		</View>

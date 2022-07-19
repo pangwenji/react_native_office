@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Text, TextInput, View } from 'react-native';
 import commonStyles from './commonstyle';
 
@@ -10,6 +10,7 @@ const onChange = () => {
 }
 
 const TextInt: React.FC = () => {
+    let [text, setText] = useState('')
     let _maxLength = 500;
     if (this.state.row.maxLength && this.state.row.maxLength != '') {
         _maxLength = Number(this.state.row.maxLength);
@@ -25,10 +26,10 @@ const TextInt: React.FC = () => {
                 <TextInput
                     style={{ height: 48, textAlign: 'right', fontSize: 14, }}
                     placeholder={'请输入' + this.state.row.title}
-                    onChangeText={onChange}
+                    onChangeText={() => setText('')}
                     underlineColorAndroid={'transparent'}
                     maxLength={_maxLength}
-                    value={this.state.text} />
+                    value={text} />
             </View>
         </View>
     );

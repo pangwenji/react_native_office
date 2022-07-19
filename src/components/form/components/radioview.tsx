@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from "react-native";
 import commonStyles from "./commonstyle";
 import { RadioButton, RadioButtonGroup } from 'react-native-material-kit';
 
-const handleChange = () => { }
+const handleChange = (args: any) => { }
 
 const RadioView: React.FC = () => {
     return (
@@ -26,7 +26,7 @@ const RadioView: React.FC = () => {
                             return (
                                 <View style={styles.col}>
                                     <RadioButton checked={isChecked} borderOnColor={Colors.ORANGE}
-                                        borderOffColor={Colors.secondaryColor}
+                                        borderOffColor={Colors.LIGHT_ORANGE}
                                         fillColor={Colors.ORANGE}
                                         onCheckedChange={(e) => {
                                             if (e.checked == true) {

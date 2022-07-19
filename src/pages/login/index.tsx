@@ -37,7 +37,7 @@ const Login: React.FC = (props: any) => {
 				<View style={{ marginLeft: 8, height: 1, backgroundColor: '#ccc', marginRight: 8 }} />
 				<TouchableWithoutFeedback onPress={() => dismissKeyboard()}>
 					<View style={{ flexDirection: 'row', height: 48, backgroundColor: 'white', alignItems: 'center' }}>
-						<Image style={{ width: 32, height: 32, margin: 8 }} source={require('../img/icon/icon-lock.png')} />
+						<Image style={{ width: 32, height: 32, margin: 8 }} source={require('@/assets/img/icon/icon-lock.png')} />
 						<TextInput style={{ height: 48, flex: 1 }}
 							placeholder={'请输入密码'}
 							value={logins.password}
