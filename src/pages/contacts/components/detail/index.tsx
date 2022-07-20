@@ -2,8 +2,9 @@ import FormItem from "@/components/form/fliter_items";
 import NavigationBar from "@/components/navigationbar";
 import Spinner from "@/components/spinner";
 import { Colors } from "@/utils/colors";
+import ContactListIitem from "@/utils/contacts_list_item";
 import { ContactType } from "@/utils/contact_type";
-import React from "react";
+import React, { useMemo } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import Contracts from "../..";
 
@@ -24,8 +25,9 @@ const next = () => {
     });
 }
 
-const Detail: React.FC = () => {
-    const { contactListBase, route } = this.props;
+const Detail: React.FC = (props:any) => {
+
+    const { contactListBase, route } = props;
     let rightButtonTitle;
     let type = route.peopleType;
     if (type === ContactType.CONTACT_PERSON_TYPE_CREATE) {
@@ -37,8 +39,8 @@ const Detail: React.FC = () => {
     }
     return (
         <View style={styles.container}>
-            <NavigationBar title='详情' titleColor={Colors.white}
-                backgroundColor={Colors.mainColor} onLeftButtonPress={goBack}
+            <NavigationBar title='详情' titleColor={Colors.WHITE}
+                backgroundColor={Colors.ORANGE} onLeftButtonPress={goBack}
                 leftButtonIcon={require('@/assets/office/icon-backs.png')}
                 rightButtonTitle={rightButtonTitle} rightButtonTitleColor={'#fff'}
                 onRightButtonPress={next} />
@@ -48,9 +50,9 @@ const Detail: React.FC = () => {
                 ref='keyboardView'
                 keyboardDismissMode='interactive'>
                 {
-                    CONTACT_LIST_DETAIL_ITEMS.map(function (row) {
-                        return <FormItem {...nextProps} row={row} />
-                    })
+                    // ContactListIitem.CONTACT_LIST_DETAIL_ITEMS.map(function (row) {
+                    //     return <FormItem {...nextProps} row={row} />
+                    // })
                 }
             </ScrollView>
             <View>

@@ -17,13 +17,13 @@ const Login: React.FC = (props: any) => {
 	return (
 		<View style={styles.container}>
 			<View style={{ alignItems: 'center', marginTop: 32 }}>
-				<Image style={{ width: 90, height: 90, margin: 8, borderRadius: 0, }} source={require('../img/icon/logo.png')} />
+				<Image style={{ width: 90, height: 90, margin: 8, borderRadius: 0, }} source={require('@/assets/img/icon/logo.png')} />
 			</View>
 
 			<View style={{ margin: 16, backgroundColor: '#fff', elevation: 4 }}>
 				<TouchableWithoutFeedback onPress={() => dismissKeyboard()}>
 					<View style={{ flexDirection: 'row', height: 48, alignItems: 'center' }}>
-						<Image style={{ width: 32, height: 32, margin: 8 }} source={require('../img/icon/icon-user.png')} />
+						<Image style={{ width: 32, height: 32, margin: 8 }} source={require('@/assets/img/icon/icon-user.png')} />
 						<TextInput style={{ height: 48, flex: 1 }}
 							placeholder={'请输入用户名'}
 							value={logins.username}

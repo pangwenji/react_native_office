@@ -6156,7 +6156,7 @@ prompts@^2.0.1, prompts@^2.4.0:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-prop-types@^15.5.10, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2, prop-types@^15.8.1:
+prop-types@^15.5.10, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2, prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.npmmirror.com/prop-types/-/prop-types-15.8.1.tgz"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -6297,6 +6297,13 @@ react-native-gesture-handler@^2.5.0:
     invariant "^2.2.4"
     lodash "^4.17.21"
     prop-types "^15.7.2"
+
+react-native-gesture-password@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.npmmirror.com/react-native-gesture-password/-/react-native-gesture-password-0.4.0.tgz#5b39d5e193e3f83099ea3914a805293bd69a87d5"
+  integrity sha512-QHmd7w3a7zqNl21oPyIcrL0B/LfzumEd3/LL+UajNBBRsPRoYXBy46JbzncolHzSPm8nG5xE3MfDfigI1MmU3g==
+  dependencies:
+    prop-types "^15.6.0"
 
 react-native-gifted-spinner@^0.1.0:
   version "0.1.0"

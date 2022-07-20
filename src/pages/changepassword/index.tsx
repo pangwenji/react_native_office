@@ -98,7 +98,7 @@ const ChangePassword: React.FC = (props: any) => {
 			<View style={styles.background}>
 				<NavigationBar title={'修改密码'} titleColor={Colors.WHITE}
 					backgroundColor={Colors.ORANGE}
-					leftButtonIcon={require('../img/office/icon-backs.png')}
+					leftButtonIcon={require('@/assets/office/icon-backs.png')}
 					onLeftButtonPress={goBack}
 					rightButtonTitle={'确认'} rightButtonTitleColor={'#fff'}
 					onRightButtonPress={checkPassword} />

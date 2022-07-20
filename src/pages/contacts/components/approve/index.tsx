@@ -8,6 +8,7 @@ import CONTACT_LIST_REPORT_ITEMS from '@/utils/contacts_list_item';
 import CONTACT_LIST_FOLLOW_ITEMS from '@/utils/contacts_list_item';
 
 import { NetWork } from '@/utils/network';
+import FormItem from '@/components/form/fliter_items';
 
 const goBack = () => {
 	// const {navigator} = this.props;
@@ -63,7 +64,7 @@ const Approve: React.FC = (props: any) => {
 		<View style={styles.container}>
 			<NavigationBar title={rightButtonTitle} titleColor={Colors.WHITE}
 				backgroundColor={Colors.mainColor} onLeftButtonPress={goBack}
-				leftButtonIcon={require('../../img/office/icon-backs.png')}
+				leftButtonIcon={require('@/assets/office/icon-backs.png')}
 				rightButtonTitle='提交' rightButtonTitleColor={'#fff'}
 				onRightButtonPress={next} />
 			<ScrollView style={styles.formViewContainer}
@@ -74,7 +75,7 @@ const Approve: React.FC = (props: any) => {
 				{
 
 					CONTACT_LIST_FOLLOW_ITEMS.map((row: any) => {
-						return <FormItemsFilter {...nextProps} row={row} onUserInput={(userInputKey, userInputValue) => {
+						return <FormItem {...nextProps} row={row} onUserInput={(userInputKey, userInputValue) => {
 							if (userInputKey === "taskStatus") {
 								let newUserInputValue = {};
 								for (let item of contactListBase.contactFollowTypeData) {
@@ -98,8 +99,8 @@ const Approve: React.FC = (props: any) => {
 								//  dispatch(handleUserInput(userInputKey, userInputValue, common.CONTACT_INUPT_TYPE_FOLLOW));
 							}
 						}} />
-					});
-		  }
+					})
+				}
 			</ScrollView>
 			<View>
 				<Spinner visible={contactListBase.contactFollowTypeFetching} text={'加载中,请稍后...'} />

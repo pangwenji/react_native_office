@@ -13,12 +13,12 @@ import {
 } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import { Colors } from '@/utils/colors';
-import { ViewWidth,ViewHeight} from '@/utils/index';
+import { ViewWidth, ViewHeight } from '@/utils/index';
 import PostCell from '@/components/postcell_todo';
 
-interface IProps { 
+interface IProps {
     taskList: {
-        taskListFetching:boolean
+        taskListFetching: boolean
     }
 }
 
@@ -26,11 +26,11 @@ const onSearch = () => { }
 
 const onLeftBack = () => { }
 
-const renderSelect = (props:any) => {
-    let [selectedValue,setState] =useState(false)
-    if(Platform.OS == 'ios') {
-        return(
-          <View>
+const renderSelect = (props: any) => {
+    let [selectedValue, setState] = useState(false)
+    if (Platform.OS == 'ios') {
+        return (
+            <View>
                 <TouchableOpacity
                     onPress={() => { setState(true) }}
                     style={
@@ -38,23 +38,23 @@ const renderSelect = (props:any) => {
                             alignItems: 'center',
                             marginTop: 10
                         }}>
-                    <Text style={{textAlign:'center'}}>
+                    <Text style={{ textAlign: 'center' }}>
                         {selectedValue}
                     </Text>
-            </TouchableOpacity>
-          </View>)
-      } else {
-        return(renderPick(props))
-      }
+                </TouchableOpacity>
+            </View>)
+    } else {
+        return (renderPick(props))
+    }
 }
 
 const renderPick = (props: any) => {
     let [searchId, setState] = useState(0);
     let [selectedValue, setSelectedValue] = useState(0);
-    let [isSelect,setIsSelect] = useState(false);
-    const {taskList, login, route, dispatch} = props;
-    let searchArr:Array<any>= [];
-    let itemAll:{id:string,name:string} = {
+    let [isSelect, setIsSelect] = useState(false);
+    const { taskList, login, route, dispatch } = props;
+    let searchArr: Array<any> = [];
+    let itemAll: { id: string, name: string } = {
         id: '',
         name: ''
     };
@@ -62,42 +62,42 @@ const renderPick = (props: any) => {
     itemAll.name = '全部';
     searchArr.push(itemAll);
     Array.prototype.push.apply(searchArr, taskList.taskSearchList);
-    return(
-      <Picker
-        style={styles.picker}
-        mode="dropdown"
-        selectedValue={searchId}
-        itemStyle={{backgroundColor:'#fdfcf5',}}
-        onValueChange={(id) => {
-          for (var i = 0; i < searchArr.length; i++) {
-            if (searchArr[i].id == id) {
-                setSelectedValue(searchArr[i].name);
-            }
-          }
-            const page = 1;
-            const canLoadMore = false;
-            const onEndReach = false;
-            // dispatch(fetchTaskList(route.url + 'userId=', login.rawData.userId, id, '', '', page));
-            // dispatch(startHandleTimeConsuming());
-            setState(id);
-            setIsSelect(true);
-        }}>
-        {searchArr.map(function(row) {
-          return <Picker.Item label={row.name} value={row.id} />
-        })}
-      </Picker>
+    return (
+        <Picker
+            style={styles.picker}
+            mode="dropdown"
+            selectedValue={searchId}
+            itemStyle={{ backgroundColor: '#fdfcf5', }}
+            onValueChange={(id) => {
+                for (var i = 0; i < searchArr.length; i++) {
+                    if (searchArr[i].id == id) {
+                        setSelectedValue(searchArr[i].name);
+                    }
+                }
+                const page = 1;
+                const canLoadMore = false;
+                const onEndReach = false;
+                // dispatch(fetchTaskList(route.url + 'userId=', login.rawData.userId, id, '', '', page));
+                // dispatch(startHandleTimeConsuming());
+                setState(id);
+                setIsSelect(true);
+            }}>
+            {searchArr.map(function (row) {
+                return <Picker.Item label={row.name} value={row.id} />
+            })}
+        </Picker>
     )
-  }
+}
 
-const onPress = (post:any) => { }
+const onPress = (post: any) => { }
 
-const _renderItem = (props:any) => {
-    const { route } = props;
+const _renderItem = (props: any) => {
+    const { route, post } = props;
     return (
         <PostCell
             post={post}
             type={route.navBarTitle}
-            onSelect={onPress(post)}
+            onSelect={async () => onPress(post)}
         />);
 }
 const setState = (searchTitle: any) => { }
