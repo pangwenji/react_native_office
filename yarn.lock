@@ -6373,6 +6373,18 @@ react-native-size-matters@^0.3.1:
   resolved "https://registry.npmmirror.com/react-native-size-matters/-/react-native-size-matters-0.3.1.tgz"
   integrity sha512-mKOfBLIBFBcs9br1rlZDvxD5+mAl8Gfr5CounwJtxI6Z82rGrMO+Kgl9EIg3RMVf3G855a85YVqHJL2f5EDRlw==
 
+react-native-smart-button@^2.0.4-beta.1:
+  version "2.0.4-beta.1"
+  resolved "https://registry.npmmirror.com/react-native-smart-button/-/react-native-smart-button-2.0.4-beta.1.tgz#32625154b3133c40f8c95d0c3a95c9447d2eea27"
+  integrity sha512-KpD051UZiDFn2a8QHFxZ9meQuMmuIijRKjlkXK4va4ZsdgHvohrnD0hwEiWSbGW6d01M93e/R2zUqeGWK90U7A==
+  dependencies:
+    prop-types "^15.5.10"
+
+react-native-smart-gesture-password@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.npmmirror.com/react-native-smart-gesture-password/-/react-native-smart-gesture-password-2.1.0.tgz#02808146c8e2d326e663afeb6bc9236418fc1a7c"
+  integrity sha512-PEPTFzbSV/TR2YVcOrh390FBokj/QTn4B0GvTuWhOgY+70Nje9fP3NqlqSkSxR5eoH9b6jDeU0B1bEZsUhJ25Q==
+
 react-native-snap-carousel@^3.9.1:
   version "3.9.1"
   resolved "https://registry.npmmirror.com/react-native-snap-carousel/-/react-native-snap-carousel-3.9.1.tgz"

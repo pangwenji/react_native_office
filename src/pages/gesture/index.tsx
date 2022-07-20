@@ -3,7 +3,7 @@ import PasswordGesture from 'react-native-gesture-password';
 // onStart?: () => void,
 // onEnd?: (password: string) => void,
 // onReset?: () => voidimport PasswordGesture from 'react-native-gesture-password';
-
+// https://blog.csdn.net/zoujian1990520/article/details/80701355
 const Gesture: React.FC = () => {
     return (
         <PasswordGesture
