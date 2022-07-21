@@ -1,14 +1,16 @@
 import NavigationBar from '@/components/navigationbar';
 import Spinner from '@/components/spinner';
+import Table from '@/components/table';
 import { Colors } from '@/utils/colors';
 import React from 'react';
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import TaskApproval from './taskApproval';
 
 const onPress = (props: any) => {
 	const { navigator, route } = props;
 	navigator.push({
 		name: "TaskApproval",
-		component: TaskApprovalContainer,
+		component: TaskApproval,
 		taskId: route.taskId,
 		processInstanceId: route.processInstanceId,
 	});
@@ -18,13 +20,12 @@ const renderFAB = (props: any) => {
 	const { route } = props;
 	if (route.type === 'approval') {
 		return (
-			<TouchableOpacity style={{
-				width: 56, height: 56, borderRadius: 28, backgroundColor: Colors.mainColor,
-				position: 'absolute', bottom: 10, right: 10, elevation: 4, justifyContent: 'center', alignItems: 'center'
-			}}
+			<TouchableOpacity style={styles.btnStyle}
 				onPress={onPress}
 				onLongPress={() => console.log('长按隐藏图标,未处理')}>
-				<Image style={{ width: 32, height: 32 }} source={require('../img/icon/icon-fb-edit.png')} />
+				<Image
+					style={{ width: 32, height: 32 }}
+					source={require('@/assets/img/icon/icon-fb-edit.png')} />
 			</TouchableOpacity>
 		);
 	} else {
@@ -83,12 +84,12 @@ const renderTableView = (props: any) => {
 		return (
 			<TouchableOpacity onPress={() => {
 				navigator.push({
-					name: "ReadTable",
-					component: readTable,
+					name: "Table",
+					component: Table,
 					tableData: rowData,
 				});
 			}}>
-				<Text style={{ alignSelf: 'center', marginTop: 8, marginBottom: 8, color: '#36a9e1', fontSize: 16, }}>{rowData.code}>></Text>
+				<Text style={styles.tabText}>{rowData.code}&gt&gt</Text>
 			</TouchableOpacity>
 		);
 	});
@@ -179,6 +180,25 @@ const styles = StyleSheet.create({
 		borderColor: '#ccc',
 		justifyContent: 'center',
 		alignItems: 'center',
+	},
+	btnStyle: {
+		width: 56,
+		height: 56,
+		borderRadius: 28,
+		backgroundColor: Colors.ORANGE,
+		position: 'absolute',
+		bottom: 10,
+		right: 10,
+		elevation: 4,
+		justifyContent: 'center',
+		alignItems: 'center'
+	},
+	tabText: {
+		alignSelf: 'center',
+		marginTop: 8,
+		marginBottom: 8,
+		color: '#36a9e1',
+		ontSize: 16,
 	}
 });
 

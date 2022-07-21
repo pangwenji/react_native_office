@@ -13,8 +13,16 @@ import store from '@/utils/storage';
 import JPush from 'jpush-react-native';
 import UserInfo from '../userinfo';
 import ChangePassword from '../changepassword';
+import ToastTip from '@/components/notification';
 
-const commonRenderLine = (type: string, text: string, top?: string, onClick?: Function, icon?: string, fontColor?: string, fontSize?: string) => {
+const commonRenderLine = (
+	type: string,
+	text: string,
+	top?: string,
+	onClick?: Function,
+	icon?: string,
+	fontColor?: string,
+	fontSize?: string) => {
 	return (
 		<Line
 			type={type}
@@ -41,20 +49,23 @@ const changeWebviewUrl = (help: string) => { }
 const onHelp = (props: any) => {
 	const { navigator, dispatch } = props;
 	dispatch(changeWebviewUrl(NetWork.ME_HELP));
-	navigator.push({
-		name: "WebViews",
-		component: WebViews,
-	});
+	commonPage(props);
 }
 
 const goVersion = (props: any) => {
 	const { navigator, dispatch } = props;
 	// dispatch(changeWebviewUrl(ME_VERSION));
+	commonPage(props);
+}
+
+const commonPage = (props: any) => { 
+	let { navigator} = props;
 	navigator.push({
 		name: "WebView",
 		component: WebViews,
 	});
 }
+
 const onLogout = (props: any) => {
 	const { navigator, dispatch } = props;
 	JPush.clearAllNotifications();
@@ -73,8 +84,8 @@ const callPhone = () => {
 	Linking.openURL(Platform.OS !== 'android' ? 'telprompt:' : 'tel:' + '18521059559');
 }
 
-const onUserInfo = () => {
-	const { navigator } = this.props;
+const onUserInfo = (props:any) => {
+	const { navigator } = props;
 	navigator.push({
 		name: "UserInfo",
 		component: UserInfo,
@@ -90,30 +101,31 @@ const SettingsScreen: React.FC<IProps> = (props) => {
 	const { login, userInfo, top } = props;
 	useEffect(() => {
 		if (userInfo.avatarGot && !userInfo.avatarData) {
-			Alert.alert('', '个人信息获取失败!', [{ text: '好', onPress: () => { } },])
+			// Alert.alert('', '个人信息获取失败!', [{ text: '好', onPress: () => { } },])
+			<ToastTip message={'个人信息获取失败!'} />
 		}
 	}, [])
 	return (
 		<View style={styles.background}>
 			<View style={styles.containers}>
-				<TouchableOpacity style={{ marginTop: top, }} onPress={onUserInfo}>
+				<TouchableOpacity style={{ marginTop: top, }} onPress={() =>onUserInfo(props)}>
 					<View style={styles.bgAvatar}>
 						<Image style={styles.avatar} source={userInfo.avatarData ? userInfo.avatarData : require('../img/icon/icon-avatar.png')} />
 						<Text style={styles.userInfo}>{login.rawData.nickName}</Text>
-						<Image style={styles.nextIcon} source={require('../img/icon/icon-next.png')} />
+						<Image style={styles.nextIcon} source={require('@/assets/img/icon/icon-next.png')} />
 					</View>
 				</TouchableOpacity>
 				{                      //type
-					commonRenderLine('nextIcon', '修改密码', '20', onChangePassword, require('../img/icon/icon-locks.png'))
+					commonRenderLine('nextIcon', '修改密码', '20', onChangePassword, require('@/assets/img/icon/icon-locks.png'))
 				}
 				{
-					commonRenderLine('nextIcon', '帮助', '', onHelp, require('../img/icon/icon-locks.png'))
+					commonRenderLine('nextIcon', '帮助', '', onHelp, require('@/assets/img/icon/icon-locks.png'))
 				}
 				{
-					commonRenderLine('nextIcon', '版本信息', '', goVersion, require('../img/icon/icon-version.png'))
+					commonRenderLine('nextIcon', '版本信息', '', goVersion, require('@/assets/img/icon/icon-version.png'))
 				}
 				{
-					commonRenderLine('text', '注销', '40', onLogout, require('../img/icon/icon-version.png'), '#ED4D4D', '16')
+					commonRenderLine('text', '注销', '40', onLogout, require('@/assets/img/icon/icon-version.png'), '#ED4D4D', '16')
 				}
 			</View>
 			<View style={styles.phone}>
@@ -121,7 +133,7 @@ const SettingsScreen: React.FC<IProps> = (props) => {
 				<TouchableOpacity onPress={() => callPhone()}>
 					<View style={{ flexDirection: 'row', }}>
 						<Text style={styles.phoneNumber}>15102113061</Text>
-						<Image style={{ height: 34, width: 34, }} source={require('../img/icon/telephone.png')} />
+						<Image style={{ height: 34, width: 34, }} source={require('@/assets/img/icon/telephone.png')} />
 					</View>
 				</TouchableOpacity>
 				<Text style={styles.phoneText}>或者发送邮件至</Text>

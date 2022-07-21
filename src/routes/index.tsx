@@ -1,8 +1,13 @@
+import StaffList from "@/components/form/components/stafflist";
+import Table from "@/components/table";
 import WebViews from "@/components/webview";
 import ContactsScreen from "@/pages/address";
+import ChangePassword from "@/pages/changepassword";
+import Login from "@/pages/login";
 import MessageScreen from "@/pages/message";
 import NoticeScreen from "@/pages/notice";
 import TodoScreen from "@/pages/todo";
+import UserInfo from "@/pages/userinfo";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import React from "react"
@@ -20,6 +25,11 @@ const stack_sreen: Array<stackType> = [
     { name: 'contacts', component: ContactsScreen },
     { name: 'message', component: MessageScreen },
     { name: 'WebViews', component: WebViews },
+    { name: 'UserInfo', component: UserInfo },
+    { name: 'Login', component: Login },
+    { name: 'Login', component: ChangePassword },
+    { name: 'StaffList', component: StaffList },
+    { name: 'Table',component:Table}
 
 ]
 

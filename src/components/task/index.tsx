@@ -86,7 +86,7 @@ const Task: React.FC = (props: any) => {
 				titleColor={Colors.WHITE}
 				backgroundColor={Colors.ORANGE}
 				onLeftButtonPress={goBack}
-				leftButtonIcon={require('../img/office/icon-backs.png')}
+				leftButtonIcon={require('@/aasets/office/icon-backs.png')}
 				rightButtonTitle={'搜索'}
 				rightButtonTitleColor={'#fff'}
 				onRightButtonPress={onSearch(props)}

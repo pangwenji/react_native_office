@@ -209,7 +209,7 @@ const styles = StyleSheet.create({
         borderRadius: 2,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: Colors.mainColor
+        backgroundColor: Colors.ORANGE
     },
 });
 
