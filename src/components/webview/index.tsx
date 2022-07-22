@@ -3,10 +3,9 @@ import React from "react";
 import { Text, View } from "react-native";
 import { WebView } from 'react-native-webview';
 import NavigationBar from "../navigationbar";
-
-const goBack = () => { 
-	// const {navigator} = this.props;
-    // navigator.pop();
+import { goBack} from '@/utils/index';
+const goBacks = (props:any) => { 
+  goBack(props);
 }
 
 const error =()=> { 
@@ -30,8 +29,8 @@ const WebViews: React.FC = (props:any) => {
       <View style={{flex:1}}>
         <NavigationBar
           title={'详情'} titleColor={Colors.WHITE}
-          backgroundColor={Colors.ORANGE} onLeftButtonPress={goBack}
-          leftButtonIcon={require('../img/office/icon-backs.png')}/>
+          backgroundColor={Colors.ORANGE} onLeftButtonPress={goBacks}
+          leftButtonIcon={require('@/assets/office/icon-backs.png')} onRightButtonPress={() => { }}/>
         <WebView
           scalesPageToFit={true}
           source={{uri: webview.webviewUrl}}

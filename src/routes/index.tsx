@@ -1,5 +1,6 @@
 import StaffList from "@/components/form/components/stafflist";
 import Table from "@/components/table";
+import TaskDetail from "@/components/task/components/taskdetail";
 import WebViews from "@/components/webview";
 import ContactsScreen from "@/pages/address";
 import ChangePassword from "@/pages/changepassword";
@@ -29,7 +30,8 @@ const stack_sreen: Array<stackType> = [
     { name: 'Login', component: Login },
     { name: 'Login', component: ChangePassword },
     { name: 'StaffList', component: StaffList },
-    { name: 'Table',component:Table}
+    { name: 'Table', component: Table },
+    { name: 'TaskDetail', component:TaskDetail}
 
 ]
 

@@ -80,14 +80,14 @@ const ContactsScreen: React.FC = (props: any) => {
     return (
         <View style={styles.container}>
             <NavigationBar title={'通讯录'} titleColor={Colors.WHITE}
-                leftButtonIcon={require('@/assets/img/office/icon-backs.png')}
-                backgroundColor={Colors.ORANGE} onLeftButtonPress={goBack} />
+            leftButtonIcon={require('@/assets/img/office/icon-backs.png')}
+                backgroundColor={Colors.ORANGE} onLeftButtonPress={goBack} onRightButtonPress={() => { }} />
             <TouchableWithoutFeedback onPress={() => dismissKeyboard()}>
                 <View style={{ flexDirection: 'row', height: 56 }}>
                     <TextInput
                         style={{ flex: 1, height: 32, margin: 8, elevation: 3, borderRadius: 2, backgroundColor: 'white', fontSize: 14 }}
                         placeholder='请输入姓名查找'
-                        onChangeText={(searchName) => dispatch(changeSearchName(searchName))}
+                        // onChangeText={(searchName) => dispatch(changeSearchName(searchName))}
                         returnKeyType={'search'}
                         onSubmitEditing={onSearch} />
                     <TouchableOpacity onPress={onSearch}

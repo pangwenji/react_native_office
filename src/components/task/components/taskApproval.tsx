@@ -83,7 +83,7 @@ const TaskApproval: React.FC = (props:any) => {
         backgroundColor={Colors.ORANGE} onLeftButtonPress={goBack}
         leftButtonIcon={require('@/aasets/office/icon-backs.png')}
         rightButtonTitle={'提交'} rightButtonTitleColor={'#fff'}
-        onRightButtonPress={commit(props)}/>
+        onRightButtonPress={()=>commit(props)}/>
         <ScrollView style={styles.formViewContainer}
           ref='keyboardView'
           keyboardDismissMode='interactive'

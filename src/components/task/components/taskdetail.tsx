@@ -1,3 +1,4 @@
+import Attachment from '@/components/attachment';
 import NavigationBar from '@/components/navigationbar';
 import Spinner from '@/components/spinner';
 import Table from '@/components/table';
@@ -42,7 +43,7 @@ const renderHistoricView = (props: any) => {
 			<View style={{ flexDirection: 'row', }}>
 				<View style={{ position: 'absolute', flex: 1, width: 1, height: 1000, marginLeft: 27, backgroundColor: '#ccc', }} />
 				<View style={{ width: 56, alignItems: 'center', elevation: 2 }}>
-					<Image style={{ marginTop: 8, width: 48, height: 48, borderRadius: 24, borderWidth: 2, borderColor: '#fff', }} source={require('../img/icon/icon-avatar.png')} />
+					<Image style={{ marginTop: 8, width: 48, height: 48, borderRadius: 24, borderWidth: 2, borderColor: '#fff', }} source={require('@/assets/img/icon/icon-avatar.png')} />
 				</View>
 				<View style={{ marginTop: 14, elevation: 2 }}>
 					<Image source={require('../img/icon/icon-arrow.png')} style={{ width: 5, height: 10, }} />
@@ -98,18 +99,16 @@ const renderTableView = (props: any) => {
 const renderTaskView = (props: any) => {
 	const { taskDetail, route, navigator } = props;
 	return taskDetail.content.map((rowData: any) => {
-		if (rowData.hide) {
-			return (<View></View>)
-		}
+		rowData.hide ? <View /> : null
 		if (rowData.type === 'text' && rowData.detailType === 'file') {
 			//屏蔽模板下载 仅web端需要
 			if (rowData.title === ' ')
 				return;
-			return (<AttachmentDownload {...this.props} row={rowData} processInstanceId={route.processInstanceId} navigator={navigator} />);
+			return (<Attachment {...props} row={rowData} processInstanceId={route.processInstanceId}/>);
 		} else if (rowData.type === 'text' && rowData.detailType === 'linked_process_no') {
 			return (
 				<View style={{ flexDirection: 'row' }}>
-					<Text style={{ marginLeft: 8, marginRight: 4, marginTop: 5, textAlign: 'right', color: '#333', fontSize: 15, }}>{rowData.title}:</Text>
+					<Text style={styles.link}>{rowData.title}:</Text>
 					<TouchableOpacity onPress={() => {
 						navigator.push({
 							name: "TaskDetail",
@@ -120,14 +119,14 @@ const renderTaskView = (props: any) => {
 							processTitle: route.processTitle,
 						});
 					}}>
-						<Text style={{ marginLeft: 4, color: '#317ef3', marginRight: 8, fontSize: 15, marginTop: 5, flex: 1, }} multiline={true}>{rowData.content}</Text>
+						<Text style={styles.text1 }>{rowData.content}</Text>
 					</TouchableOpacity>
 				</View>);
 		} else {
 			return (
 				<View style={{ flexDirection: 'row' }}>
-					<Text style={{ marginLeft: 8, marginRight: 4, marginTop: 5, textAlign: 'right', color: '#333', fontSize: 15, }}>{rowData.title}:</Text>
-					<Text style={{ marginLeft: 4, color: '#999', marginRight: 8, fontSize: 15, marginTop: 5, flex: 1, }} multiline={true}>{rowData.content}</Text>
+					<Text style={ styles.rowTitle}>{rowData.title}:</Text>
+					<Text style={ styles.rowContent} >{rowData.content}</Text>
 				</View>
 			);
 		}
@@ -140,25 +139,25 @@ const TaskDetail: React.FC = (props: any) => {
 		<View style={styles.container}>
 			<NavigationBar
 				title={'任务详情'} titleColor={Colors.WHITE}
-				backgroundColor={Colors.mainColor} onLeftButtonPress={goBack}
-				leftButtonIcon={require('../img/office/icon-backs.png')} />
+				backgroundColor={Colors.ORANGE} onLeftButtonPress={goBack}
+				leftButtonIcon={require('@/assets/office/icon-backs.png')} onRightButtonPress={() => { }} />
 
 			<ScrollView style={{ backgroundColor: '#EFEFEF', }}>
-				<View style={{ backgroundColor: 'white', margin: 8, borderRadius: 2, elevation: 3, padding: 8 }}>
+				<View style={styles.Scrollview}>
 					{processNo(props)}
-					<Text style={{ color: '#111', margin: 8, marginTop: 16, fontSize: 20, textAlign: 'center', }}>{taskDetail.name}</Text>
+					<Text style={styles.name}>{taskDetail.name}</Text>
 					<View>
 						{renderTaskView(props)}
 					</View>
 					{renderTableView(props)}
 				</View>
 				{renderHistoricView(props)}
-				<View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 8, }}>
-					<View style={{ width: 10, height: 10, borderRadius: 5, borderWidth: 2, borderColor: Colors.mainBackground, backgroundColor: '#ccc', marginLeft: 22, }} />
-					<Text style={{ marginLeft: 8, color: '#333', fontSize: 15, }}>发起申请</Text>
+				<View style={styles.box}>
+					<View style={styles.boxView} />
+					<Text style={styles.applcation}>发起申请</Text>
 				</View>
 			</ScrollView>
-			{renderFAB()}
+			{renderFAB(props)}
 			<View>
 				<Spinner visible={taskDetail.taskDetailFetching} text={'加载中,请稍后...'} />
 			</View>
@@ -171,7 +170,7 @@ const styles = StyleSheet.create({
 		flexDirection: 'column'
 	},
 	postsListView: {
-		backgroundColor: Colors.mainBackground,
+		backgroundColor: Colors.GRAY_GAY,
 	},
 	tableCell: {
 		height: 48,
@@ -199,6 +198,71 @@ const styles = StyleSheet.create({
 		marginBottom: 8,
 		color: '#36a9e1',
 		ontSize: 16,
+	},
+	link: {
+		marginLeft: 8,
+		marginRight: 4,
+		marginTop: 5,
+		textAlign: 'right',
+		color: '#333',
+		fontSize: 15,
+	},
+	text1: {
+		marginLeft: 4,
+		color: '#317ef3',
+		marginRight: 8,
+		fontSize: 15,
+		marginTop: 5,
+		flex: 1,
+	},
+	rowTitle: {
+		marginLeft: 8,
+		marginRight: 4,
+		marginTop: 5,
+		textAlign: 'right',
+		color: '#333',
+		fontSize: 15,
+	},
+	rowContent: {
+		marginLeft: 4,
+		color: '#999', 
+		marginRight: 8,
+		fontSize: 15,
+		marginTop: 5,
+		flex: 1, 
+	},
+	Scrollview: {
+		backgroundColor: 'white',
+		margin: 8,
+		borderRadius: 2,
+		elevation: 3,
+		padding: 8 
+	},
+	name: {
+		color: '#111',
+		margin: 8,
+		marginTop: 16, 
+		fontSize: 20,
+		textAlign: 'center',
+	},
+	box: {
+		flexDirection: 'row',
+		alignItems: 'center',
+		marginBottom: 8,
+	},
+	boxView: {
+		width: 10,
+		height: 10,
+		borderRadius: 5,
+		borderWidth: 2,
+		borderColor: Colors.GRAY_GAY,
+		backgroundColor: '#ccc',
+		marginLeft: 22, 
+	},
+	applcation: {
+		marginLeft: 8,
+		color: '#333',
+		fontSize: 15,
 	}
 });
 

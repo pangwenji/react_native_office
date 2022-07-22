@@ -1,57 +1,78 @@
-import React from 'react';
-import { TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { Image, ImageProps, TextStyle, TouchableOpacity } from 'react-native';
 import { View, Text, StyleSheet, Platform } from 'react-native';
 import { ViewWidth } from '@/utils/index';
 
-
-
-const _onLeftButton = () => {
-
+interface IProp { 
+    title?:string,
+    height?:number,
+    titleColor?:string,
+    backgroundColor?:string,
+    leftButtonTitle?:string,
+    leftButtonTitleColor?:string,
+    onLeftButtonPress:Function,
+    rightButtonTitle?:string,
+    rightButtonTitleColor?:string,
+    onRightButtonPress:Function,
+    leftButtonIcon?:string,
+    rightButtonIcon?:string
 }
 
-const _onRightButton = () => { }
-
-const _renderRightIcon = () => {
-    return (<View></View>)
+const commonRenderIcon = (title: ImageProps | Readonly<ImageProps> | any) => { 
+   return title ? <Image style={styles.rightButtonIcon} source={title} /> : null;
 }
 
-const _renderLeftIcon = () => {
-    return (<View></View>)
+const _renderLeftIcon = (props: any) => { 
+    let { leftButtonIcon } = props;
+    return commonRenderIcon(leftButtonIcon);
+ }
+
+const _renderRightIcon = (props: any) => {
+    let { rightButtonIcon } = props;
+    return commonRenderIcon(rightButtonIcon);
+ }
+
+
+const commonRenderTouchableOpacity = (style:any,bottonTilte:TextStyle ,onPress:Function,renderView:Element | any,title:any,titleColor:string | any ) => { 
+    return (
+        <TouchableOpacity onPress={()=>onPress}>
+            <View style={style}>
+                {renderView}
+                <Text style={[bottonTilte, { color: titleColor }]}>
+                    {title}
+                </Text>
+            </View>
+        </TouchableOpacity>
+     )
 }
 
-const NavigationBar: React.FC<any> = (props) => {
-    console.log(props)
-    let iosTop = Platform.OS === 'ios' ? 20 : 0;
+const NavigationBar: React.FC<IProp> = (props:IProp) => {
+    let {
+        title,
+        height,
+        titleColor,
+        backgroundColor,
+        leftButtonTitle,
+        leftButtonTitleColor,
+        onLeftButtonPress, //左边函数
+        rightButtonTitle,
+        rightButtonTitleColor,
+        onRightButtonPress,//右边函数
+    } = props;
+    let iosTop = Platform.OS === 'ios' ?  20 : 0;
     return (
         <View style={[styles.container, {
             // height: this.state.height,
             // backgroundColor: this.state.backgroundColor,
             marginTop: iosTop,
         }]}>
-            <TouchableOpacity onPress={_onLeftButton}>
-                <View style={styles.leftButton}>
-                    {_renderLeftIcon()}
-                    <Text style={[styles.leftButtonTitle, { color: '' }]}>
-                        {/* {this.state.leftButtonTitle} */}
-                    </Text>
-                </View>
-            </TouchableOpacity>
-
+            { commonRenderTouchableOpacity(styles.leftButton,styles.leftButtonTitle,onLeftButtonPress,_renderLeftIcon(props),leftButtonTitle,'')}
             <View style={styles.title}>
                 <Text style={[styles.titleText, { color: '' }]} numberOfLines={1}>
-                    {/* {this.state.title} */}
+                    {title}
                 </Text>
             </View>
-
-            <TouchableOpacity onPress={_onRightButton}>
-                <View style={styles.rightButton}>
-                    {_renderRightIcon()}
-                    <Text style={[styles.rightButtonTitle, { color: 'this.state.rightButtonTitleColor' }]}>
-                        {/* {this.state.rightButtonTitle} */}
-                    </Text>
-                </View>
-            </TouchableOpacity>
-
+            { commonRenderTouchableOpacity(styles.rightButton,styles.rightButtonTitle,onRightButtonPress,_renderRightIcon(props),rightButtonTitle,rightButtonTitleColor)}
         </View>
     )
 }
