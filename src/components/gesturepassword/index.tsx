@@ -1,5 +1,5 @@
 import { ViewWidth,ViewHeight} from '@/utils/index';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { isPointInCircle } from './helper';
 import {
 	StyleSheet,
@@ -124,6 +124,7 @@ const initCircleValue = (circle:Array<circleProp>) => {
 const GesturePassword: React.FC = (props: any) => { 
 	let [circle, setCircle] = useState([]);
 	let [lines, setLines] = useState([]);
+	let lineRef = useRef();
 	let _panResponder: any;
 	let {
 		status,
@@ -168,7 +169,7 @@ const GesturePassword: React.FC = (props: any) => {
           <View style={styles.board} {..._panResponder.panHandlers}>
               {renderCircles(circle,props)}
               {renderLines()}
-              <Line color={color} />
+			  <Line ref={lineRef} color={color} />
           </View>
           {children}
       </View>
