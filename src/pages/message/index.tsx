@@ -1,5 +1,6 @@
 import NavigationBar from '@/components/navigationbar';
 import Spinner from '@/components/spinner';
+import { goBack } from '@/utils/index';
 import { Colors } from '@/utils/colors';
 import React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
@@ -24,10 +25,7 @@ import { FlatList } from 'react-native-gesture-handler';
 //     dispatch(startHandleTimeConsuming());
 //   }
 
-const goBack = () => {
-    // const {navigator} = this.props;
-    // navigator.pop();
-}
+const goBacks = (props: any) => { goBack(props) }
 
 const _renderItem = (props: any) => {
     let { iconMessage, message } = props;
@@ -55,8 +53,8 @@ const MessageScreen: React.FC = (props: any) => {
         <View style={styles.container}>
             <NavigationBar
                 title={'消息'} titleColor={Colors.WHITE}
-                backgroundColor={Colors.ORANGE} onLeftButtonPress={goBack}
-                leftButtonIcon={require('@/assets/office/icon-backs.png')} />
+                backgroundColor={Colors.ORANGE} onLeftButtonPress={() => goBacks(props)}
+                leftButtonIcon={require('@/assets/office/icon-backs.png')} onRightButtonPress={() => { }} />
             <FlatList data={messageList.messageListData} renderItem={_renderItem} />
             <View>
                 <Spinner visible={messageList.messageListFetching} text={'加载中,请稍后...'} />

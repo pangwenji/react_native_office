@@ -130,7 +130,11 @@ const renderListView = (props: any) => {
     }
 
 }
-const renderModel = () => { return (<></>) }
+const renderModel = () => {
+    return (
+        <View />
+    )
+}
 
 const TodoScreen: React.FC<IProps> = (props: IProps) => {
     let { taskList } = props;

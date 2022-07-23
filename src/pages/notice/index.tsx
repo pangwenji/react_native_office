@@ -1,15 +1,14 @@
 import NavigationBar from '@/components/navigationbar';
 import Spinner from '@/components/spinner';
 import WebViews from '@/components/webview';
+import { goBack } from '@/utils/index';
 import { Colors } from '@/utils/colors';
 import React from 'react';
 import { View, Text, TouchableHighlight, Image, StyleSheet } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 
 
-const goBack = (props: any) => {
-
-}
+const goBacks = (props: any) => { goBack(props) }
 
 const goToNext = (id: string, props: any) => {
     const { navigator, dispatch, login } = props;
@@ -46,9 +45,10 @@ const NoticeScreen: React.FC = (props: any) => {
         <View style={styles.container}>
             <NavigationBar
                 title={'通知'} titleColor={Colors.WHITE}
-                backgroundColor={Colors.ORANGE} onLeftButtonPress={goBack(props)}
+                backgroundColor={Colors.ORANGE}
+                onLeftButtonPress={() => goBacks(props)}
                 leftButtonIcon={require('@/assets/office/icon-backs.png')}
-            />
+                onRightButtonPress={() => { }} />
             <FlatList
                 data={noticeList.noticeListData}
                 renderItem={_renderItem}

@@ -15,6 +15,12 @@ import UserInfo from '../userinfo';
 import ChangePassword from '../changepassword';
 import ToastTip from '@/components/notification';
 
+interface IProps {
+	login: any,
+	userInfo: any,
+	top: any
+}
+
 const commonRenderLine = (
 	type: string,
 	text: string,
@@ -58,8 +64,8 @@ const goVersion = (props: any) => {
 	commonPage(props);
 }
 
-const commonPage = (props: any) => { 
-	let { navigator} = props;
+const commonPage = (props: any) => {
+	let { navigator } = props;
 	navigator.push({
 		name: "WebView",
 		component: WebViews,
@@ -84,31 +90,25 @@ const callPhone = () => {
 	Linking.openURL(Platform.OS !== 'android' ? 'telprompt:' : 'tel:' + '18521059559');
 }
 
-const onUserInfo = (props:any) => {
+const onUserInfo = (props: any) => {
 	const { navigator } = props;
 	navigator.push({
 		name: "UserInfo",
 		component: UserInfo,
 	});
 }
-interface IProps {
-	login: any,
-	userInfo: any,
-	top: any
-}
 
 const SettingsScreen: React.FC<IProps> = (props) => {
 	const { login, userInfo, top } = props;
 	useEffect(() => {
 		if (userInfo.avatarGot && !userInfo.avatarData) {
-			// Alert.alert('', '个人信息获取失败!', [{ text: '好', onPress: () => { } },])
 			<ToastTip message={'个人信息获取失败!'} />
 		}
 	}, [])
 	return (
 		<View style={styles.background}>
 			<View style={styles.containers}>
-				<TouchableOpacity style={{ marginTop: top, }} onPress={() =>onUserInfo(props)}>
+				<TouchableOpacity style={{ marginTop: top, }} onPress={() => onUserInfo(props)}>
 					<View style={styles.bgAvatar}>
 						<Image style={styles.avatar} source={userInfo.avatarData ? userInfo.avatarData : require('../img/icon/icon-avatar.png')} />
 						<Text style={styles.userInfo}>{login.rawData.nickName}</Text>

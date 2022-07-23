@@ -9,19 +9,18 @@ type BottomStackTabParams = {
 	office: {}
 	Settings: {}
 }
-const BottomStackTab = createBottomTabNavigator<BottomStackTabParams>();
-
-//tabBar渲染
-const commonTarBarRender = (props: { focused: boolean, color: String, size: Number }, title: string) => {
-	return props.focused ? <Icon color='#900' name={title} size={18} /> : <Icon color='#bfbfbf' name={title} size={18} />
-}
-
 type nameProps = keyof BottomStackTabParams;
 interface screenType {
 	name: nameProps,
 	tabBarLabel: string,
 	title: string,
 	component: React.FC<any>
+}
+const BottomStackTab = createBottomTabNavigator<BottomStackTabParams>();
+
+//tabBar渲染
+const commonTarBarRender = (props: { focused: boolean, color: String, size: Number }, title: string) => {
+	return props.focused ? <Icon color='#900' name={title} size={18} /> : <Icon color='#bfbfbf' name={title} size={18} />
 }
 
 const screen: Array<screenType> = [

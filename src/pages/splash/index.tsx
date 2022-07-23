@@ -3,19 +3,19 @@ import React, { useEffect, useRef } from 'react';
 import { Animated, InteractionManager, StyleSheet, Text, View } from 'react-native';
 import Store from '@/utils/storage';
 import Login from '../login';
-import main from '../main';
-const Splash: React.FC = () => {
+import HomeScreen from '../home';
+const Splash: React.FC = (props:any) => {
     let bounceValue = useRef(new Animated.Value(1)).current;
     useEffect(() => {
-        const { navigator, dispatch } = this.props;
+        const { navigator, dispatch } = props;
         let key: string = 'userName';
         setTimeout(() => {
             Store.getValue(key).then((ret:any) => {
                 if (ret.userName && ret.password && ret.rawData) {
-                    dispatch(changeLoginAuth({ username: ret.userName, password: ret.password, rawData: ret.rawData }))
+                    // dispatch(changeLoginAuth({ username: ret.userName, password: ret.password, rawData: ret.rawData }))
                     navigator.push({
-                           name: "Main",
-                           component: main,
+                           name: "HomeScreen",
+                           component: HomeScreen,
                     });
                 } else {
                     InteractionManager.runAfterInteractions(() => {

@@ -37,14 +37,14 @@ const goToTask = (url: string, title: string, props: any) => {
 	});
 }
 
-const onClick = (templateOption: any) => {
+const onClick = (templateOption: any, props: any) => {
 	if (templateOption.id == 25) {
 		Alert.alert('', '功能研发中，敬请期待！', [{ text: '确定', onPress: () => { } }]);
 		return;
 	}
 	const { navigator } = props;
 	navigator.push({
-		name: 'officeTemplateList',
+		name: 'OfficeList',
 		templateOption: templateOption,
 		component: OfficeList,
 	});
@@ -87,7 +87,7 @@ const OfficeScreen: React.FC<IProp> = (props: IProp) => {
 				<View style={styles.scrollBg}>
 					{
 						tabOffice.officeItemData.map((row: any) => {
-							return <GridItem row={row} onClick={async () => onClick(row)} />
+							return <GridItem row={row} onClick={async () => onClick(row, props)} />
 						})
 					}
 				</View>

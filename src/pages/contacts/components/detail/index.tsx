@@ -4,6 +4,7 @@ import Spinner from "@/components/spinner";
 import { Colors } from "@/utils/colors";
 import ContactListIitem from "@/utils/contacts_list_item";
 import { ContactType } from "@/utils/contact_type";
+import { NaigatorTypes } from "@/utils/naigator_types";
 import React, { useMemo } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import Contracts from "../..";
@@ -13,12 +14,12 @@ const goBack = () => {
     // navigator.pop();
 }
 
-const next = () => {
-    const { navigator, route, contactListBase } = this.props;
+const next = (props:any) => {
+    const { navigator, route, contactListBase } = props;
     navigator.push({
         name: "ContactListContainer",
         component: Contracts,
-        type: types.CONTACT_LIST_APPROVE,
+        type: NaigatorTypes.CONTACT_LIST_APPROVE,
         peopleType: route.peopleType,
         contactListId: route.contactListId,
         reportDescription: contactListBase.contactDetailData[0].REPORT_DESCRIPTION + "\r\n",
@@ -43,7 +44,7 @@ const Detail: React.FC = (props:any) => {
                 backgroundColor={Colors.ORANGE} onLeftButtonPress={goBack}
                 leftButtonIcon={require('@/assets/office/icon-backs.png')}
                 rightButtonTitle={rightButtonTitle} rightButtonTitleColor={'#fff'}
-                onRightButtonPress={next} />
+                onRightButtonPress={()=>next(props)} />
             <ScrollView style={styles.formViewContainer}
                 automaticallyAdjustContentInsets={false}
                 showsHorizontalScrollIndicator={true}

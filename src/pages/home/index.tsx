@@ -6,13 +6,13 @@ import CarouselPage from '@/components/carousel/index';
 import { Badge } from 'react-native-elements';
 
 const _onPress = ({ navigation }: any, args: Home.renderlistProp) => {
-    let {item } = args;
+    let { item } = args;
     navigation.navigate(item.name)
 }
 
-const _renderItem = (args :Home.renderlistProp | any, props :any) => {
+const _renderItem = (args: Home.renderlistProp | any, props: any) => {
     return (
-        <TouchableOpacity onPress={()=>_onPress(props,args)}>
+        <TouchableOpacity onPress={() => _onPress(props, args)}>
             <View style={styles.contanier}>
                 {/* 左边 */}
                 <View style={styles.left}>
@@ -45,7 +45,7 @@ const HomeScreen: React.FC = (props) => {
             </View>
             <FlatList
                 data={res.homeItem}
-                renderItem={(item)=>(_renderItem(item,props))}
+                renderItem={(item) => (_renderItem(item, props))}
             />
         </SafeAreaView>
     )
