@@ -3,7 +3,7 @@ import Spinner from "@/components/spinner";
 import { ViewHeight } from "@/utils/index";
 import { Colors } from "@/utils/colors";
 import React from "react";
-import { StyleSheet, TextInput, TouchableWithoutFeedback, View } from "react-native";
+import { Keyboard, StyleSheet, TextInput, TouchableWithoutFeedback, View } from "react-native";
 
 const next = () => {
     // const {dispatch, staffList, route} = this.props;
@@ -19,7 +19,7 @@ const goBack = () => {
 }
 
 const TextInputs: React.FC<Form.IProps> = (props: Form.IProps) => {
-    const { dispatch, staffList, taskApproval } = props;
+    const {  staffList, taskApproval } = props;
     let rightButtonTitle = '';
     let staffData = staffList.staffData;
     for (let i = 0; i < staffData.length; i++) {
@@ -28,7 +28,6 @@ const TextInputs: React.FC<Form.IProps> = (props: Form.IProps) => {
             break;
         }
     }
-    const dismissKeyboard = require('dismissKeyboard');
     return (
         <View style={styles.container}>
             <NavigationBar title={'备注'} titleColor={Colors.WHITE}
@@ -36,7 +35,7 @@ const TextInputs: React.FC<Form.IProps> = (props: Form.IProps) => {
                 rightButtonTitleColor={'#fff'} backgroundColor={Colors.ORANGE}
                 onLeftButtonPress={goBack} onRightButtonPress={next} />
 
-            <TouchableWithoutFeedback onPress={() => dismissKeyboard()}>
+            <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
                 <View style={styles.main}>
                     <TextInput
                         style={{ textAlignVertical: 'top', fontSize: 14, height: ViewHeight / 5, }}
@@ -45,7 +44,8 @@ const TextInputs: React.FC<Form.IProps> = (props: Form.IProps) => {
                         multiline={true}
                         numberOfLines={5}
                         maxLength={100}
-                        onChangeText={(remark) => dispatch(changeStaffRemark(remark))} />
+                        // onChangeText={(remark) => dispatch(changeStaffRemark(remark))}
+                    />
                 </View>
             </TouchableWithoutFeedback>
             <View>

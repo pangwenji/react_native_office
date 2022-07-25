@@ -3,7 +3,19 @@ import Spinner from '@/components/spinner';
 import { ViewHeight } from '@/utils/index';
 import { Colors } from '@/utils/colors';
 import React from 'react';
-import { View, Text, TouchableWithoutFeedback, TextInput, TouchableOpacity, StyleSheet, Image, Platform, Linking } from 'react-native';
+import {
+    View,
+    Text,
+    TouchableWithoutFeedback,
+    TextInput,
+    TouchableOpacity,
+    StyleSheet,
+    Image,
+    Platform,
+    Linking,
+    Keyboard
+
+} from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 
 const onCall = (phoneNum: string | number) => {
@@ -76,13 +88,12 @@ const onSearch = () => {
 
 const ContactsScreen: React.FC = (props: any) => {
     const { dispatch, address } = props;
-    const dismissKeyboard = require('dismissKeyboard');
     return (
         <View style={styles.container}>
             <NavigationBar title={'通讯录'} titleColor={Colors.WHITE}
             leftButtonIcon={require('@/assets/img/office/icon-backs.png')}
                 backgroundColor={Colors.ORANGE} onLeftButtonPress={goBack} onRightButtonPress={() => { }} />
-            <TouchableWithoutFeedback onPress={() => dismissKeyboard()}>
+            <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
                 <View style={{ flexDirection: 'row', height: 56 }}>
                     <TextInput
                         style={{ flex: 1, height: 32, margin: 8, elevation: 3, borderRadius: 2, backgroundColor: 'white', fontSize: 14 }}

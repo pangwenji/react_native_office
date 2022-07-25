@@ -3,11 +3,6 @@ import { Colors } from "@/utils/colors";
 import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, TextInput, View } from "react-native";
 import commonStyles from "./commonstyle";
-// componentDidMount(){
-//     if(this.state.row.content){
-//       this.handleChange(this.state.row.content);
-//     }
-//   }
 
 const TextInputs: React.FC<Form.IProps> = (props: Form.IProps) => {
   let { row} = props;
@@ -33,7 +28,7 @@ const TextInputs: React.FC<Form.IProps> = (props: Form.IProps) => {
           underlineColorAndroid={'transparent'}
           value={text}
           maxLength={_maxLength}
-				  onChangeText={(text) => setText(text)} />
+		  onChangeText={(text) => setText(text)} />
       </View>
     </View>
     );

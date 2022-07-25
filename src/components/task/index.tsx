@@ -1,6 +1,6 @@
 import { Colors } from '@/utils/colors';
 import React, { useState } from 'react';
-import { TextInput, View, StyleSheet, Platform, TouchableOpacity, Text, Image, Modal } from 'react-native';
+import { TextInput, View, StyleSheet, Platform, TouchableOpacity, Text, Image, Modal, Keyboard } from 'react-native';
 import NavigationBar from '../navigationbar';
 import Spinner from '../spinner';
 import { Picker } from '@react-native-picker/picker';
@@ -17,8 +17,7 @@ const goBack = () => {
 
 const onSearch = (props: any) => {
 	const { dispatch, route, login } = props;
-	const dismissKeyboard = require('dismissKeyboard');
-	dismissKeyboard();
+	Keyboard.dismiss()
 	// page = 1;
 	// canLoadMore = false;
 	// onEndReach = false;

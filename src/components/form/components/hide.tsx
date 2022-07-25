@@ -5,7 +5,7 @@ const handleChange = (text: string, props: any) => {
 	let { onUserInput } = props;
 	onUserInput(text)
 }
-const Hide: React.FC = (props: any) => {
+const Hide: React.FC<Form.IProps>= (props: Form.IProps) => {
 	let { row } = props;
 	useEffect(() => {
 		if (row.name) {

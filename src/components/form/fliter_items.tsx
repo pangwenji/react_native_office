@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import Spinner from '../spinner';
+import Spinner from './components/spinner';
 import CheckBoxs from './components/checkbox';
 import Datepicker from './components/datepickerview';
 import DateTime from './components/datetime';
@@ -18,7 +18,7 @@ import TextCard from './components/textIdcard';
 import TextInputs from './components/textinput';
 import TextInt from './components/textint';
 
-const FormItem: React.FC = (props: any) => {
+const FormItem: React.FC<Form.IProps>= (props: Form.IProps) => {
 	return (
 		<View style={styles.container}>
 			{
@@ -53,24 +53,24 @@ const renderItem = (props: any) => {
 		case 'checkboxs':
 			return (<CheckBoxs row={row} onUserInput={(key:any, value:any) => onUserInput(key, value)} />);
 		case 'selectPerson':
-			return (<SelectStaff {...props} row={row} onUserInput={(key, value) => onUserInput(key, value)} />);
+			return (<SelectStaff {...props} row={row} onUserInput={(key:any, value:any) => onUserInput(key, value)} />);
 	}
 	if (row.type === 'text') {
 		switch (row.detailType) {
 			case 'text':
-				return (<TextInputs row={row} onUserInput={(key, value) => _props.onUserInput(key, value)} />);
+				return (<TextInputs row={row} onUserInput={(key:string, value:string) => onUserInput(key, value)} />);
 			case 'email':
-				return (<TextMail row={row} onUserInput={(key, value) => _props.onUserInput(key, value)} />);
+				return (<TextMail row={row} onUserInput={(key:string, value:string) => onUserInput(key, value)} />);
 			case 'int':
-				return (<TextInt row={row} onUserInput={(key, value) => _props.onUserInput(key, value)} />);
+				return (<TextInt  row={row} onUserInput={(key:string, value:string) => onUserInput(key, value)} />);
 			case 'float':
-				return (<TextFloat row={row} onUserInput={(key, value) => _props.onUserInput(key, value)} />);
+				return (<TextFloat row={row} onUserInput={(key:string, value:string) => onUserInput(key, value)} />);
 			case 'idcard':
-				return (<TextCard row={row} onUserInput={(key, value) => _props.onUserInput(key, value)} />);
+				return (<TextCard row={row} onUserInput={(key:string, value:string) => onUserInput(key, value)} />);
 			case 'standardDate':
-				return (<Datepicker row={row} onUserInput={(key, value) => _props.onUserInput(key, value)} refs={_props.refs} />);
+				return (<Datepicker row={row} onUserInput={(key:string, value:string) => onUserInput(key, value)} refs={refs} />);
 			case 'fullDate':
-				return (<DateTime row={row} onUserInput={(key, value) => _props.onUserInput(key, value)} refs={_props.refs} />);
+				return (<DateTime row={row} onUserInput={(key:string, value:string) => onUserInput(key, value)} refs={_props.refs} />);
 			case 'file':
 				return (<FileUpLoad {..._props} row={_row} onUserInput={(key, value, extraData) => _props.onUserInput(key, value, extraData)}
 					navigator={_props.navigator} onChooseFile={(key, value) => _props.onChooseFile(key, value)} refs={_props.refs} />)

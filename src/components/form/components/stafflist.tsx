@@ -12,10 +12,12 @@ import {
     TextInput,
     TouchableOpacity,
     TouchableWithoutFeedback,
-    View
+    View,
+    Keyboard
 } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import TextInputs from "./textinput";
+import ToastTip from "@/components/notification";
 
 const arrow = () => {
     return (
@@ -87,7 +89,7 @@ const next = (props:any) => {
     const { navigator, route, staffList } = props;
     if (route.type === NaigatorTypes.STAFF_LIST_NORMAL) {
         navigator.push({
-            name: "TextInput",
+            name: "TextInputs",
             component: TextInputs,
             taskId: route.taskId,
             type: route.dealType,
@@ -101,7 +103,7 @@ const next = (props:any) => {
 const search = (props:any) => {
     const { dispatch, staffList } = props;
     if (!staffList.searchName.trim() || staffList.searchName.trim().length <= 0) {
-        Alert.alert('错误提示:', '搜索内容不能为空!', [{ text: '好' },]);
+        <ToastTip message={`错误提示:，搜索内容不能为空!` } />
         return;
     }
     // dispatch(fetchStaffList(staffList.searchName));
@@ -122,14 +124,13 @@ const StaffList: React.FC = (props:any) => {
             break;
         }
     }
-    const dismissKeyboard = require('dismissKeyboard');
     return (
         <View style={styles.container}>
             <NavigationBar title={'人员列表'} titleColor={Colors.WHITE}
                 leftButtonIcon={require('@/assets/office/icon-backs.png')} rightButtonTitle={rightButtonTitle}
                 rightButtonTitleColor={'#fff'} backgroundColor={Colors.ORANGE}
                 onLeftButtonPress={()=>goBacks(props)} onRightButtonPress={()=>next(props)} />
-            <TouchableWithoutFeedback onPress={() => dismissKeyboard()}>
+            <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
                 <View style={{ flexDirection: 'row', height: 56 }}>
                     <TextInput
                         style={styles.input}

@@ -3,7 +3,7 @@ import ToastTip from '@/components/notification';
 import Spinner from '@/components/spinner';
 import { Colors } from '@/utils/colors';
 import React, { useEffect, useMemo } from 'react';
-import { Alert, StyleSheet, TextInput, TouchableWithoutFeedback, View } from 'react-native';
+import { Alert, Keyboard, StyleSheet, TextInput, TouchableWithoutFeedback, View } from 'react-native';
 
 
 const goBack = () => {
@@ -50,9 +50,8 @@ const commonRenderTextInput = (placeholder: string) => {
 
 const ChangePassword: React.FC = (props: any) => {
 	const { dispatch, changePassword } = props;
-	const dismissKeyboard = require('dismissKeyboard');
 	return (
-		<TouchableWithoutFeedback onPress={() => dismissKeyboard()}>
+		<TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
 			<View style={styles.background}>
 				<NavigationBar title={'修改密码'} titleColor={Colors.WHITE}
 					backgroundColor={Colors.ORANGE}

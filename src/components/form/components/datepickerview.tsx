@@ -1,37 +1,38 @@
 import { Colors } from '@/utils/colors';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-// import { FlatButton } from 'react-native-material-kit';
 import commonStyles from './commonstyle';
+import {Button} from 'react-native-elements';
 
-const handleChange = () => { }
+const openShow = () => { }
 
-const Datepicker: React.FC = () => {
-    // var contentView;
-    // if (this.state.date) {
-    //     contentView = this.state.date;
-    //     handleChange(contentView);
-    // } else {
-    //     contentView = '点击选择日期';
-    // }
-
-    // var _this = this;
-    //     .withText(contentView)
-    // .withTextStyle({ color: 'gray', fontSize: 14 })
-    // .withOnPress(() => {
-    //     _this.props.refs.modalcalendar.refs.modal.show(_this);
-    // }).build();
-
+const Datepicker: React.FC<Form.IProps> = (props: Form.IProps) => {
+    let [date,setDate] = useState('点击选择日期');
+    let {row } = props;
     return (
         <View style={commonStyles.container}>
             <View style={commonStyles.titleContainer}>
                 <Text style={commonStyles.title}>
-                    {/* {this.state.row.title} */}
+                    {row.title}
                 </Text>
             </View>
             <View style={styles.contentContainer}>
                 <View style={styles.buttonContainer}>
-                    {/* <FlatButton /> */}
+                <Button
+                        title={date}
+                        titleStyle={{ fontSize: 18, fontWeight: 'bold' }}
+                        linearGradientProps={{
+                            Colors: ['#FF9800', '#F44336'],
+                            start: [1, 0],
+                            end: [0.2, 0],
+                        }}
+                        buttonStyle={{
+                            borderWidth: 0,
+                            borderColor: 'transparent',
+                            borderRadius: 20
+                        }}
+                        onPress={()=>setDate('')}
+                    />
                 </View>
             </View>
         </View>

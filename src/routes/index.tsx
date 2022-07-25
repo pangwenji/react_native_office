@@ -1,4 +1,5 @@
 import StaffList from "@/components/form/components/stafflist";
+import TextInputs from "@/components/form/components/textinput";
 import OfficeList from "@/components/officelist";
 import Table from "@/components/table";
 import Task from "@/components/task";
@@ -35,7 +36,8 @@ const stack_sreen: Array<stackType> = [
     { name: 'Table', component: Table },
     { name: 'TaskDetail', component: TaskDetail },
     { name: 'OfficeList', component: OfficeList },
-    { name: 'Task', component: Task }
+    { name: 'Task', component: Task },
+    { name: 'TextInputs', component: TextInputs }
 
 ]
 

@@ -9,7 +9,7 @@ import commonStyles from "./commonstyle";
 //     });
 // }
 
-const TextMail: React.FC = (props: any) => {
+const TextMail: React.FC<Form.IProps> = (props: Form.IProps) => {
     let {row } = props;
     let [text, setText] = useState('')
     return (

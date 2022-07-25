@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Text, TextInput, View } from "react-native";
 import commonStyles from "./commonstyle";
 
-const saveDecimal = () => {
+const saveDecimal = (x:any) => {
     var f_x = parseFloat(x);
     if (isNaN(f_x)) {
         return x;
@@ -20,29 +20,31 @@ const saveDecimal = () => {
     return s_x;
 }
 
-const onChange = () => {
-    this.props.onUserInput(this.state.row.name, saveDecimal(text));
-    this.setState({
-        text: text,
-    });
+const onChange = (text:string,props: any, setText: Function) => {
+    let { onUserInput,row} = props;
+      onUserInput(row.name, saveDecimal(text));
+    setText(text);
 }
 
-const TextFloat: React.FC = (props: any) => {
-    let [onUserInput] = props;
-    let [text, setText] = useState('')
+const TextFloat: React.FC<Form.IProps | any> = (props: Form.IProps | any) => {
+    let [row] = props;
+    let [text, setText] = useState('');
+    useEffect(() => { 
+        setText(row.content)
+    },[])
     return (
         <View style={commonStyles.container}>
             <View style={commonStyles.titleContainer}>
                 <Text style={commonStyles.title}>
-                    {this.state.row.title}
+                    {row.title}
                 </Text>
             </View>
             <View style={[commonStyles.contentContainer, { height: 48, marginRight: 4, }]}>
                 <TextInput
                     underlineColorAndroid={'transparent'}
                     style={{ height: 48, textAlign: 'right', fontSize: 14, }}
-                    placeholder={'请输入' + this.state.row.title}
-                    onChangeText={() => setText('')}
+                    placeholder={'请输入' + row.title}
+                    onChangeText={(text) => onChange(text,props,setText)}
                     maxLength={500}
                     value={text} />
             </View>

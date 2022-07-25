@@ -1,7 +1,7 @@
 import Spinner from '@/components/spinner';
 import { Colors } from '@/utils/colors';
 import React from 'react';
-import { Image, StyleSheet, Text, TextInput, TouchableHighlight, TouchableWithoutFeedback, View } from 'react-native';
+import { Image, Keyboard, StyleSheet, Text, TextInput, TouchableHighlight, TouchableWithoutFeedback, View } from 'react-native';
 
 const changeLoginAuth = ({ username, password }: { username?: string, password?: string }) => { }
 
@@ -13,7 +13,6 @@ const login = () => {
 
 const Login: React.FC = (props: any) => {
 	const { dispatch, logins } = props;
-	const dismissKeyboard = require('dismissKeyboard');
 	return (
 		<View style={styles.container}>
 			<View style={{ alignItems: 'center', marginTop: 32 }}>
@@ -21,7 +20,7 @@ const Login: React.FC = (props: any) => {
 			</View>
 
 			<View style={{ margin: 16, backgroundColor: '#fff', elevation: 4 }}>
-				<TouchableWithoutFeedback onPress={() => dismissKeyboard()}>
+				<TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
 					<View style={{ flexDirection: 'row', height: 48, alignItems: 'center' }}>
 						<Image style={{ width: 32, height: 32, margin: 8 }} source={require('@/assets/img/icon/icon-user.png')} />
 						<TextInput style={{ height: 48, flex: 1 }}

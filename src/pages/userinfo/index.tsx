@@ -3,7 +3,7 @@ import Spinner from "@/components/spinner";
 import { ViewHeight } from "@/utils/index";
 import { Colors } from "@/utils/colors";
 import React, { useEffect } from "react";
-import { Alert, Image, Platform, StyleSheet, Text, TextInput, TouchableHighlight, TouchableWithoutFeedback, View } from "react-native";
+import { Alert, Image, Keyboard, Platform, StyleSheet, Text, TextInput, TouchableHighlight, TouchableWithoutFeedback, View } from "react-native";
 
 // ImagePickerManager = require('NativeModules').ImagePickerManager;
 
@@ -117,13 +117,12 @@ const UserInfo: React.FC<IProps> = (props:IProps) => {
     //         showAlert(userInfo.error);
     //     }
     // }, [])
-    const dismissKeyboard = require('dismissKeyboard');
     return (
         <View style={styles.background}>
             <NavigationBar
                 title={'个人信息'} titleColor={Colors.WHITE}
                 backgroundColor={Colors.ORANGE} onLeftButtonPress={goBack}
-                leftButtonIcon={require('../img/office/icon-backs.png')}
+                leftButtonIcon={require('@/assets/office/icon-backs.png')}
                 rightButtonIcon={{}}
                 rightButtonTitle={'提交'}
                 rightButtonTitleColor={'#fff'}
@@ -145,7 +144,7 @@ const UserInfo: React.FC<IProps> = (props:IProps) => {
 
             <View style={{ backgroundColor: Colors.GRAY_GAY, height: 1, }} />
             {/*手机号码*/}
-            <TouchableWithoutFeedback onPress={() => dismissKeyboard()}>
+            <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
                 <View style={[styles.item, { marginTop: 20, }]}>
                     <Text style={styles.leftText}>手机号码</Text>
                     <TextInput
