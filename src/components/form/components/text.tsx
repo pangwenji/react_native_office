@@ -4,12 +4,21 @@ import { Text, View } from "react-native";
 
 import commonStyles from "./commonstyle";
 
-const Texts: React.FC = () => {
+
+// userName={userName} row={row}
+
+interface IProps { 
+    userName: any,
+    row:any
+}
+
+const Texts: React.FC<IProps>= (props: IProps) => {
+    let { row} = props;
     let arrFiles = [];
-    if (this.state.row.detailType === 'file') {
-        let rowContent = eval('(' + this.state.row.content + ')');
+    if (row.detailType === 'file') {
+        let rowContent = eval('(' + row.content + ')');
         for (let i = 0; i < rowContent.length; i++) {
-            let file = {};
+            let file:{fileName:string} = {fileName:''};
             for (let key in rowContent[i]) {
                 file.fileName = rowContent[i][key];
             }
@@ -21,15 +30,15 @@ const Texts: React.FC = () => {
         <View style={commonStyles.container}>
             <View style={commonStyles.titleContainer}>
                 <Text style={commonStyles.title}>
-                    {this.state.row.title}
+                    {row.title}
                 </Text>
             </View>
             <View style={[commonStyles.contentContainer, { marginRight: 4, }]}>
                 {
-                    this.state.row.content ? <Text style={{ textAlign: 'right', color: Colors.black, marginRight: 15 }}>
+                    row.content ? <Text style={{ textAlign: 'right', color: Colors.BLACK, marginRight: 15 }}>
                         {
 
-                            arrFiles.length > 0 ? <Text style={{ textAlign: 'right', color: Colors.black }}>
+                            arrFiles.length > 0 ? <Text style={{ textAlign: 'right', color: Colors.BLACK }}>
                                 {row.fileName}
                             </Text> : <Text />
                         }

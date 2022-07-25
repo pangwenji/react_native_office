@@ -1,6 +1,6 @@
 import NavigationBar from "@/components/navigationbar";
 import Spinner from "@/components/spinner";
-import { ViewHeight } from "@/utils/index";
+import { goBack, ViewHeight } from "@/utils/index";
 import { Colors } from "@/utils/colors";
 import { NaigatorTypes } from "@/utils/naigator_types";
 import React from "react";
@@ -25,21 +25,22 @@ const arrow = () => {
     )
 }
 
-const select = () => {
-    const { navigator, staffList, dispatch } = this.props;
+const select = (props:any) => {
+    const { navigator, staffList, dispatch,rowData} = props;
     let staffData = staffList.staffData;
     for (let i = 0; i < staffData.length; i++) {
         if (staffData[i].select)
             staffData[i].select = false;
         if (rowData.id == staffData[i].id) {
             staffData[i].select = true;
-            dispatch(assignStaffUserId(staffData[i].id, staffData[i].nickName));
+            // dispatch(assignStaffUserId(staffData[i].id, staffData[i].nickName));
         }
     }
-    dispatch(assignStaffListData(staffData));
+    // dispatch(assignStaffListData(staffData));
 }
 
-const _renderItem = () => {
+const _renderItem = (args:any,props: any) => {
+    let {rowData } = props;
     return (
         <TouchableOpacity onPress={() => select(rowData)}>
             <View style={styles.card}>
@@ -59,8 +60,8 @@ const _renderItem = () => {
     )
 }
 
-const renderListView = () => {
-    const { staffList } = this.props;
+const renderListView = (props:any) => {
+    const { staffList } = props;
     if (staffList.staffListData._cachedRowCount <= 0) {
         return (
             <View style={{ height: ViewHeight - 250, alignItems: 'center', justifyContent: 'center' }}>
@@ -72,19 +73,18 @@ const renderListView = () => {
         return (
             <FlatList
                 data={staffList.staffListData}
-                renderItem={_renderItem}
+                renderItem={(args)=>_renderItem(args,props)}
             />
         )
     }
 }
 
-const goBack = () => {
-    // const {navigator} = this.props;
-    // navigator.pop();
+const goBacks = (props:any) => {
+    goBack(props)
 }
 
-const next = () => {
-    const { navigator, route, staffList } = this.props;
+const next = (props:any) => {
+    const { navigator, route, staffList } = props;
     if (route.type === NaigatorTypes.STAFF_LIST_NORMAL) {
         navigator.push({
             name: "TextInput",
@@ -98,18 +98,18 @@ const next = () => {
     }
 }
 
-const search = () => {
-    const { dispatch, staffList } = this.props;
+const search = (props:any) => {
+    const { dispatch, staffList } = props;
     if (!staffList.searchName.trim() || staffList.searchName.trim().length <= 0) {
         Alert.alert('错误提示:', '搜索内容不能为空!', [{ text: '好' },]);
         return;
     }
-    dispatch(fetchStaffList(staffList.searchName));
-    dispatch(startHandleTimeConsuming());
+    // dispatch(fetchStaffList(staffList.searchName));
+    // dispatch(startHandleTimeConsuming());
 }
 
-const StaffList: React.FC = () => {
-    const { dispatch, route, staffList } = this.props;
+const StaffList: React.FC = (props:any) => {
+    const { dispatch, route, staffList } = props;
     let rightButtonTitle = '';
     let staffData = staffList.staffData;
     for (let i = 0; i < staffData.length; i++) {
@@ -128,13 +128,13 @@ const StaffList: React.FC = () => {
             <NavigationBar title={'人员列表'} titleColor={Colors.WHITE}
                 leftButtonIcon={require('@/assets/office/icon-backs.png')} rightButtonTitle={rightButtonTitle}
                 rightButtonTitleColor={'#fff'} backgroundColor={Colors.ORANGE}
-                onLeftButtonPress={goBack} onRightButtonPress={next} />
+                onLeftButtonPress={()=>goBacks(props)} onRightButtonPress={()=>next(props)} />
             <TouchableWithoutFeedback onPress={() => dismissKeyboard()}>
                 <View style={{ flexDirection: 'row', height: 56 }}>
                     <TextInput
                         style={styles.input}
                         placeholder='请输入姓名查找'
-                        onChangeText={(searchName) => dispatch(changeSearchName(searchName))}
+                        // onChangeText={(searchName) => dispatch(changeSearchName(searchName))}
                         returnKeyType={'search'}
                         onSubmitEditing={search} />
                     <TouchableOpacity onPress={search}
@@ -145,7 +145,7 @@ const StaffList: React.FC = () => {
             </TouchableWithoutFeedback>
 
             <View style={styles.main}>
-                {renderListView()}
+                {renderListView(props)}
             </View>
 
             <View>

@@ -1,7 +1,7 @@
 import { Colors } from '@/utils/colors';
 import React, { useState } from 'react';
 import { StyleSheet, Text, TouchableHighlight, View } from 'react-native';
-import Calendar from 'react-native-calendar-android';
+// import Calendar from 'react-native-calendar-android';
 import Modal from 'react-native-modal/dist/modal';
 
 
@@ -17,7 +17,7 @@ const Calendars: React.FC = () => {
 		>
 			<View style={styles.container}>
 				<View style={styles.calendarContainer}>
-					<Calendar
+					{/* <Calendar
 						width={300}
 						topbarVisible={true}
 						arrowColor={Colors.ORANGE}
@@ -27,7 +27,7 @@ const Calendars: React.FC = () => {
 						selectionMode="single"
 						selectionColor={Colors.ORANGE}
 						// selectedDates={["2015/11/20", "2015/11/30", 1448745712382]}
-						onDateChange={() => setIsVisible(false)} />
+						onDateChange={() => setIsVisible(false)} /> */}
 				</View>
 				<TouchableHighlight style={styles.button} onPress={() => setIsVisible(false)} underlayColor={Colors.LIGHT_ORANGE}>
 					<Text style={styles.buttonText}>取 消</Text>

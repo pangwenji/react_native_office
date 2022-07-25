@@ -1,7 +1,7 @@
 import { Colors } from "@/utils/colors";
 import React from "react";
 import { Text, View } from "react-native";
-import { WebView } from 'react-native-webview';
+// import { WebView } from 'react-native-webview';
 import NavigationBar from "../navigationbar";
 import { goBack} from '@/utils/index';
 const goBacks = (props:any) => { 
@@ -31,12 +31,12 @@ const WebViews: React.FC = (props:any) => {
           title={'详情'} titleColor={Colors.WHITE}
           backgroundColor={Colors.ORANGE} onLeftButtonPress={goBacks}
           leftButtonIcon={require('@/assets/office/icon-backs.png')} onRightButtonPress={() => { }}/>
-        <WebView
+        {/* <WebView
           scalesPageToFit={true}
           source={{uri: webview.webviewUrl}}
 		  // renderError={error}
           onLoadStart={load}
-         />
+         /> */}
       </View>
     );
 }

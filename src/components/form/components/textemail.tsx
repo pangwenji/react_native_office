@@ -9,13 +9,14 @@ import commonStyles from "./commonstyle";
 //     });
 // }
 
-const TextMail: React.FC = () => {
+const TextMail: React.FC = (props: any) => {
+    let {row } = props;
     let [text, setText] = useState('')
     return (
         <View style={commonStyles.container}>
             <View style={commonStyles.titleContainer}>
                 <Text style={commonStyles.title}>
-                    {this.state.row.title}
+                    {row.title}
                 </Text>
             </View>
             <View style={[commonStyles.contentContainer, { height: 48, marginRight: 4, }]}>
@@ -23,7 +24,7 @@ const TextMail: React.FC = () => {
                     value={text}
                     underlineColorAndroid={'transparent'}
                     style={{ height: 48, textAlign: 'right', fontSize: 14, }}
-                    placeholder={'请输入' + this.state.row.title}
+                    placeholder={'请输入' + row.title}
                     onChangeText={(args) => setText(args)}
                     maxLength={500} />
             </View>

@@ -2,41 +2,41 @@ import { Colors } from "@/utils/colors";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import commonStyles from "./commonstyle";
-import { RadioButton, RadioButtonGroup } from 'react-native-material-kit';
+// import { RadioButton, RadioButtonGroup } from 'react-native-material-kit';
 
 const handleChange = (args: any) => { }
 
-const RadioView: React.FC = () => {
+const RadioView:  React.FC<Form.IProps> = (props: Form.IProps) => {
     return (
         <View style={commonStyles.container}>
             <View style={commonStyles.titleContainer}>
                 <Text style={commonStyles.title}>
-                    {this.state.row.title}
+                    {/* {this.state.row.title} */}
                 </Text>
             </View>
             <View style={commonStyles.contentContainer}>
                 <View style={styles.row}>
                     {
-                        row.items.map((row) => {
-                            let isChecked = false;
-                            if (this.state.row.content && this.state.row.content === row) {
-                                isChecked = true;
-                                handleChange(row);
-                            }
-                            return (
-                                <View style={styles.col}>
-                                    <RadioButton checked={isChecked} borderOnColor={Colors.ORANGE}
-                                        borderOffColor={Colors.LIGHT_ORANGE}
-                                        fillColor={Colors.ORANGE}
-                                        onCheckedChange={(e) => {
-                                            if (e.checked == true) {
-                                                handleChange(row);
-                                            }
-                                        }} />
-                                    <Text style={styles.legendLabel}>{row}</Text>
-                                </View>
-                            )
-                        })
+                        // row.items.map((row) => {
+                        //     let isChecked = false;
+                        //     if (this.state.row.content && this.state.row.content === row) {
+                        //         isChecked = true;
+                        //         handleChange(row);
+                        //     }
+                        //     return (
+                        //         <View style={styles.col}>
+                        //             {/* <RadioButton checked={isChecked} borderOnColor={Colors.ORANGE}
+                        //                 borderOffColor={Colors.LIGHT_ORANGE}
+                        //                 fillColor={Colors.ORANGE}
+                        //                 onCheckedChange={(e) => {
+                        //                     if (e.checked == true) {
+                        //                         handleChange(row);
+                        //                     }
+                        //                 }} /> */}
+                        //             <Text style={styles.legendLabel}>{row}</Text>
+                        //         </View>
+                        //     )
+                        // })
                     }
                 </View>
             </View>

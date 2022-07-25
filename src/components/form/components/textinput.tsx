@@ -1,57 +1,41 @@
-import NavigationBar from "@/components/navigationbar";
-import Spinner from "@/components/spinner";
 import { ViewHeight } from "@/utils/index";
 import { Colors } from "@/utils/colors";
-import React from "react";
-import { StyleSheet, TextInput, TouchableWithoutFeedback, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { StyleSheet, Text, TextInput, View } from "react-native";
+import commonStyles from "./commonstyle";
+// componentDidMount(){
+//     if(this.state.row.content){
+//       this.handleChange(this.state.row.content);
+//     }
+//   }
 
-const next = () => {
-    // const {dispatch, staffList, route} = this.props;
-    // Alert.alert('', `确认提交?`,[{text: '确定',onPress : ()=>{
-    //   dispatch(startHandleTimeConsuming());
-    //   dispatch(fetchOtherApproval(route.taskId, route.type, staffList.userId, staffList.remark));
-    // }}, {text: "取消"}],);
-}
-
-const goBack = () => {
-    // const {navigator} = this.props;
-    // navigator.pop();
-}
-
-const TextInputs: React.FC = (props: any) => {
-    const { dispatch, staffList, taskApproval } = props;
-    let rightButtonTitle = '';
-    let staffData = staffList.staffData;
-    for (let i = 0; i < staffData.length; i++) {
-        if (staffData[i].select) {
-            rightButtonTitle = '下一步';
-            break;
-        }
-    }
-    const dismissKeyboard = require('dismissKeyboard');
-    return (
-        <View style={styles.container}>
-            <NavigationBar title={'备注'} titleColor={Colors.WHITE}
-                leftButtonIcon={require('@/assets/office/icon-backs.png')} rightButtonTitle='提交'
-                rightButtonTitleColor={'#fff'} backgroundColor={Colors.ORANGE}
-                onLeftButtonPress={goBack} onRightButtonPress={next} />
-
-            <TouchableWithoutFeedback onPress={() => dismissKeyboard()}>
-                <View style={styles.main}>
-                    <TextInput
-                        style={{ textAlignVertical: 'top', fontSize: 14, height: ViewHeight / 5, }}
-                        placeholder={'请输入备注信息'}
-                        underlineColorAndroid={'transparent'}
-                        multiline={true}
-                        numberOfLines={5}
-                        maxLength={100}
-                        onChangeText={(remark) => dispatch(changeStaffRemark(remark))} />
-                </View>
-            </TouchableWithoutFeedback>
-            <View>
-                <Spinner visible={taskApproval.otherCommitting} text={'提交中,请稍后...'} />
-            </View>
-        </View>
+const TextInputs: React.FC<Form.IProps> = (props: Form.IProps) => {
+  let { row} = props;
+	let _maxLength = 500;
+	let [text, setText] = useState('');
+	useEffect(() => { 
+		setText(text)
+	},[])
+  if (row.maxLength&&row.maxLength != '') {
+      _maxLength = Number(row.maxLength);
+  }
+  return(
+    <View style={commonStyles.container}>
+      <View style={commonStyles.titleContainer}>
+        <Text style={commonStyles.title}>
+          {row.title}
+        </Text>
+      </View>
+      <View style={[commonStyles.contentContainer,{height: 48, marginRight: 4,}]}>
+        <TextInput
+          style={{height: 48, textAlign:'right', fontSize: 14,}}
+          placeholder={'请输入' + row.title}
+          underlineColorAndroid={'transparent'}
+          value={text}
+          maxLength={_maxLength}
+				  onChangeText={(text) => setText(text)} />
+      </View>
+    </View>
     );
 }
 const styles = StyleSheet.create({

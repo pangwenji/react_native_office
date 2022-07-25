@@ -1,19 +1,19 @@
 import { Colors } from '@/utils/colors';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { FlatButton } from 'react-native-material-kit'
+// import { FlatButton } from 'react-native-material-kit';
 import commonStyles from './commonstyle';
 
 const handleChange = () => { }
 
 const Datepicker: React.FC = () => {
-    var contentView;
-    if (this.state.date) {
-        contentView = this.state.date;
-        handleChange(contentView);
-    } else {
-        contentView = '点击选择日期';
-    }
+    // var contentView;
+    // if (this.state.date) {
+    //     contentView = this.state.date;
+    //     handleChange(contentView);
+    // } else {
+    //     contentView = '点击选择日期';
+    // }
 
     // var _this = this;
     //     .withText(contentView)
@@ -26,12 +26,12 @@ const Datepicker: React.FC = () => {
         <View style={commonStyles.container}>
             <View style={commonStyles.titleContainer}>
                 <Text style={commonStyles.title}>
-                    {this.state.row.title}
+                    {/* {this.state.row.title} */}
                 </Text>
             </View>
             <View style={styles.contentContainer}>
                 <View style={styles.buttonContainer}>
-                    <FlatButton />
+                    {/* <FlatButton /> */}
                 </View>
             </View>
         </View>

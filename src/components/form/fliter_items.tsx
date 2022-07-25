@@ -28,50 +28,49 @@ const FormItem: React.FC = (props: any) => {
 	);
 }
 const renderItem = (props: any) => {
-	let { onUserInput } = props;
-	let _row = this.state.row;
+	let { onUserInput,row ,navigator,userName} = props;
 	// //以下判断顺序不能动
-	if (_row.hide) { //隐藏控件
-		return (<Hide row={_row} onUserInput={(key, value) => onUserInput(key, value)} />);
+	if (row.hide) { //隐藏控件
+		return (<Hide row={row} onUserInput={(key:any, value:any) => onUserInput(key, value)} />);
 	}
-	if (this.state.row.type === 'macros') {
-		return (<Macros {...props} row={this.state.row} detailType={this.state.row.detailType}
-			onUserInput={(key, value) => this.props.onUserInput(key, value)} />);
+	if (row.type === 'macros') {
+		return (<Macros {...props} row={row} detailType={row.detailType}
+			onUserInput={(key:any, value:any) => props.onUserInput(key, value)} />);
 	}
-	if (this.state.row.type === 'text' && this.state.row.detailType === 'linked_process_no') { //附件
-		return (<Link {..._props} row={this.state.row} navigator={this.props.navigator} />);
+	if (row.type === 'text' && row.detailType === 'linked_process_no') { //附件
+		return (<Link {...props} row={row} navigator={navigator} />);
 	}
-	if (_row.readOnly === true) {//只读
-		return (<Texts userName={this.state.userName} row={_row} />);
+	if (row.readOnly === true) {//只读
+		return (<Texts userName={userName} row={row} />);
 	}
-	switch (_row.type) {
+	switch (row.type) {
 		case 'textarea':
-			return (<TextArea row={_row} onUserInput={(key, value) => _props.onUserInput(key, value)} />);
+			return (<TextArea  row={row} onUserInput={(key:any, value:any) => onUserInput(key, value)} />);
 		case 'select':
-			return (<Spinner row={_row} onUserInput={(key, value) => _props.onUserInput(key, value)} refs={_props.refs} />);
+			return (<Spinner   row={row} onUserInput={(key:any, value:any) => onUserInput(key, value)} refs={refs} />);
 		case 'radios':
-			return (<RadioView row={_row} onUserInput={(key, value) => _props.onUserInput(key, value)} />);
+			return (<RadioView row={row} onUserInput={(key:any, value:any) => onUserInput(key, value)} />);
 		case 'checkboxs':
-			return (<CheckBoxs row={_row} onUserInput={(key, value) => _props.onUserInput(key, value)} />);
+			return (<CheckBoxs row={row} onUserInput={(key:any, value:any) => onUserInput(key, value)} />);
 		case 'selectPerson':
-			return (<SelectStaff {..._props} row={_row} onUserInput={(key, value) => _props.onUserInput(key, value)} />);
+			return (<SelectStaff {...props} row={row} onUserInput={(key, value) => onUserInput(key, value)} />);
 	}
-	if (_row.type === 'text') {
-		switch (_row.detailType) {
+	if (row.type === 'text') {
+		switch (row.detailType) {
 			case 'text':
-				return (<TextInputs row={_row} onUserInput={(key, value) => _props.onUserInput(key, value)} />);
+				return (<TextInputs row={row} onUserInput={(key, value) => _props.onUserInput(key, value)} />);
 			case 'email':
-				return (<TextMail row={_row} onUserInput={(key, value) => _props.onUserInput(key, value)} />);
+				return (<TextMail row={row} onUserInput={(key, value) => _props.onUserInput(key, value)} />);
 			case 'int':
-				return (<TextInt row={_row} onUserInput={(key, value) => _props.onUserInput(key, value)} />);
+				return (<TextInt row={row} onUserInput={(key, value) => _props.onUserInput(key, value)} />);
 			case 'float':
-				return (<TextFloat row={_row} onUserInput={(key, value) => _props.onUserInput(key, value)} />);
+				return (<TextFloat row={row} onUserInput={(key, value) => _props.onUserInput(key, value)} />);
 			case 'idcard':
-				return (<TextCard row={_row} onUserInput={(key, value) => _props.onUserInput(key, value)} />);
+				return (<TextCard row={row} onUserInput={(key, value) => _props.onUserInput(key, value)} />);
 			case 'standardDate':
-				return (<Datepicker row={_row} onUserInput={(key, value) => _props.onUserInput(key, value)} refs={_props.refs} />);
+				return (<Datepicker row={row} onUserInput={(key, value) => _props.onUserInput(key, value)} refs={_props.refs} />);
 			case 'fullDate':
-				return (<DateTime row={_row} onUserInput={(key, value) => _props.onUserInput(key, value)} refs={_props.refs} />);
+				return (<DateTime row={row} onUserInput={(key, value) => _props.onUserInput(key, value)} refs={_props.refs} />);
 			case 'file':
 				return (<FileUpLoad {..._props} row={_row} onUserInput={(key, value, extraData) => _props.onUserInput(key, value, extraData)}
 					navigator={_props.navigator} onChooseFile={(key, value) => _props.onChooseFile(key, value)} refs={_props.refs} />)
