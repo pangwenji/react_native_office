@@ -114,7 +114,7 @@ const renderListView = (props: any) => {
                     alignItems: 'center',
                     justifyContent: 'center'
                 }}>
-                <Image source={require('../img/icon/app_panel_expression_icon.png')} style={{ width: 120, height: 120, }} />
+                <Image source={require('@/assets/img/icon/app_panel_expression_icon.png')} style={{ width: 120, height: 120, }} />
                 <Text style={{ textAlign: 'center', fontSize: 15, color: Colors.GREY, }}>当前没有对应数据～</Text>
             </View>
         )

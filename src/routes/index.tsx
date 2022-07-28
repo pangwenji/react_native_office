@@ -3,6 +3,7 @@ import TextInputs from "@/components/form/components/textinput";
 import OfficeList from "@/components/officelist";
 import Table from "@/components/table";
 import Task from "@/components/task";
+import TaskApproval from "@/components/task/components/taskApproval";
 import TaskDetail from "@/components/task/components/taskdetail";
 import WebViews from "@/components/webview";
 import ContactsScreen from "@/pages/address";
@@ -37,8 +38,9 @@ const stack_sreen: Array<stackType> = [
     { name: 'TaskDetail', component: TaskDetail },
     { name: 'OfficeList', component: OfficeList },
     { name: 'Task', component: Task },
-    { name: 'TextInputs', component: TextInputs }
-
+    { name: 'TextInputs', component: TextInputs },
+    { name: 'StaffList', component: StaffList },
+    { name: 'TaskApproval',component:TaskApproval}
 ]
 
 //定义路由栈

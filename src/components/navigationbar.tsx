@@ -24,6 +24,7 @@ const commonRenderIcon = (title: ImageProps | Readonly<ImageProps> | any) => {
 
 const _renderLeftIcon = (props: any) => { 
     let { leftButtonIcon } = props;
+    console.log()
     return commonRenderIcon(leftButtonIcon);
  }
 

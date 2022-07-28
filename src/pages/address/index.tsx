@@ -90,9 +90,14 @@ const ContactsScreen: React.FC = (props: any) => {
     const { dispatch, address } = props;
     return (
         <View style={styles.container}>
-            <NavigationBar title={'通讯录'} titleColor={Colors.WHITE}
-            leftButtonIcon={require('@/assets/img/office/icon-backs.png')}
-                backgroundColor={Colors.ORANGE} onLeftButtonPress={goBack} onRightButtonPress={() => { }} />
+            <NavigationBar
+                title={'通讯录'}
+                titleColor={Colors.WHITE}
+                leftButtonIcon={require('@/assets/office/icon-backs.png')}
+                backgroundColor={Colors.ORANGE}
+                onLeftButtonPress={goBack}
+                onRightButtonPress={() => { }}
+            />
             <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
                 <View style={{ flexDirection: 'row', height: 56 }}>
                     <TextInput

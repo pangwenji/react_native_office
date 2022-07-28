@@ -28,7 +28,7 @@ const commonTouchable = (props: IProps, type: string) => {
 				}}>
 				{type === 'nextIcon' ? <Image style={{ marginLeft: 10, width: (ViewHeight / 14) * 0.5, height: (ViewHeight / 14) * 0.5, borderRadius: iconRadius ? iconRadius : 4 }} source={icon} /> : <View />}
 				<Text style={{ marginLeft: 10, flex: 1, color: fontColor ? fontColor : '#333', }}>{text}</Text>
-				<Image style={styles.nextIcon} source={require('../img/icon/icon-next.png')} />
+				<Image style={styles.nextIcon} source={require('@/assets/img/icon/icon-next.png')} />
 			</View>
 		</TouchableHighlight>
 	)

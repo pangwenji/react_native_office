@@ -50,11 +50,28 @@ const onClick = (templateOption: any, props: any) => {
 	});
 }
 
-const commonRender = (title: string, imageUrl: string, fn: Function) => {
+const commonRender = (title: string, fn: Function) => {
+	let imageUrl;
+	switch (title) {
+		// {commonRender('我的申请', '@/assets/office/office_sq.png', onCreated)}
+		// {/* 同意 */}
+		// {commonRender('已办任务', '@/assets/office/office_sp.png', onApproval)}
+		// {/* 代理 */}
+		// {commonRender('代理任务', '@/assets/office/office_proxy.png', onProxy)}
+		case '我的申请':
+			imageUrl = require('@/assets/office/office_sq.png');
+			break;
+		case '已办任务':
+			imageUrl = require('@/assets/office/office_sp.png');
+			break;
+		case '代理任务':
+			imageUrl = require('@/assets/office/office_proxy.png');
+			break;
+	}
 	return (
 		<TouchableOpacity onPress={() => fn}>
 			<View style={styles.topItem}>
-				<Image style={styles.itemIcon} source={require(imageUrl)} />
+				<Image style={styles.itemIcon} source={imageUrl} />
 				<Text style={[styles.itemText, { color: '#FFFFFF' }, { backgroundColor: 'transparent' },]}>{title}</Text>
 			</View>
 		</TouchableOpacity>
@@ -74,11 +91,11 @@ const OfficeScreen: React.FC<IProp> = (props: IProp) => {
 				<ImageBackground style={styles.mainBack} source={require('@/assets/office/office_bg.jpg')} >
 					<View style={styles.topBg}>
 						{/* 待办 */}
-						{commonRender('我的申请', '@/assets/office/office_sq.png', onCreated)}
+						{commonRender('我的申请', onCreated)}
 						{/* 同意 */}
-						{commonRender('已办任务', '@/assets/office/office_sp.png', onApproval)}
+						{commonRender('已办任务',  onApproval)}
 						{/* 代理 */}
-						{commonRender('代理任务', '@/assets/office/office_proxy.png', onProxy)}
+						{commonRender('代理任务', onProxy)}
 
 					</View>
 				</ImageBackground >

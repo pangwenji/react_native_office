@@ -110,7 +110,7 @@ const SettingsScreen: React.FC<IProps> = (props) => {
 			<View style={styles.containers}>
 				<TouchableOpacity style={{ marginTop: top, }} onPress={() => onUserInfo(props)}>
 					<View style={styles.bgAvatar}>
-						<Image style={styles.avatar} source={userInfo.avatarData ? userInfo.avatarData : require('../img/icon/icon-avatar.png')} />
+						<Image style={styles.avatar} source={userInfo.avatarData ? userInfo.avatarData : require('@/assets/img/icon/icon-avatar.png')} />
 						<Text style={styles.userInfo}>{login.rawData.nickName}</Text>
 						<Image style={styles.nextIcon} source={require('@/assets/img/icon/icon-next.png')} />
 					</View>

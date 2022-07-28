@@ -123,7 +123,7 @@ const UserInfo: React.FC<IProps> = (props:IProps) => {
                 title={'个人信息'} titleColor={Colors.WHITE}
                 backgroundColor={Colors.ORANGE} onLeftButtonPress={goBack}
                 leftButtonIcon={require('@/assets/office/icon-backs.png')}
-                rightButtonIcon={{}}
+                rightButtonIcon={''}
                 rightButtonTitle={'提交'}
                 rightButtonTitleColor={'#fff'}
                 onRightButtonPress={commit} />
@@ -131,7 +131,7 @@ const UserInfo: React.FC<IProps> = (props:IProps) => {
             <TouchableHighlight style={{ marginTop: 20, }} onPress={onAvatarPress}>
                 <View style={[styles.item, { justifyContent: 'space-between', }]}>
                     <Text style={styles.leftText}>头像</Text>
-                    <Image style={styles.avatar} source={userInfo.avatarData ? userInfo.avatarData : require('../img/icon/icon-avatar.png')} />
+                    <Image style={styles.avatar} source={userInfo.avatarData ? userInfo.avatarData : require('@/assets/img/icon/icon-avatar.png')} />
                 </View>
             </TouchableHighlight>
 
@@ -159,7 +159,7 @@ const UserInfo: React.FC<IProps> = (props:IProps) => {
             <View style={{ backgroundColor: Colors.GRAY_GAY, height: 1, }} />
 
             {/*电子邮箱*/}
-            <TouchableWithoutFeedback onPress={() => dismissKeyboard()}>
+            <TouchableWithoutFeedback onPress={() =>Keyboard.dismiss()}>
                 <View style={styles.item}>
                     <Text style={styles.leftText}>电子邮箱</Text>
                     <TextInput

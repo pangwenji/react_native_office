@@ -1,131 +1,106 @@
 import { Colors } from "@/utils/colors";
 import React, { useState } from "react";
 import { Alert, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Button } from "react-native-elements";
 import commonStyles from "./commonstyle";
 
-const selectFile = (fileIndex: string | number) => {
-    let [arrUploadFiles, setUploadFile] = useState();
-    let name = this.state.row.name + fileIndex;
-    let extraData = {};
-    extraData.type = 'fj';
-    extraData.name = '' + this.state.row.name;
-    extraData.index = fileIndex;
-    this.props.onUserInput(name, result, extraData);
-    this.props.onUserInput(`${name}OriginalFileName`, fileName);
-    let file = {};
-    file.fileName = fileName;
-    file.fileIndex = fileIndex;
-    //删除附件
-    if (fileName == '') {
-        for (let i = 0; i < arrUploadFiles.length; i++) {
-            if (this.state.arrUploadFiles[i].fileIndex == fileIndex) {
-                let tmpArrUploadFiles = arrUploadFiles;
-                tmpArrUploadFiles.splice(i, 1);
-                setUploadFile(tmpArrUploadFiles)
-            }
-        }
-        //添加附件
-    } else {
-        let tmpArrUploadFiles = this.state.arrUploadFiles;
-        //如果被选择的附件继续从１开始，说明用户重新上传了，此时清空之前的文件数组
-        if (fileIndex == 1)
-            tmpArrUploadFiles = [];
-        tmpArrUploadFiles.push(file);
-        setUploadFile(tmpArrUploadFiles)
-    }
-}
 
-const select = () => {
-    // this.props.navigator.push({
-    //     name: 'fileSelect',
-    //     component: FileSelect,
-    //     selectFile: this.selectFile.bind(this),
+const onPress = () => {
+    // NativeModules.DateAndroid.showTimepicker((date)=>{}, (hour, minute)=>{
+    //     if(hour < 10){
+    //       hour = `0${hour}`;
+    //     }
+    //     if(minute < 10){
+    //       minute = `0${minute}`;
+    //     }
+    //     this.setState({
+    //       time: hour+':'+minute,
+    //     });
+    //     this.props.onUserInput(this.state.row.name, this.state.date + ' ' + this.state.time);
     //   });
 }
 
-const DateTime: React.FC = () => {
+const openShow = () => { }
+
+const DateTime: React.FC<Form.IProps> = (props: Form.IProps) => {
+    let { row } = props;
     return (
         <View style={commonStyles.container}>
             <View style={commonStyles.titleContainer}>
                 <Text style={commonStyles.title}>
-                    {this.state.row.title}
+                    {row.title}
                 </Text>
             </View>
-            <View style={{ flex: 1, flexDirection: 'column', }}>
-                {
-                    arrUploadFiles.map(function (file) {
-                        return (
-                            <View style={styles.container}>
-                                <View style={commonStyles.titleContainer}>
-                                    <Text style={commonStyles.title}>
-                                        {file.fileIndex}
-                                    </Text>
-                                </View>
+            <View style={styles.contentContainer}>
+                <View style={styles.buttonContainer}>
+                    <Button
+                        title={''}
+                        titleStyle={{ fontSize: 18, fontWeight: 'bold' }}
+                        linearGradientProps={{
+                            Colors: ['#FF9800', '#F44336'],
+                            start: [1, 0],
+                            end: [0.2, 0],
+                        }}
+                        buttonStyle={{
+                            borderWidth: 0,
+                            borderColor: 'transparent',
+                            borderRadius: 20
+                        }}
+                        onPress={() => openShow()}
+                    />
+                </View>
+                <View style={styles.buttonContainer}>
+                    <TouchableOpacity onPress={onPress}>
+                        <Text style={styles.instructions}>{'00:00'}</Text>
+                    </TouchableOpacity>
+                </View>
 
-                                <View style={[styles.contentContainer]}>
-                                    <Text numberOfLines={3} allowFontScaling={true} style={styles.content}>
-                                        {file.fileName}
-                                    </Text>
-                                </View>
-
-                                <TouchableOpacity onPress={() => {
-                                    if (file.fileName && file.fileName != '') {
-                                        Alert.alert('', '确定删除该附件?', [{
-                                            text: '确定', onPress: () => {
-                                                selectFile(file.fileIndex);
-                                            }
-                                        }, { text: '取消', onPress: () => { } }]);
-                                    }
-                                }}>
-                                    <Image source={require('@/assets/img/icon/sq_icon_del.png')} style={styles.pic} />
-                                </TouchableOpacity>
-                            </View>
-                        )
-                    });
-                }
             </View>
-            <TouchableOpacity onPress={select}>
-                <Image source={require('@/assets/img/icon/sq_icon_upload.png')} style={styles.pic} />
-            </TouchableOpacity>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
+    instructions: {
+        textAlign: 'center',
+        color: '#333333',
+        margin: 5,
+    },
+    button: {
+        height: 36,
+        width: 180,
         backgroundColor: Colors.WHITE,
+        borderColor: Colors.BLACK,
+        borderWidth: 1,
+        borderRadius: 8,
+        margin: 10,
+        justifyContent: 'center'
     },
     contentContainer: {
         flex: 1,
         flexDirection: 'row',
-        justifyContent: 'center',
-        marginLeft: 8,
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        marginLeft: 55,
         marginTop: 8,
         marginBottom: 8,
-        marginRight: 10,
-        borderRadius: 5,
-        paddingLeft: 10,
-        paddingRight: 10,
-
+        paddingLeft: 8,
+        paddingRight: 8,
     },
-    content: {
-        textAlign: 'center',
-        fontSize: 16,
-        color: 'gray',
-        alignItems: 'center',
-        width: 180,
+    calendarContainer: {
+        flexDirection: 'column',
+        justifyContent: 'center'
     },
-    pic: {
-        marginRight: 16,
-        alignItems: 'center',
-        height: 32,
-        width: 32,
+    buttonContainer: {
+        flexDirection: 'column',
+        justifyContent: 'center',
+        marginRight: 4,
     },
-
+    postImage: {
+        width: 38,
+        height: 38
+    }
 });
+
 
 export default DateTime;

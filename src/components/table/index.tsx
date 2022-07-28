@@ -51,10 +51,11 @@ const sizeChangeToBigger = () => {
 	//  }
 }
 
-const commonRenderTouchable = (icon:string,fn:Function) => { 
+const commonRenderTouchable = (icon: string, fn: Function) => { 
+	let url = icon === 'out' ?require('@/assets/img/icon/zoom_out.png') : require('@/assets/img/icon/zoom_in.png')
 	return (
-	<TouchableOpacity style={styles.btnSty} onPress={sizeChangeToBigger}>
-		<Image style={{width: 32,height: 32}} source={require(icon)}/>
+	<TouchableOpacity style={styles.btnSty} onPress={()=>fn}>
+		<Image style={{width: 32,height: 32}} source={url}/>
 	</TouchableOpacity>
 	)
 }
@@ -111,9 +112,12 @@ const Table: React.FC = () => {
   return(
     <View style={styles.background}>
       <NavigationBar
-        title={titleName} titleColor={Colors.WHITE}
-        backgroundColor={Colors.ORANGE} onLeftButtonPress={goBack}
-        leftButtonIcon={require('@/assets/office/icon-backs.png')}/>
+			  title={titleName}
+			  titleColor={Colors.WHITE}
+			  backgroundColor={Colors.ORANGE}
+			  onLeftButtonPress={goBack}
+			  leftButtonIcon={require('@/assets/office/icon-backs.png')}
+			  onRightButtonPress={() => { }} />
         <ScrollView horizontal={true}>
           <View >
             <View style={{flexDirection: 'row'}}>
@@ -162,8 +166,8 @@ const Table: React.FC = () => {
 			}
           </View>
           </ScrollView>
-		  { commonRenderTouchable('@/assets/img/icon/zoom_out.png',sizeChangeToSmaller)}
-		  { commonRenderTouchable('@/assets/img/icon/zoom_in.png',sizeChangeToBigger)}
+		  { commonRenderTouchable('out',sizeChangeToSmaller)}
+		  { commonRenderTouchable('in',sizeChangeToBigger)}
     </View>
   );
 }

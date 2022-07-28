@@ -1,9 +1,7 @@
 import { ViewWidth } from '@/utils/index';
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { useSelector } from 'react-redux';
 
-// row={row} onClick={onItemClick(row)}
 interface IProp { 
   row: any,
   onClick: (row: any) => ({}),
@@ -16,7 +14,7 @@ const GridItem: React.FC<IProp> = (props: IProp) => {
   return(
     <TouchableOpacity onPress={()=>onClick(row)} >
       <View style={styles.item}>
-          <Image style={styles.itemIcon} source={require('')}/>
+          {/* <Image style={styles.itemIcon} source={require('')}/> */}
           <Text style={styles.itemText}>{row.name}</Text>
       </View>
     </TouchableOpacity>

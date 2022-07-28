@@ -16,7 +16,7 @@ const suffixName = [
 const arrow = () => {
     return (
         <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1 }}>
-            <Image style={{ width: 20, height: 20 }} source={require('../../img/icon/icon-agree.png')} />
+            <Image style={{ width: 20, height: 20 }} source={require('@/assets/img/icon/icon-agree.png')} />
         </View>
     )
 }
@@ -56,62 +56,54 @@ const goBack = () => {
     // }
 }
 
-const clickFile = () => {
-    // if (rowData.isDirectory()) {
-    //     currentPath = rowData.path;
-    //     refresh();
-    // } else {
-    //     let fileList = this.state.fileList;
-    //     for (let i = 0; i < fileList.length; i++) {
-    //         if (fileList[i].name == rowData.name)
-    //             fileList[i].select = fileList[i].select ? false : true;
-    //     }
-    //     this.setState({
-    //         fileList: fileList,
-    //     });
-    // }
+const clickFile = (fileList:Array<any>,rowData:any,setFileList:Function) => {
+    if (rowData.isDirectory()) {
+        // currentPath = rowData.path;
+        refresh();
+    } else {
+        for (let i = 0; i < fileList.length; i++) {
+            if (fileList[i].name == rowData.name)
+                fileList[i].select = fileList[i].select ? false : true;
+        }
+        setFileList(fileList)
+    }
 }
 
-const renderItem = () => {
-    // if (this.state.fileList.length) {
-    //     return this.state.fileList.map((rowData) => {
-    //         let icon;
-    //         if (rowData.isDirectory()) {
-    //             icon = fileIcons.get('directory');
-    //         } else {
-    //             let ary = rowData.name.split('.');
-    //             let end = ary[ary.length - 1].toLowerCase();
-    //             if (suffixName.includes(end)) {
-    //                 icon = fileIcons.get(end);
-    //             }
-    //             else {
-    //                 icon = fileIcons.get('file');
-    //             }
-    //         }
-    //         return (
-    //             <View style={[{ flex: 1 }, { justifyContent: 'center' }]}>
-    //                 <TouchableOpacity onPress={() => clickFile(rowData)}>
-    //                     <View style={{ height: 56, flexDirection: 'row' }}>
-    //                         <View style={{ flexDirection: 'row', alignItems: 'center', flex: 9 }}>
-    //                             <Image source={icon} style={{ width: 40, height: 40, marginLeft: 16, marginRight: 16, marginTop: 8, marginBottom: 8 }} />
-    //                             <Text numberOfLines={3} style={{ width: ViewWidth - 80 }}>{rowData.name}</Text>
-    //                         </View>
-    //                         {rowData.select && arrow()}
-    //                     </View>
-    //                 </TouchableOpacity>
-    //                 <View style={{ height: 1, marginLeft: 16, backgroundColor: '#ccc' }} />
-    //             </View>
-    //         );
-    //     });
-    // } else {
-    //     return (
-    //         <View style={[{ flex: 1 }, { justifyContent: 'center' }]}>
-    //             <Text numberOfLines={0} style={styles.textStyle} >{
-    //                 Platform.OS === 'ios' ? '未发现附件,请把文件放置于该APP的Documents文件夹下!' : '未发现文件!'
-    //             }</Text>
-    //         </View>
-    //     );
-    // }
+const renderItem = (fileList:Array<any>,setFileList:Function) => {
+    if (fileList.length) {
+        return fileList.map((rowData)=>{
+          let icon;
+          if(rowData.isDirectory()){
+            // icon = fileIcons.get('directory');
+          }else{
+            let ary = rowData.name.split('.');
+            let end = ary[ary.length - 1].toLowerCase();
+            // icon = suffixName.includes(end) ? fileIcons.get(end) : fileIcons.get('file');
+          }
+          return (
+            <View style={styles.box}>
+              <TouchableOpacity onPress={()=>clickFile(fileList, rowData,setFileList)}>
+                <View style={{height: 56,flexDirection: 'row'}}>
+                  <View style={{flexDirection: 'row', alignItems: 'center', flex: 9}}>
+                    <Image source={{}} style={styles.image}/>
+                    <Text numberOfLines={3} style ={{width: ViewWidth - 80}}>{rowData.name}</Text>
+                  </View>
+                  {rowData.select && arrow()}
+                </View>
+              </TouchableOpacity>
+              <View style={{height:1, marginLeft: 16, backgroundColor:'#ccc'}}/>
+            </View>
+          );
+        });
+      }else {
+        return(
+            <View style={[{flex: 1},{justifyContent: 'center'}]}>
+                <Text numberOfLines={0} style={styles.textStyle} >
+                    {Platform.OS === 'ios' ? '未发现附件,请把文件放置于该APP的Documents文件夹下!' : '未发现文件!'}
+                </Text>
+            </View>
+        );
+      }
 }
 
 const inArray = (val: string) => {
@@ -119,9 +111,7 @@ const inArray = (val: string) => {
     return arr.indexOf(val) !== -1 ? true : false;
 }
 
-const startHandleTimeConsuming = () => {
 
-}
 
 const doUpload = () => {
     let form = new FormData();
@@ -212,7 +202,8 @@ const upload = () => {
 
 const FileSelect: React.FC = () => {
     let rightButtonTitle = '';
-    let [fileList,setFileList] = useState<any>([])
+    let [fileList, setFileList] = useState<any>([]);
+
     for (let i = 0; i < fileList.length; i++) {
         if (fileList[i].select) {
             rightButtonTitle = '上传';
@@ -227,7 +218,7 @@ const FileSelect: React.FC = () => {
                 leftButtonIcon={require('@/assets/office/icon-backs.png')}
                 onLeftButtonPress={goBack} />
             <ScrollView style={{ position: 'absolute', flex: 1, height: ViewHeight - 60, width: ViewWidth }}>
-                {/* {renderItem()} */}
+                {renderItem(fileList,setFileList)}
             </ScrollView>
             <View>
                 {/* <Spinner visible={this.state.upLoading} text={this.state.spinnerContent} /> */}
@@ -245,6 +236,18 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: '#ff8c00',
     },
+    box: {
+        flex: 1,
+        justifyContent: 'center'
+    },
+    image: {
+        width: 40,
+        height: 40,
+        marginLeft: 16,
+        marginRight: 16,
+        marginTop: 8,
+        marginBottom: 8
+    }
 });
 
 export default FileSelect;

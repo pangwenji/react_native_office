@@ -1,7 +1,6 @@
 import { Colors } from '@/utils/colors';
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import iconNext from '../../../img/icon/icon-next.png';
 
 const renderUserName = (props:any) => { 
   const {post, type} = props;
@@ -43,7 +42,7 @@ const PostCell: React.FC<IProps> = (props:IProps) => {
             <Text style={{fontSize:14,color:titleColor}} numberOfLines={1}>{props.post.title}--{props.post.processTitle}</Text>
           </View>
           <View style={styles.bottomText}>
-            {(type === "待办" || type === "已办任务" || type === "代理任务") && renderUserName()}
+            {(type === "待办" || type === "已办任务" || type === "代理任务") && renderUserName(props)}
             {(type === "代理任务") && renderDelegateType()}
             {(type === "我的申请" || type === "已办任务" || type === "代理任务") && renderStatus()}
             <Text style={styles.timeTitle}>{timeTitle}</Text>
@@ -51,7 +50,7 @@ const PostCell: React.FC<IProps> = (props:IProps) => {
         </View>
 
         <View style={styles.rightView}>
-          <Image style={styles.postButton} source={iconNext}/>
+          <Image style={styles.postButton} source={require('@/assets/img/icon/icon-next.png')}/>
         </View>
 
       </View>

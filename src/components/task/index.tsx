@@ -169,14 +169,14 @@ const Task: React.FC = (props: any) => {
 	return (
 		<View style={styles.container}>
 			<NavigationBar
-				title={title}
-				titleColor={Colors.WHITE}
-				backgroundColor={Colors.ORANGE}
-				onLeftButtonPress={goBack}
-				leftButtonIcon={require('@/aasets/office/icon-backs.png')}
-				rightButtonTitle={'搜索'}
-				rightButtonTitleColor={'#fff'}
-				onRightButtonPress={()=>onSearch(props)}
+					title={title}
+					titleColor={Colors.WHITE}
+					backgroundColor={Colors.ORANGE}
+					onLeftButtonPress={goBack}
+					leftButtonIcon={require('@/assets/office/icon-backs.png')} //aasets/office/icon-backs.png
+					rightButtonTitle={'搜索'}
+					rightButtonTitleColor={'#fff'}
+					onRightButtonPress={()=>onSearch(props)}
 			/>
 			<View style={styles.searchContainer}>
 				<View style={styles.searchInputContainer}>

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import commonStyles from './commonstyle';
+import StaffList from './stafflist';
 const handleChange = () => {
     // this.props.onUserInput(this.state.row.name, userId);
     // this.setState({
@@ -9,26 +10,28 @@ const handleChange = () => {
     // });
 }
 
-const onPress = () => {
-    const { navigator } = this.props;
+const onPress = (props:any) => {
+    const { navigator } = props;
     navigator.push({
         name: "StaffList",
         component: StaffList,
-        type: types.STAFF_LIST_CONTACT,
+        // type: types.STAFF_LIST_CONTACT,
         onStaffSelect: handleChange,
     });
 }
 
-const SelectStaff: React.FC = () => {
+const SelectStaff: React.FC = (prop: any) => {
+    let { row } = prop;
+    let [text,setText] = useState('点击选择')
     return (
         <View style={commonStyles.container}>
             <View style={commonStyles.titleContainer}>
                 <Text style={commonStyles.title}>
-                    {this.state.row.title}
+                    {row.title}
                 </Text>
             </View>
-            <TouchableOpacity onPress={onPress} style={commonStyles.contentContainer}>
-                <Text style={[styles.search, { color: this.state.textColor, marginRight: 4 }]}>{this.state.text}</Text>
+            <TouchableOpacity onPress={()=>onPress(prop)} style={commonStyles.contentContainer}>
+                <Text style={[styles.search, { color: 'gray', marginRight: 4 }]}>{text}</Text>
             </TouchableOpacity>
         </View>
     );

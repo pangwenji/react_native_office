@@ -1,21 +1,33 @@
 import TaskDetail from '@/components/task/components/taskdetail';
-import React from 'react';
-import { Text, TouchableOpacity, View, Image, StyleSheet, Alert } from 'react-native';
+import React, { useState } from 'react';
+import {
+	Text,
+	TouchableOpacity,
+	View,
+	Image,
+	StyleSheet,
+} from 'react-native';
+import { Dialog } from 'react-native-elements';
 import commonStyles from './commonstyle';
 
 const onPress = (props: any) => {
+	let [isShow,setIsShow] = useState(false);
 	let { row, navigator } = props;
 	if (row.readOnly) {
 		if (row.content && row.content != '') {
 			navigator.push({
-				name: 'taskDetail',
+				name: 'TaskDetail',
 				component: TaskDetail,
 				type: 'link',
 				linkedProcessNo: row.content,
 			});
 		}
 	} else {
-		Alert.alert('', '抱歉!现在移动端的关联单不提供输入.', [{ text: '确定', onPress: () => { } }])
+		<Dialog isVisible={isShow}>
+			<Text>
+				{'抱歉!现在移动端的关联单不提供输入'}
+			</Text>
+		</Dialog>
 	}
 }
 

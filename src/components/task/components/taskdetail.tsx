@@ -46,7 +46,7 @@ const renderHistoricView = (props: any) => {
 					<Image style={{ marginTop: 8, width: 48, height: 48, borderRadius: 24, borderWidth: 2, borderColor: '#fff', }} source={require('@/assets/img/icon/icon-avatar.png')} />
 				</View>
 				<View style={{ marginTop: 14, elevation: 2 }}>
-					<Image source={require('../img/icon/icon-arrow.png')} style={{ width: 5, height: 10, }} />
+					<Image source={require('@/assets/img/icon/icon-arrow.png')} style={{ width: 5, height: 10, }} />
 				</View>
 				<View style={{ flex: 1, marginTop: 8, marginBottom: 8, marginRight: 8, padding: 8, backgroundColor: '#fff', borderRadius: 2, elevation: 2 }}>
 					<View style={{ flexDirection: 'row', justifyContent: 'space-between', }}>

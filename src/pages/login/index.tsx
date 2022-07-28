@@ -34,7 +34,7 @@ const Login: React.FC = (props: any) => {
 				</TouchableWithoutFeedback>
 
 				<View style={{ marginLeft: 8, height: 1, backgroundColor: '#ccc', marginRight: 8 }} />
-				<TouchableWithoutFeedback onPress={() => dismissKeyboard()}>
+				<TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
 					<View style={{ flexDirection: 'row', height: 48, backgroundColor: 'white', alignItems: 'center' }}>
 						<Image style={{ width: 32, height: 32, margin: 8 }} source={require('@/assets/img/icon/icon-lock.png')} />
 						<TextInput style={{ height: 48, flex: 1 }}

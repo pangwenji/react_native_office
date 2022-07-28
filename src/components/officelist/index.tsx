@@ -24,7 +24,7 @@ const _renderItem = (data: any) => {
               <Text style={styles.textStyle} numberOfLines={1}>{item.officeFormData.name}</Text>
             </View>
             <View style={styles.rightView}>
-              <Image style={styles.postButton} source={require('../img/icon/icon-next.png')}/>
+              <Image style={styles.postButton} source={require('@/assets/img/icon/icon-next.png')}/>
             </View>
         </View>
     </TouchableHighlight>
@@ -35,9 +35,13 @@ const OfficeList: React.FC = (props: any) => {
   let {officeTemplateList } = props;
   return(
     <View style={styles.background}>
-        <NavigationBar title={''} titleColor={Colors.WHITE}
-          backgroundColor={Colors.ORANGE} onLeftButtonPress={goBack}
-          leftButtonIcon={require('../img/office/icon-backs.png')}/>
+		  <NavigationBar
+			  title={''}
+			  titleColor={Colors.WHITE}
+			  backgroundColor={Colors.ORANGE}
+			  onLeftButtonPress={goBack}
+			  leftButtonIcon={require('@/assets/office/icon-backs.png')}
+			  onRightButtonPress={() => { }} />
         <FlatList
           data={officeTemplateList.templateListData}
           renderItem={_renderItem}/>

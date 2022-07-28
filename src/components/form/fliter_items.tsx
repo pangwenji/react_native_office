@@ -28,7 +28,7 @@ const FormItem: React.FC<Form.IProps>= (props: Form.IProps) => {
 	);
 }
 const renderItem = (props: any) => {
-	let { onUserInput,row ,navigator,userName} = props;
+	let { onUserInput,row ,navigator,userName,onChooseFile} = props;
 	// //以下判断顺序不能动
 	if (row.hide) { //隐藏控件
 		return (<Hide row={row} onUserInput={(key:any, value:any) => onUserInput(key, value)} />);
@@ -72,8 +72,8 @@ const renderItem = (props: any) => {
 			case 'fullDate':
 				return (<DateTime row={row} onUserInput={(key:string, value:string) => onUserInput(key, value)} refs={_props.refs} />);
 			case 'file':
-				return (<FileUpLoad {..._props} row={_row} onUserInput={(key, value, extraData) => _props.onUserInput(key, value, extraData)}
-					navigator={_props.navigator} onChooseFile={(key, value) => _props.onChooseFile(key, value)} refs={_props.refs} />)
+				return (<FileUpLoad {...props} row={row} onUserInput={(key:any, value:any, extraData:any) => onUserInput(key, value, extraData)}
+				 onChooseFile={(key:any, value:any) => onChooseFile(key, value)} refs={props.refs} />)
 			default:
 				return <View />
 		}
