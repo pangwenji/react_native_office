@@ -19,12 +19,13 @@ interface IProp {
 }
 
 const commonRenderIcon = (title: ImageProps | Readonly<ImageProps> | any) => { 
-   return title ? <Image style={styles.rightButtonIcon} source={title} /> : null;
+    return title ?
+        <Image style={styles.rightButtonIcon} source={title} /> :
+        null;
 }
 
 const _renderLeftIcon = (props: any) => { 
     let { leftButtonIcon } = props;
-    console.log()
     return commonRenderIcon(leftButtonIcon);
  }
 
@@ -33,10 +34,9 @@ const _renderRightIcon = (props: any) => {
     return commonRenderIcon(rightButtonIcon);
  }
 
-
 const commonRenderTouchableOpacity = (style:any,bottonTilte:TextStyle ,onPress:Function,renderView:Element | any,title:any,titleColor:string | any ) => { 
     return (
-        <TouchableOpacity onPress={()=>onPress}>
+        <TouchableOpacity onPress={()=>onPress()}>
             <View style={style}>
                 {renderView}
                 <Text style={[bottonTilte, { color: titleColor }]}>
@@ -63,9 +63,10 @@ const NavigationBar: React.FC<IProp> = (props:IProp) => {
     let iosTop = Platform.OS === 'ios' ?  20 : 0;
     return (
         <View style={[styles.container, {
-            // height: this.state.height,
-            // backgroundColor: this.state.backgroundColor,
+            height: height,
+            backgroundColor: backgroundColor,
             marginTop: iosTop,
+            paddingLeft:10
         }]}>
             { commonRenderTouchableOpacity(styles.leftButton,styles.leftButtonTitle,onLeftButtonPress,_renderLeftIcon(props),leftButtonTitle,'')}
             <View style={styles.title}>
@@ -115,7 +116,7 @@ const styles = StyleSheet.create({
         marginRight: 8,
     },
     rightButtonIcon: {
-        width: 10,
+        width: 15,
         height: 15
     },
     rightButtonTitle: {

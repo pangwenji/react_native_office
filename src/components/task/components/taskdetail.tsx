@@ -9,12 +9,12 @@ import TaskApproval from './taskApproval';
 
 const onPress = (props: any) => {
 	const { navigator, route } = props;
-	navigator.push({
-		name: "TaskApproval",
-		component: TaskApproval,
-		taskId: route.taskId,
-		processInstanceId: route.processInstanceId,
-	});
+	// navigator.push({
+	// 	name: "TaskApproval",
+	// 	component: TaskApproval,
+	// 	taskId: route.taskId,
+	// 	processInstanceId: route.processInstanceId,
+	// });
 }
 
 const renderFAB = (props: any) => {
@@ -110,14 +110,14 @@ const renderTaskView = (props: any) => {
 				<View style={{ flexDirection: 'row' }}>
 					<Text style={styles.link}>{rowData.title}:</Text>
 					<TouchableOpacity onPress={() => {
-						navigator.push({
-							name: "TaskDetail",
-							component: TaskDetail,
-							type: 'link',
-							linkedProcessNo: rowData.content,
-							processNo: route.processNo,
-							processTitle: route.processTitle,
-						});
+						// navigator.push({
+						// 	name: "TaskDetail",
+						// 	component: TaskDetail,
+						// 	type: 'link',
+						// 	linkedProcessNo: rowData.content,
+						// 	processNo: route.processNo,
+						// 	processTitle: route.processTitle,
+						// });
 					}}>
 						<Text style={styles.text1 }>{rowData.content}</Text>
 					</TouchableOpacity>

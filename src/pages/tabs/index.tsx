@@ -36,6 +36,7 @@ const BottomTabs: React.FC = () => {
 				screen.map((res: screenType, index: number) => {
 					return (
 						<BottomStackTab.Screen
+							key={index}
 							name={res.name}
 							options={{
 								headerShown: false,

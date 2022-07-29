@@ -15,6 +15,7 @@ import { FlatList } from 'react-native-gesture-handler';
 import { Colors } from '@/utils/colors';
 import { ViewWidth, ViewHeight } from '@/utils/index';
 import PostCell from '@/components/postcell_todo';
+import { useSelector } from 'react-redux';
 
 interface IProps {
     taskList: {
@@ -52,7 +53,7 @@ const renderPick = (props: any) => {
     let [searchId, setState] = useState(0);
     let [selectedValue, setSelectedValue] = useState(0);
     let [isSelect, setIsSelect] = useState(false);
-    const { taskList, login, route, dispatch } = props;
+    const {  login, route, dispatch } = props;
     let searchArr: Array<any> = [];
     let itemAll: { id: string, name: string } = {
         id: '',
@@ -61,32 +62,32 @@ const renderPick = (props: any) => {
     itemAll.id = '';
     itemAll.name = '全部';
     searchArr.push(itemAll);
-    Array.prototype.push.apply(searchArr, taskList.taskSearchList);
-    return (
-        <Picker
-            style={styles.picker}
-            mode="dropdown"
-            selectedValue={searchId}
-            itemStyle={{ backgroundColor: '#fdfcf5', }}
-            onValueChange={(id) => {
-                for (var i = 0; i < searchArr.length; i++) {
-                    if (searchArr[i].id == id) {
-                        setSelectedValue(searchArr[i].name);
-                    }
-                }
-                const page = 1;
-                const canLoadMore = false;
-                const onEndReach = false;
-                // dispatch(fetchTaskList(route.url + 'userId=', login.rawData.userId, id, '', '', page));
-                // dispatch(startHandleTimeConsuming());
-                setState(id);
-                setIsSelect(true);
-            }}>
-            {searchArr.map(function (row) {
-                return <Picker.Item label={row.name} value={row.id} />
-            })}
-        </Picker>
-    )
+    // Array.prototype.push.apply(searchArr, taskList.taskSearchList);
+    // return (
+    //     <Picker
+    //         style={styles.picker}
+    //         mode="dropdown"
+    //         selectedValue={searchId}
+    //         itemStyle={{ backgroundColor: '#fdfcf5', }}
+    //         onValueChange={(id) => {
+    //             for (var i = 0; i < searchArr.length; i++) {
+    //                 if (searchArr[i].id == id) {
+    //                     setSelectedValue(searchArr[i].name);
+    //                 }
+    //             }
+    //             const page = 1;
+    //             const canLoadMore = false;
+    //             const onEndReach = false;
+    //             // dispatch(fetchTaskList(route.url + 'userId=', login.rawData.userId, id, '', '', page));
+    //             // dispatch(startHandleTimeConsuming());
+    //             setState(id);
+    //             setIsSelect(true);
+    //         }}>
+    //         {searchArr.map(function (row) {
+    //             return <Picker.Item label={row.name} value={row.id} />
+    //         })}
+    //     </Picker>
+    // )
 }
 
 const onPress = (post: any) => { }
@@ -105,8 +106,8 @@ const setState = (searchTitle: any) => { }
 const _onScorll = () => { }
 
 const renderListView = (props: any) => {
-    const { taskList } = props;
-    if (taskList.taskListData.length <= 0) {
+    let  result:any = useSelector<Home.homeType>(state => state.home);
+    if (result.todoData.length <= 0) {
         return (
             <View style={
                 {
@@ -122,7 +123,7 @@ const renderListView = (props: any) => {
         return (
             <FlatList
                 renderItem={_renderItem}
-                data={taskList.taskListData}
+                data={result.todoData}
                 onScroll={_onScorll}
                 onEndReachedThreshold={10}
             />
@@ -137,7 +138,6 @@ const renderModel = () => {
 }
 
 const TodoScreen: React.FC<IProps> = (props: IProps) => {
-    let { taskList } = props;
     return (
         <View style={styles.contanier}>
             <View>
@@ -168,7 +168,7 @@ const TodoScreen: React.FC<IProps> = (props: IProps) => {
             </View>
             {renderListView(props)}
             <View>
-                <Spinner visible={taskList.taskListFetching} text={'加载中,请稍后...'} />
+                <Spinner visible={true} text={'加载中,请稍后...'} />
             </View>
             {renderModel()}
         </View>

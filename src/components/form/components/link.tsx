@@ -15,12 +15,12 @@ const onPress = (props: any) => {
 	let { row, navigator } = props;
 	if (row.readOnly) {
 		if (row.content && row.content != '') {
-			navigator.push({
-				name: 'TaskDetail',
-				component: TaskDetail,
-				type: 'link',
-				linkedProcessNo: row.content,
-			});
+			// navigator.push({
+			// 	name: 'TaskDetail',
+			// 	component: TaskDetail,
+			// 	type: 'link',
+			// 	linkedProcessNo: row.content,
+			// });
 		}
 	} else {
 		<Dialog isVisible={isShow}>

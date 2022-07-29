@@ -40,6 +40,24 @@ const initialState: Home.stateProp = {
             subTitle: "历史消息记录",
             name:"message"
         }
+    ],
+    todoData: [
+        { username: "李四", statusTitle: '申购申请-转办' },
+        { username: "赵武", statusTitle: '申购申请-123附件' },
+        { username: "加班申请", statusTitle: '加班申请再转办' },
+        { username: "李四", statusTitle: 'clm3' },
+        { username: "王五", statusTitle: '未打卡说明--123' },
+        { username: "李四1", statusTitle: '申购申请-转办--123' },
+        { username: "李四2", statusTitle: '申购申请-转办--123' },
+        { username: "李四3", statusTitle: '申购申请-转办--123' },
+        { username: "李四4", statusTitle: '申购申请-转办--123' },
+        { username: "李四5", statusTitle: '申购申请-转办--123' },
+        { username: "李四6", statusTitle: '申购申请-转办--123' },
+        { username: "李四7", statusTitle: '申购申请-转办--123' },
+        { username: "李四8", statusTitle: '申购申请-转办--123' },
+        { username: "李四9", statusTitle: '申购申请-转办--123' },
+
+        
     ]
 
 }

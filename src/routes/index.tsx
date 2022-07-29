@@ -24,23 +24,23 @@ interface stackType {
 }
 
 const stack_sreen: Array<stackType> = [
-    { name: 'root', component: BottomTabs },
+    { name: 'root',   component: BottomTabs },
     { name: 'notice', component: NoticeScreen },
-    { name: 'todo', component: TodoScreen },
-    { name: 'contacts', component: ContactsScreen },
-    { name: 'message', component: MessageScreen },
-    { name: 'WebViews', component: WebViews },
-    { name: 'UserInfo', component: UserInfo },
-    { name: 'Login', component: Login },
-    { name: 'Login', component: ChangePassword },
-    { name: 'StaffList', component: StaffList },
-    { name: 'Table', component: Table },
-    { name: 'TaskDetail', component: TaskDetail },
-    { name: 'OfficeList', component: OfficeList },
-    { name: 'Task', component: Task },
-    { name: 'TextInputs', component: TextInputs },
-    { name: 'StaffList', component: StaffList },
-    { name: 'TaskApproval',component:TaskApproval}
+    { name: 'todo',   component: TodoScreen },
+    // { name: 'contacts', component: ContactsScreen },
+    // { name: 'message', component: MessageScreen },
+    // { name: 'WebViews', component: WebViews },
+    // { name: 'UserInfo', component: UserInfo },
+    // { name: 'Login', component: Login },
+    // { name: 'Login', component: ChangePassword },
+    // { name: 'StaffList', component: StaffList },
+    // { name: 'Table', component: Table },
+    // { name: 'TaskDetail', component: TaskDetail },
+    // { name: 'OfficeList', component: OfficeList },
+    // { name: 'Task', component: Task },
+    // { name: 'TextInputs', component: TextInputs },
+    // { name: 'StaffList', component: StaffList },
+    // { name: 'TaskApproval',component:TaskApproval}
 ]
 
 //定义路由栈

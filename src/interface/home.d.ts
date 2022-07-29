@@ -10,9 +10,14 @@ declare namespace Home {
     imageUrl: string,
     name:string
   }
+  type todoItemProp = {
+    username: string,
+    statusTitle:string
+  }
   type stateProp = {
     imageData: Array<imageProp>,
     homeItem: Array<homeItemProp>
+    todoData:Array<todoItemProp>
   }
   type homeType = {
     home: stateProp
