@@ -2,6 +2,7 @@ import NavigationBar from '@/components/navigationbar';
 import Spinner from '@/components/spinner';
 import React, { useState } from 'react';
 import { Picker } from '@react-native-picker/picker';
+import { Model } from 'react-native-paper'
 import {
     View,
     Text,
@@ -13,7 +14,7 @@ import {
 } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import { Colors } from '@/utils/colors';
-import { ViewWidth, ViewHeight } from '@/utils/index';
+import { ViewWidth, ViewHeight, goBack } from '@/utils/index';
 import PostCell from '@/components/postcell_todo';
 import { useSelector } from 'react-redux';
 
@@ -25,15 +26,17 @@ interface IProps {
 
 const onSearch = () => { }
 
-const onLeftBack = () => { }
+const goBacks = (props: any) => {
+    goBack(props);
+}
 
-const renderSelect = (props: any) => {
+const renderSelect = (props: any,setIsShow:Function) => {
     let [selectedValue, setState] = useState(false)
     if (Platform.OS == 'ios') {
         return (
             <View>
                 <TouchableOpacity
-                    onPress={() => { setState(true) }}
+                    onPress={() => setIsShow(false)}
                     style={
                         {
                             alignItems: 'center',
@@ -53,7 +56,7 @@ const renderPick = (props: any) => {
     let [searchId, setState] = useState(0);
     let [selectedValue, setSelectedValue] = useState(0);
     let [isSelect, setIsSelect] = useState(false);
-    const {  login, route, dispatch } = props;
+    const { login, route, dispatch } = props;
     let searchArr: Array<any> = [];
     let itemAll: { id: string, name: string } = {
         id: '',
@@ -62,43 +65,49 @@ const renderPick = (props: any) => {
     itemAll.id = '';
     itemAll.name = '全部';
     searchArr.push(itemAll);
-    // Array.prototype.push.apply(searchArr, taskList.taskSearchList);
-    // return (
-    //     <Picker
-    //         style={styles.picker}
-    //         mode="dropdown"
-    //         selectedValue={searchId}
-    //         itemStyle={{ backgroundColor: '#fdfcf5', }}
-    //         onValueChange={(id) => {
-    //             for (var i = 0; i < searchArr.length; i++) {
-    //                 if (searchArr[i].id == id) {
-    //                     setSelectedValue(searchArr[i].name);
-    //                 }
-    //             }
-    //             const page = 1;
-    //             const canLoadMore = false;
-    //             const onEndReach = false;
-    //             // dispatch(fetchTaskList(route.url + 'userId=', login.rawData.userId, id, '', '', page));
-    //             // dispatch(startHandleTimeConsuming());
-    //             setState(id);
-    //             setIsSelect(true);
-    //         }}>
-    //         {searchArr.map(function (row) {
-    //             return <Picker.Item label={row.name} value={row.id} />
-    //         })}
-    //     </Picker>
-    // )
+    // Array.prototype.push.apply(searchArr, taskList.taskSearchList); //链接两个数字
+    return (
+        <Picker
+            style={styles.picker}
+            mode="dropdown"
+            selectedValue={searchId}
+            itemStyle={{ backgroundColor: '#fdfcf5', }}
+            onValueChange={(id) => {
+                for (var i = 0; i < searchArr.length; i++) {
+                    if (searchArr[i].id == id) {
+                        setSelectedValue(searchArr[i].name);
+                    }
+                }
+                const page = 1;
+                const canLoadMore = false;
+                const onEndReach = false;
+                // dispatch(fetchTaskList(route.url + 'userId=', login.rawData.userId, id, '', '', page));
+                // dispatch(startHandleTimeConsuming());
+                setState(id);
+                setIsSelect(true);
+            }}>
+            {searchArr.map(function (row) {
+                return <Picker.Item label={row.name} value={row.id} />
+            })}
+        </Picker>
+    )
 }
 
-const onPress = (post: any) => { }
+const onPress = () => { }
 
 const _renderItem = (props: any) => {
-    const { route, post } = props;
+    let _props = Object.assign(props, {
+        type: '已办任务',
+        post: {
+            startTime: '2022-08-01 11:11:00',
+            endTime: '2022-08-30 24:00:00',
+            timeOut: '24小时'
+        }
+    })
     return (
         <PostCell
-            post={post}
-            type={route.navBarTitle}
-            onSelect={async () => onPress(post)}
+            props={_props}
+            onSelect={async () => onPress()}
         />);
 }
 const setState = (searchTitle: any) => { }
@@ -106,7 +115,7 @@ const setState = (searchTitle: any) => { }
 const _onScorll = () => { }
 
 const renderListView = (props: any) => {
-    let  result:any = useSelector<Home.homeType>(state => state.home);
+    let result: any = useSelector<Home.homeType>(state => state.home);
     if (result.todoData.length <= 0) {
         return (
             <View style={
@@ -131,31 +140,57 @@ const renderListView = (props: any) => {
     }
 
 }
-const renderModel = () => {
+
+const commonRenderButton = (title:string,setIsShow:Function) => {
     return (
-        <View />
+        <TouchableOpacity style={styles.button} onPress={() => setIsShow(false)} >
+            <Text style={styles.buttonText}>取 消</Text>
+        </TouchableOpacity>
+    )
+}
+
+const showModel = (props: any, isShow: boolean, setIsShow: Function) => {
+    return (
+        <Model visible={isShow} transparent={true}>
+            <View style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)', height: ViewHeight, width: ViewWidth, }}>
+                <View style={styles.modelStyle}>
+                    <View style={styles.calendarContainer}>
+                        <Text style={styles.textStyle}>请选择类型</Text>
+                        <View style={{ flex: 1, justifyContent: 'center', }}>
+                            {renderPick(props)}
+                        </View>
+                        <View style={styles.calendar}>
+                            {commonRenderButton('取 消', setIsShow)}
+                            {commonRenderButton('确 定', setIsShow)}
+                        </View>
+                    </View>
+                </View>
+            </View>
+        </Model>
     )
 }
 
 const TodoScreen: React.FC<IProps> = (props: IProps) => {
+    let [isShow, setIsShow] = useState(false);
     return (
         <View style={styles.contanier}>
-            <View>
-                <NavigationBar
-                    title={''}
-                    titleColor={''}
-                    backgroundColor={''}
-                    onLeftButtonPress={onLeftBack}
-                    leftButtonIcon={require('@/assets/office/icon-backs.png')}
-                    rightButtonTitle={'搜索'}
-                    rightButtonTitleColor={'#fff'}
-                    onRightButtonPress={onSearch}
-                />
-            </View>
-            <View style={styles.searchContainer}>
-                <View style={styles.searchInputContainer}>
+            <View style={{ display: 'flex', flexDirection: 'column' }}>
+                <View >
+                    <NavigationBar
+                        height={45}
+                        title={'待办'}
+                        titleColor={'#ffffff'}
+                        backgroundColor={'#ef6c00'}
+                        onLeftButtonPress={() => goBacks(props)}
+                        leftButtonIcon={require('@/assets/office/icon-backs.png')}
+                        rightButtonTitle={'搜索'}
+                        rightButtonTitleColor={'#fff'}
+                        onRightButtonPress={onSearch}
+                    />
+                </View>
+                <View style={styles.searchContainer}>
                     <View style={styles.pickerContainer}>
-                        {renderSelect(props)}
+                        {renderSelect(props,setIsShow)}
                     </View>
                     <View style={styles.textInputContainer}>
                         <TextInput
@@ -166,11 +201,13 @@ const TodoScreen: React.FC<IProps> = (props: IProps) => {
                     </View>
                 </View>
             </View>
-            {renderListView(props)}
-            <View>
-                <Spinner visible={true} text={'加载中,请稍后...'} />
+            <View >
+                {renderListView(props)}
             </View>
-            {renderModel()}
+            <View>
+                <Spinner visible={false} text={'加载中,请稍后...'} />
+            </View>
+            {showModel(props, isShow, setIsShow)}
         </View>
     )
 }
@@ -180,12 +217,8 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
     },
     searchContainer: {
-        flexDirection: 'column',
-    },
-    searchInputContainer: {
         flexDirection: 'row',
-        flex: 1,
-        backgroundColor: Colors.LIGHT_GREY,
+        backgroundColor: Colors.WHITE,
     },
     textInputContainer: {
         flex: 4,

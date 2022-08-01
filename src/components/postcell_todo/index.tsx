@@ -29,23 +29,24 @@ interface IProps {
   onSelect: (args: any) => {}
 }
 
-const PostCell: React.FC<IProps> = (props:IProps) => { 
-  const {post, type,onSelect} = props;
-  let titleColor = (post.timeOut ? '#f00' : '#333');
-  let timeTitle = (type === "已办任务" ? props.post.endTime : props.post.startTime);
+const PostCell: React.FC<any> = (props: any) => { 
+  console.log(props,'ggg')
+  const {post, type} = props;
+  // let titleColor = (post.timeOut ? '#f00' : '#333');
+  // let timeTitle = (type === "已办任务" ? props.post.endTime : props.post.startTime);
   return (
-      <TouchableOpacity onPress={post => onSelect(props.post)}>
+    <TouchableOpacity onPress={post => { }}>
       <View style={styles.BigView}>
 
         <View style={styles.leftView}>
           <View style={styles.topText}>
-            <Text style={{fontSize:14,color:titleColor}} numberOfLines={1}>{props.post.title}--{props.post.processTitle}</Text>
+            <Text style={{ fontSize: 14, color: '#f00' }} numberOfLines={1}>{'已办任务'}--{'经办'}</Text>
           </View>
           <View style={styles.bottomText}>
             {(type === "待办" || type === "已办任务" || type === "代理任务") && renderUserName(props)}
             {(type === "代理任务") && renderDelegateType()}
             {(type === "我的申请" || type === "已办任务" || type === "代理任务") && renderStatus()}
-            <Text style={styles.timeTitle}>{timeTitle}</Text>
+            <Text style={styles.timeTitle}>{'2022-07-22 12:34:12'}</Text>
           </View>
         </View>
 
@@ -118,7 +119,7 @@ const styles = StyleSheet.create({
     flex:3,
     marginTop:5,
     fontSize:11,
-    color:Colors.secondaryColor,
+    color:Colors.LIGHT_ORANGE,
     textAlign: 'left',
   },
   timeTitle:
