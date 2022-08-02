@@ -1,9 +1,10 @@
 declare namespace office { 
 
   type urlProp  = {
-    url:string
+    title: string
+    type:string
   }
   interface stateProp { 
-    images:Array<urlProp>
+    images: Array<urlProp>,
   }
 }

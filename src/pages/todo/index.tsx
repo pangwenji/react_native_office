@@ -2,7 +2,7 @@ import NavigationBar from '@/components/navigationbar';
 import Spinner from '@/components/spinner';
 import React, { useState } from 'react';
 import { Picker } from '@react-native-picker/picker';
-import { Model } from 'react-native-paper'
+import { Modal} from 'react-native-paper'
 import {
     View,
     Text,
@@ -151,7 +151,7 @@ const commonRenderButton = (title:string,setIsShow:Function) => {
 
 const showModel = (props: any, isShow: boolean, setIsShow: Function) => {
     return (
-        <Model visible={isShow} transparent={true}>
+        <Modal visible={isShow} transparent={true}>
             <View style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)', height: ViewHeight, width: ViewWidth, }}>
                 <View style={styles.modelStyle}>
                     <View style={styles.calendarContainer}>
@@ -166,7 +166,7 @@ const showModel = (props: any, isShow: boolean, setIsShow: Function) => {
                     </View>
                 </View>
             </View>
-        </Model>
+        </Modal>
     )
 }
 

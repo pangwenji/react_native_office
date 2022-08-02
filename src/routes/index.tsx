@@ -25,7 +25,6 @@ interface stackType {
 
 const stack_sreen: Array<stackType> = [
     { name: 'root',   component: BottomTabs },
-    { name: 'notice', component: NoticeScreen },
     { name: 'todo',   component: TodoScreen },
     // { name: 'contacts', component: ContactsScreen },
     // { name: 'message', component: MessageScreen },

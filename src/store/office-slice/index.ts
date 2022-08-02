@@ -2,19 +2,10 @@ import { createSlice } from "@reduxjs/toolkit"
 
 const initialState: office.stateProp = {
 	images: [
-		{ url: require('@/assets/office/office_sickleave.png') },
-		{ url: require('@/assets/office/office_sickleave.png') },
-		{ url: require('@/assets/office/office_sickleave.png') },
-		{ url: require('@/assets/office/office_sickleave.png') },
-		{ url: require('@/assets/office/office_sickleave.png') },
-		{ url: require('@/assets/office/office_sickleave.png') },
-		{ url: require('@/assets/office/office_sickleave.png') },
-		{ url: require('@/assets/office/office_sickleave.png') },
-		{ url: require('@/assets/office/office_sickleave.png') },
-		{ url: require('@/assets/office/office_sickleave.png') },
-		{ url: require('@/assets/office/office_sickleave.png') },
-		{ url: require('@/assets/office/office_sickleave.png') },
-		{ url: require('@/assets/office/office_sickleave.png') },
+		{  title:'采购申请',type:'purchase' },
+		{ title:'人事申请',type:'personnel' },
+		{ title:'行政申请',type:'administration' },
+		{ title:'财务申请' ,type:'finance'},
 	]
 }
 

@@ -6,7 +6,7 @@ import React, { useEffect } from 'react';
 import {
 	View,
 	Text,
-	TouchableOpacity, Image, StyleSheet, InteractionManager, Alert, Linking, Platform
+	TouchableOpacity, Image, StyleSheet, InteractionManager, Alert, Linking, Platform, TouchableHighlight
 } from 'react-native';
 import Login from '../login';
 import store from '@/utils/storage';
@@ -14,6 +14,9 @@ import JPush from 'jpush-react-native';
 import UserInfo from '../userinfo';
 import ChangePassword from '../changepassword';
 import ToastTip from '@/components/notification';
+import { useSelector } from 'react-redux';
+import { FlatList } from 'react-native-gesture-handler';
+import { ViewWidth,ViewHeight} from '@/utils/index';
 
 interface IProps {
 	login: any,
@@ -96,12 +99,32 @@ const onUserInfo = (props: any) => {
 		name: "UserInfo",
 		component: UserInfo,
 	});
+
+}
+
+const _onPress = () => { }
+
+const _renderItem = () => {
+	return (
+		<View>
+			<TouchableHighlight style={styles.btn} onPress={() =>_onPress} >
+				<View style={styles.btn}>
+					<Image style={styles.image} source={icon} />
+					<Text style={styles.btnContent}>{'修改密码'}</Text>
+					<Image style={styles.nextIcon} source={require('../img/icon/icon-next.png')} />
+				</View>
+			</TouchableHighlight>
+		</View>
+	)
 }
 
 const SettingsScreen: React.FC<IProps> = (props) => {
 	const { login, userInfo, top } = props;
+	let result: { userInfo: { username: string } } | any = useSelector<any>(state => state.setings);
+	console.log(result)
+	let { username } = result;
 	useEffect(() => {
-		if (userInfo.avatarGot && !userInfo.avatarData) {
+		if (!username) {
 			<ToastTip message={'个人信息获取失败!'} />
 		}
 	}, [])
@@ -110,23 +133,15 @@ const SettingsScreen: React.FC<IProps> = (props) => {
 			<View style={styles.containers}>
 				<TouchableOpacity style={{ marginTop: top, }} onPress={() => onUserInfo(props)}>
 					<View style={styles.bgAvatar}>
-						<Image style={styles.avatar} source={userInfo.avatarData ? userInfo.avatarData : require('@/assets/img/icon/icon-avatar.png')} />
-						<Text style={styles.userInfo}>{login.rawData.nickName}</Text>
+						<Image style={styles.avatar} source={require('@/assets/img/icon/icon-avatar.png')} />
+						<Text style={styles.userInfo}>{username}</Text>
 						<Image style={styles.nextIcon} source={require('@/assets/img/icon/icon-next.png')} />
 					</View>
 				</TouchableOpacity>
-				{                      //type
-					commonRenderLine('nextIcon', '修改密码', '20', onChangePassword, require('@/assets/img/icon/icon-locks.png'))
-				}
-				{
-					commonRenderLine('nextIcon', '帮助', '', onHelp, require('@/assets/img/icon/icon-locks.png'))
-				}
-				{
-					commonRenderLine('nextIcon', '版本信息', '', goVersion, require('@/assets/img/icon/icon-version.png'))
-				}
-				{
-					commonRenderLine('text', '注销', '40', onLogout, require('@/assets/img/icon/icon-version.png'), '#ED4D4D', '16')
-				}
+				<FlatList
+					data={[]}
+					renderItem={_renderItem}
+				/>
 			</View>
 			<View style={styles.phone}>
 				<Text style={styles.phoneText}>如有任何疑问，请拨打服务电话</Text>
@@ -187,6 +202,21 @@ const styles = StyleSheet.create({
 		width: 8,
 		height: 14,
 		marginRight: 8,
+	},
+	btn: {
+		marginTop: 1
+	},
+	btnContent: {
+		marginLeft: 10,
+		flex: 1,
+		color: '#333',
+		fontSize: 14
+	},
+	image: {
+		marginLeft: 10,
+		width: ViewWidth * 0.5,
+		height: ViewHeight * 0.5,
+		borderRadius:  4,
 	},
 });
 

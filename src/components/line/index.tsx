@@ -1,4 +1,4 @@
-import { ViewHeight } from '@/utils/index';
+import { ViewHeight, ViewWidth } from '@/utils/index';
 import React from 'react';
 import { Image, StyleSheet, Text, Touchable, TouchableHighlight, View } from 'react-native';
 
@@ -35,37 +35,47 @@ const commonTouchable = (props: IProps, type: string) => {
 }
 
 const Line: React.FC<IProps> = (props: IProps) => {
-
-	let { type } = props;
-	switch (type) {
-		case 'nextIcon':
-			commonTouchable(props, 'nextIcon')
-			break;
-		case 'next':
-			commonTouchable(props, 'next')
-			break;
-		case 'text':
-			commonTouchable(props, 'text')
-			break;
-		default:
-			break;
-	}
+	console.log(props, 'props')
+	// let { type } = props;
+	// switch (type) {
+	// 	case 'nextIcon':
+	// 		commonTouchable(props, 'nextIcon')
+	// 		break;
+	// 	case 'next':
+	// 		commonTouchable(props, 'next')
+	// 		break;
+	// 	case 'text':
+	// 		commonTouchable(props, 'text')
+	// 		break;
+	// }
 	return (
-		<View style={{ flexWrap: 'wrap' }}>
-			<Text style={{ marginLeft: 10 }}>
-				type: 类型('text','next','nextIcon'){'\n'}
-				height: item高度，默认为界面高度的1/14{'\n'}
-				top:上边距（外）默认值：1{'\n'}
-				bg: 背景色，默认白色{'\n'}
-				text:中间文本（type为‘text’时，文本居中显示）{'\n'}
-				fontSize:文本字体大小，默认为18{'\n'}
-				fontColor:文本字体颜色，默认黑色{'\n'}
-				icon:左边图标（仅type为‘nextIcon’时显示）{'\n'}
-				iconRadius:图标弧度，默认4{'\n'}
-				onClick:点击响应函数{'\n'}
-			</Text>
+		<View>
+			<View>
+				<TouchableHighlight style={styles.btn} onPress={() => this.props.onClick()} >
+					<View style={styles.btn}>
+						<Image style={styles.image} source={icon} />
+						<Text style={styles.btnContent}>{'修改密码'}</Text>
+						<Image style={styles.nextIcon} source={require('../img/icon/icon-next.png')} />
+					</View>
+				</TouchableHighlight>
+			</View>
+			<View>
+				<TouchableHighlight style={styles.btn} onPress={() => this.props.onClick()}>
+					<View style={styles.btn}>
+						<Text style={styles.btnContent}>{'帮助'}</Text>
+						<Image style={styles.nextIcon} source={require('../img/icon/icon-next.png')} />
+					</View>
+				</TouchableHighlight>
+			</View>
+			<View>
+				<TouchableHighlight style={styles.btn} onPress={() => this.props.onClick()}>
+					<View style={styles.btn}>
+						<Text style={[styles.btnContent, { textAlign: 'center' }]}>{this.props.text}</Text>
+					</View>
+				</TouchableHighlight>
+			</View>
 		</View>
-	);
+	)
 }
 
 const styles = StyleSheet.create({
@@ -73,6 +83,24 @@ const styles = StyleSheet.create({
 		width: 8,
 		height: 14,
 		marginRight: 10,
+	},
+	btn: {
+		marginTop: 1
+	},
+	btnContent: {
+		marginLeft: 10,
+		flex: 1,
+		color: '#333',
+		fontSize: 14
+	},
+	image: {
+		marginLeft: 10,
+		width: ViewWidth * 0.5,
+		height: ViewHeight * 0.5,
+		borderRadius:  4,
+	},
+	text: {
+
 	}
 });
 export default Line;

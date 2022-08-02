@@ -14,6 +14,7 @@ import {
 	ImageBackground
 } from 'react-native';
 import { ViewWidth } from '@/utils/index';
+import { useSelector } from 'react-redux';
 
 const onCreated = (props: any) => {
 	goToTask(NetWork.OFFICE_CREATED, '我的申请', props);
@@ -53,11 +54,6 @@ const onClick = (templateOption: any, props: any) => {
 const commonRender = (title: string, fn: Function) => {
 	let imageUrl;
 	switch (title) {
-		// {commonRender('我的申请', '@/assets/office/office_sq.png', onCreated)}
-		// {/* 同意 */}
-		// {commonRender('已办任务', '@/assets/office/office_sp.png', onApproval)}
-		// {/* 代理 */}
-		// {commonRender('代理任务', '@/assets/office/office_proxy.png', onProxy)}
 		case '我的申请':
 			imageUrl = require('@/assets/office/office_sq.png');
 			break;
@@ -84,7 +80,10 @@ interface IProp {
 	children?: React.ReactNode
 }
 const OfficeScreen: React.FC<IProp> = (props: IProp) => {
-	let { tabOffice, top } = props
+	let { tabOffice, top } = props;
+	let result: { images: Array<{url:string,title:string}> } | any= useSelector<any>(state => state.office);
+	let {images } = result;
+	
 	return (
 		<View style={styles.background}>
 			<View style={[styles.mainBack, { marginTop: top }]}>
@@ -103,8 +102,8 @@ const OfficeScreen: React.FC<IProp> = (props: IProp) => {
 			<ScrollView>
 				<View style={styles.scrollBg}>
 					{
-						tabOffice.officeItemData.map((row: any) => {
-							return <GridItem row={row} onClick={async () => onClick(row, props)} />
+					images.map((data: any,index:number) => {
+							return <GridItem {...data}  key={index} onClick={async () => onClick(data,props)} />
 						})
 					}
 				</View>
