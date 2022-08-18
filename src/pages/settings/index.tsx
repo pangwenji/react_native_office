@@ -1,4 +1,3 @@
-import Line from '@/components/line';
 import WebViews from '@/components/webview';
 import { Colors } from '@/utils/colors';
 import { NetWork } from '@/utils/network';
@@ -24,26 +23,6 @@ interface IProps {
 	top: any
 }
 
-const commonRenderLine = (
-	type: string,
-	text: string,
-	top?: string,
-	onClick?: Function,
-	icon?: string,
-	fontColor?: string,
-	fontSize?: string) => {
-	return (
-		<Line
-			type={type}
-			top={top}
-			text={text}
-			onClick={async () => onClick}
-			icon={icon}
-			fontColor={fontColor}
-			fontSize={fontSize}
-		/>
-	)
-}
 
 const onChangePassword = (props: any) => {
 	const { navigator } = props;
@@ -104,24 +83,28 @@ const onUserInfo = (props: any) => {
 
 const _onPress = () => { }
 
-const _renderItem = () => {
+const _renderItem = ({ item }: any) => {
+	console.log(item,'item')
 	return (
 		<View>
-			<TouchableHighlight style={styles.btn} onPress={() =>_onPress} >
+			{/* <TouchableHighlight style={styles.btn} onPress={() =>_onPress} >
 				<View style={styles.btn}>
 					<Image style={styles.image} source={icon} />
 					<Text style={styles.btnContent}>{'修改密码'}</Text>
-					<Image style={styles.nextIcon} source={require('../img/icon/icon-next.png')} />
+					<Image style={styles.nextIcon} source={require('@/assets/img/icon/icon-next.png')} />
 				</View>
-			</TouchableHighlight>
+			</TouchableHighlight> */}
 		</View>
 	)
 }
-
+const itemData: Array<any> = [
+	{ title: '修改密码', type: 'pasd' },
+	{title:'帮助',type:'help'},
+	{title:'版本信息',type:'veriosn'},
+]
 const SettingsScreen: React.FC<IProps> = (props) => {
 	const { login, userInfo, top } = props;
 	let result: { userInfo: { username: string } } | any = useSelector<any>(state => state.setings);
-	console.log(result)
 	let { username } = result;
 	useEffect(() => {
 		if (!username) {
@@ -139,7 +122,7 @@ const SettingsScreen: React.FC<IProps> = (props) => {
 					</View>
 				</TouchableOpacity>
 				<FlatList
-					data={[]}
+					data={itemData}
 					renderItem={_renderItem}
 				/>
 			</View>
